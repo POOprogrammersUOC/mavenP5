@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement
 //@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-@XmlType(propOrder = { "NumeroProyecto", "Pais", "Localizacion", "lineaDeAccion", "SublineaDeAccion", "FechaInicio",
+/*@XmlType(propOrder = { "NumeroProyecto", "Pais", "Localizacion", "lineaDeAccion", "SublineaDeAccion", "FechaInicio",
 		"FechaFinal", "SocioLocal", "Financiador", "Financiacion", "Acciones", "Personal", "VoluntariosAsignados" })
-
+*/
 public class Proyectos {
 
 	private String Pais;
@@ -85,9 +85,7 @@ public class Proyectos {
 		VoluntariosAsignados = voluntariosAsignados;
 	}
 
-	/**
-	 * 
-	 */
+	
 	public Proyectos() {
 		super();
 	}
@@ -95,7 +93,7 @@ public class Proyectos {
 	/**
 	 * @return Devuelve el pais
 	 */
-	//@XmlElement(name = "Pais")
+	
 	public String getPais() {
 		return Pais;
 	}
@@ -103,6 +101,7 @@ public class Proyectos {
 	/**
 	 * @param pais Establece el pais
 	 */
+	//@XmlElement(name = "Pais")
 	public void setPais(String pais) {
 		Pais = pais;
 	}
