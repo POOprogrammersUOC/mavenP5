@@ -17,7 +17,7 @@ JAXBContext context = JAXBContext.newInstance(Ong.class);
 		Marshaller marshaller = context.createMarshaller();
 		
 		Ong database = new Ong();
-		database.setListaSocios("Database socios");
+		database.getListaSocios("Database socios");
 		
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		marshaller.marshal(database, System.out);

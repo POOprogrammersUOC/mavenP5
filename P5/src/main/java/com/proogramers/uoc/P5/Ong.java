@@ -462,4 +462,9 @@ public class Ong {
 
 	}
 
+	public void getListaSocios(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
