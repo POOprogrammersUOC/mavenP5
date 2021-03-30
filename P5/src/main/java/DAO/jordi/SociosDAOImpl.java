@@ -1,4 +1,4 @@
-package DAO.jordi;
+/*package DAO.jordi;
 
 import com.proogramers.uoc.P5.*;
 
@@ -15,4 +15,4 @@ public class SociosDAOImpl implements SociosDAO {
 	}
 	
 	
-}
+}*/
