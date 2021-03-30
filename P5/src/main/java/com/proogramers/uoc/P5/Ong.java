@@ -7,6 +7,10 @@ import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Ong")
 public class Ong {
 
 	private String Nombre;
@@ -161,6 +165,7 @@ public class Ong {
 	/**
 	 * @return Devuelve Lista Proyectos
 	 */
+	@XmlElement(name = "Proyectos")
 	public ArrayList<Proyectos> getListaProyectos() {
 		return ListaProyectos;
 	}
@@ -168,6 +173,7 @@ public class Ong {
 	/**
 	 * @param listaProyectos Establecer lista de proyectos
 	 */
+	//@XmlElement(name = "Proyectos")
 	public void setListaProyectos(ArrayList<Proyectos> listaProyectos) {
 		ListaProyectos = listaProyectos;
 	}

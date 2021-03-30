@@ -9,6 +9,13 @@ import DAO.DAOFactory;
 import DAO.IProyectosDAO;
 import DAO.XMLProyectosDAO;
 
+/***
+ * 
+ * @author Isaac tutusaus
+ * @version 1.0
+ */
+
+
 public class TestXmlProyectosDAO {
 
 	public static void main(String[] args) throws JAXBException {
@@ -17,7 +24,7 @@ public class TestXmlProyectosDAO {
 		Proyectos p1 = new Proyectos();
 		Proyectos p2 = new Proyectos();
 		
-		p1.setPais("España");;
+		p1.setPais("España");
 		p1.setLocalizacion("Barcelona");
 		p1.setLineaDeAccion("Nada");
 		p1.setSublineaDeAccion("Nada");;
@@ -54,8 +61,10 @@ public class TestXmlProyectosDAO {
 		
 		
 		DAOFactory.getDAOFactory(1).getProyectosDAO().guardarProyectos(p2);
-		
+		//DAOFactory.getDAOFactory(1).getProyectosDAO().listaProyectos();
 
 	}
+	
+
 
 }

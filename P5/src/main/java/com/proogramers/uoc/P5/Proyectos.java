@@ -69,7 +69,7 @@ public class Proyectos {
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
 			String acciones, int personal, int voluntariosAsignados) {
 		
-		super();
+		//super();
 		Pais = pais;
 		Localizacion = localizacion;
 		this.lineaDeAccion = lineaDeAccion;
@@ -93,7 +93,7 @@ public class Proyectos {
 	/**
 	 * @return Devuelve el pais
 	 */
-	
+	@XmlElement(name = "Pais")
 	public String getPais() {
 		return Pais;
 	}
