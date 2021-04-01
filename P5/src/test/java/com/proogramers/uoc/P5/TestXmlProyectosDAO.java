@@ -20,6 +20,8 @@ public class TestXmlProyectosDAO {
 
 	public static void main(String[] args) throws JAXBException {
 		
+		
+		
 		ArrayList<Proyectos> nuevaLista = new ArrayList<>();
 		Proyectos p1 = new Proyectos();
 		Proyectos p2 = new Proyectos();

@@ -69,7 +69,7 @@ public class Proyectos {
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
 			String acciones, int personal, int voluntariosAsignados) {
 		
-		//super();
+		super();
 		Pais = pais;
 		Localizacion = localizacion;
 		this.lineaDeAccion = lineaDeAccion;

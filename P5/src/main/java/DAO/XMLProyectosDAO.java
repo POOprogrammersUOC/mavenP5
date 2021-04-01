@@ -18,7 +18,7 @@ public class XMLProyectosDAO implements IProyectosDAO{
 	private String nombreFichero = null;
 	
 	
-	public XMLProyectosDAO() throws JAXBException {		//creamos el constructor para que cada vez que se llame a la función
+	public XMLProyectosDAO() throws JAXBException {		//creamos el constructor para que cada vez que se llame a la función se ejecute
 		
 		this.contexto = JAXBContext.newInstance(Proyectos.class); //creamos la nueva instancia de proyectos
 		this.nombreFichero = "xml/Proyectos.xml"; //indicamos la ruta del fichero
@@ -44,7 +44,7 @@ public class XMLProyectosDAO implements IProyectosDAO{
 		
 		Unmarshaller unmar = contexto.createUnmarshaller(); //creamos el objeto unmarshaller
 		Proyectos proyectos = (Proyectos) unmar.unmarshal(new File(nombreFichero)); //leemos del fichero seleccionado
-		//Ong ong = new Ong();
+		
 		
 		System.out.println("************************************************************************");
 		System.out.println(" Se van a cargar los siguientes proyectos del fichero: " + nombreFichero);
