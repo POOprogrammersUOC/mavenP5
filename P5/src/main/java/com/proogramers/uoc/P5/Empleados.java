@@ -1,6 +1,8 @@
 package com.proogramers.uoc.P5;
 
-  
+ 
+@XmlRootElement(name="Empleados")
+@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI")
 public class Empleados {
 
 	private String Nombre;
@@ -25,6 +27,7 @@ public class Empleados {
 	/**
 	 * @return Devuelve Nombre del empleado
 	 */
+	@XmlElement(name= "Nombre")
 	public String getNombre() {
 		return Nombre;
 	}
@@ -37,6 +40,7 @@ public class Empleados {
 	/**
 	 * @return Devuelve Apellidos del empleado
 	 */
+	@XmlElement(name= "Apellidos")
 	public String getApellidos() {
 		return Apellidos;
 	}
@@ -49,6 +53,7 @@ public class Empleados {
 	/**
 	 * @return Devuelve Direcci�n del empleado
 	 */
+	@XmlElement(name= "Direccion")
 	public String getDireccion() {
 		return Direccion;
 	}
@@ -61,6 +66,7 @@ public class Empleados {
 	/**
 	 * @return Devuelve Telefono del empleado
 	 */
+	@XmlElement(name = "Telefono")
 	public String getTelefono() {
 		return Telefono;
 	}
@@ -73,6 +79,7 @@ public class Empleados {
 	/**
 	 * @return Devuelve DNI del empleado
 	 */
+	@XmlElement(name= "DNI")
 	public String getDNI() {
 		return DNI;
 	}
