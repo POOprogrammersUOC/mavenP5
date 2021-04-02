@@ -1,56 +1,53 @@
-package DAO;
+package DAO.jordi;
 
 import java.io.File;
-import java.util.ArrayList;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import com.proogramers.uoc.P5.Ong;
-import com.proogramers.uoc.P5.Proyectos;
+import com.proogramers.uoc.P5.Socios;
 
 
-public class XMLProyectosDAO implements IProyectosDAO{
+public class XMLSociosDAO implements ISociosDAO{
 
 	private JAXBContext contexto = null;	//Iniciamos las variables a null para evitar que se inicien con residuos
 	private String nombreFichero = null;
 	
 	
-	public XMLProyectosDAO() throws JAXBException {		//creamos el constructor para que cada vez que se llame a la función
+	public XMLSociosDAO() throws JAXBException {		//creamos el constructor para que cada vez que se llame a la función
 		
-		this.contexto = JAXBContext.newInstance(Proyectos.class); //creamos la nueva instancia de proyectos
-		this.nombreFichero = "xml/Proyectos.xml"; //indicamos la ruta del fichero
+		this.contexto = JAXBContext.newInstance(Socios.class); //creamos la nueva instancia de proyectos
+		this.nombreFichero = "xml/Socios.xml"; //indicamos la ruta del fichero
 	}
 
 	@Override
-	public void guardarProyectos(Proyectos proyectos) throws JAXBException {
+	public void guardarSocios(Socios socios) throws JAXBException {
 
 		Marshaller mar = contexto.createMarshaller(); //creamos el objeto
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true); // seleccionamos la propiedad de formateo en xml
-		mar.marshal(proyectos, new File(nombreFichero)); // se crea el fichero
+		mar.marshal(socios, new File(nombreFichero)); // se crea el fichero
 		System.out.println("********************************************************************************");
 		System.out.println(" Se ha generado el fichero en " + nombreFichero + ". El contenido es el siguiente: ");
 		System.out.println("********************************************************************************");
-		mar.marshal(proyectos, System.out); // imprimimos por pantalla el xml
+		mar.marshal(socios, System.out); // imprimimos por pantalla el xml
 		
 		
 		
 	}
 
 	@Override
-	public Proyectos listaProyectos() throws JAXBException {
+	public Socios listarSocios() throws JAXBException {
 		
 		Unmarshaller unmar = contexto.createUnmarshaller(); //creamos el objeto unmarshaller
-		Proyectos proyectos = (Proyectos) unmar.unmarshal(new File(nombreFichero)); //leemos del fichero seleccionado
-		//Ong ong = new Ong();
+		Socios socios = (Socios) unmar.unmarshal(new File(nombreFichero)); //leemos del fichero seleccionado
+		
 		
 		System.out.println("************************************************************************");
-		System.out.println(" Se van a cargar los siguientes proyectos del fichero: " + nombreFichero);
+		System.out.println(" Se van a cargar los siguientes socios del fichero: " + nombreFichero);
 		System.out.println("************************************************************************");
 		
-		System.out.println(proyectos); //imprimimos por pantalla los resultados del XML
+		System.out.println(socios); //imprimimos por pantalla los resultados del XML
 		
 		/*
 		for (Proyectos proyectosunm : new Ong().getListaProyectos()) {

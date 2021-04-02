@@ -1,5 +1,7 @@
 package DAO;
 
+import javax.xml.bind.JAXBException;
+
 public abstract class DAOFactory {
 
 	// Lista de tipos DAO soportado por la factoria.
@@ -7,7 +9,7 @@ public abstract class DAOFactory {
 		public static final int SQL = 2;
 		
 		//Para cada clase tenemos un DAO que es creado
-		public abstract DAO<Proyectos> getProyectosDAO();
+		public abstract XMLProyectosDAO getProyectosDAO() throws JAXBException;
 		
 		
 		public static DAOFactory getDAOFactory(int whichFactory) {

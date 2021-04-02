@@ -11,7 +11,7 @@ public abstract class DAOFactory {
 		public static final int SQL = 2;
 		
 		//Para cada clase tenemos un DAO que es creado
-		public abstract XMLSocios getSociosDao() throws JAXBException;
+		public abstract XMLSociosDAO getSociosDao() throws JAXBException;
 		
 				
 		public static XMLDAOFactory getDAOFactory(int whichFactory) {

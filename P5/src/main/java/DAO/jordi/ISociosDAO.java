@@ -6,9 +6,9 @@ import com.proogramers.uoc.P5.Socios;
 
 public interface ISociosDAO {
 
-	public void guardarsocios(Socios socios) throws JAXBException;
+	public void guardarSocios(Socios socios) throws JAXBException;
 	
-	public Socios listarsocios() throws JAXBException;
+	public Socios listarSocios() throws JAXBException;
 	
 	
 }
