@@ -31,7 +31,7 @@ public class Socios {
 	/**
 	 * @return Devuelve Nombre del socio
 	 */
-	@XmlElement(name="Nombre")
+	@XmlElement(name="nombre")
 	public String getNombre() {
 		return Nombre;
 	}
