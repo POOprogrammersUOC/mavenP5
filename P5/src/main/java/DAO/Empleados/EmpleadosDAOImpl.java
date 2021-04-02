@@ -1,16 +1,11 @@
-package DAO.jordi;
+package DAO.Empleados;
 
-import java.util.List;
+import javax.xml.bind.JAXBException;
 
-import com.proogramers.uoc.P5.Socios;
-
-public interface SociosDAO {
-
-	List<Socios> mostrarTodos();
-	Socios mostrarId(Socios socios);
-	void añadir(Socios socios);
-	void actualizar(Socios socios);
-	void suprimir(int idsocio);
+public class EmpleadosDAOImpl extends DAOFactoryEmpl{
 	
+	public XMLEmpleados getEmpleadosDAO() throws JAXBException{
+		return new XMLEmpleados();
+	}
 	
 }

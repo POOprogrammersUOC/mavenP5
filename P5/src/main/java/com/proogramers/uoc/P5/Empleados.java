@@ -1,8 +1,11 @@
 package com.proogramers.uoc.P5;
 
- 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 @XmlRootElement(name="Empleados")
-@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI")
+@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI"})
 public class Empleados {
 
 	private String Nombre;
