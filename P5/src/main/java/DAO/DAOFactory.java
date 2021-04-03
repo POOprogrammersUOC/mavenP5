@@ -10,7 +10,7 @@ public abstract class DAOFactory {
 		
 		//Para cada clase tenemos un DAO que es creado
 		public abstract XMLProyectosDAO getProyectosDAO() throws JAXBException;
-		
+		public abstract XMLEmpleadosDAO getEmpleadosDAO() throws JAXBException;
 		
 		public static DAOFactory getDAOFactory(int whichFactory) {
 			

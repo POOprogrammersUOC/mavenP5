@@ -398,7 +398,7 @@ public class Ong {
 
 	public void AgregarEmpleado() {
 
-		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados();
+		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados(); // Se crea un arrayList de empleados para poder recorrer la lista
 
 		System.out.println("Introduce nombre");
 
