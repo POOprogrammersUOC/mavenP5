@@ -29,6 +29,11 @@ public class Socios {
 	}
 
 
+	public Socios() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * @return Devuelve Nombre del socio
 	 */

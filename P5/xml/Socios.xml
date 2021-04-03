@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<socios>
+    <nombre>Marcos</nombre>
+    <Apellidos>Alonso</Apellidos>
+    <nSocio>120</nSocio>
+    <Direccion>Barcelona</Direccion>
+    <Telefono>654569894</Telefono>
+</socios>

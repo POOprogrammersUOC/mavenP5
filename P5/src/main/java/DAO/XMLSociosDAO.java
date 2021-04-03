@@ -1,4 +1,4 @@
-package DAO.jordi;
+package DAO;
 
 import java.io.File;
 import javax.xml.bind.JAXBContext;

@@ -1,4 +1,4 @@
-package DAO.jordi;
+package DAO;
 
 import javax.xml.bind.JAXBException;
 

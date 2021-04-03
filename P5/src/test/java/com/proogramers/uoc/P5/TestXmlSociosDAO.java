@@ -1,13 +1,13 @@
 package com.proogramers.uoc.P5;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
-import DAO.jordi.DAOFactory;
-import DAO.jordi.ISociosDAO;
-import DAO.jordi.XMLSociosDAO;
+import DAO.ISociosDAO;
+import DAO.XMLSociosDAO;
+import DAO.DAOFactory;
 
 
 
@@ -23,8 +23,10 @@ public class TestXmlSociosDAO {
 		socio1.setnSocio(120);
 		socio1.setDireccion("Barcelona");
 		socio1.setTelefono("654569894");
+		nuevaLista.add(socio1); 
 		
-		DAO.jordi.DAOFactory.getDAOFactory(1).getSociosDAO().guardarSocios(socio1);
+		DAOFactory.getDAOFactory(1).getSociosDAO().guardarSocios(socio1);
+		
 	
 
 	}
