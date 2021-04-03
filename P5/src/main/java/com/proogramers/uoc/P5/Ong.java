@@ -1,4 +1,5 @@
 package com.proogramers.uoc.P5;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -239,7 +240,25 @@ public class Ong {
 
 	public void EliminarSocio() {
 
-		ArrayList<Socios> NuevaListaSocios = this.getListaSocios();
+		ArrayList<Socios> EliminarListaSocios = this.getListaSocios();
+
+		if (EliminarListaSocios.isEmpty()) {
+			System.out.println("No hay socios a eliminar\n");
+		} else {
+
+			for (int i = 0; i < EliminarListaSocios.size(); i++) {
+
+				System.out.println("Número de socio: " + EliminarListaSocios.get(i).getNumSocio());
+			}
+			try {
+				System.out.println("¿Que socio quiere eliminar? Indique el número: ");
+				int eliminar = leer.nextInt();
+				leer.nextLine();
+				EliminarListaSocios.remove(eliminar - 1);
+			} catch (Exception e) {
+				System.out.println("El valor introducido no se encuentra en la lista\n");
+			}
+		}
 
 	}
 
@@ -464,6 +483,6 @@ public class Ong {
 
 	public void getListaSocios(String string) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -114,6 +114,12 @@ public class Socios {
 		return "Socios [Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", nSocio=" + nSocio + ", Direccion="
 				+ Direccion + ", Telefono=" + Telefono + "]";
 	}
+
+
+	public String getNumSocio() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
 	
 	
 
