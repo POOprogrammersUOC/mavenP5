@@ -1,5 +1,9 @@
 package com.proogramers.uoc.P5;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name="socios")
+@XmlType(propOrder={"nombre", "apellidos", "nSocio", "direccion", "telefono"})
   
 public class Socios {
 
@@ -24,9 +28,16 @@ public class Socios {
 		Telefono = telefono;
 	}
 
+
+	public Socios() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * @return Devuelve Nombre del socio
 	 */
+	@XmlElement(name="nombre")
 	public String getNombre() {
 		return Nombre;
 	}
@@ -41,6 +52,7 @@ public class Socios {
 	/**
 	 * @return Devuelve apellidos del socio
 	 */
+	@XmlElement(name="Apellidos")
 	public String getApellidos() {
 		return Apellidos;
 	}
@@ -55,6 +67,7 @@ public class Socios {
 	/**
 	 * @return Devuelve Numero del socio
 	 */
+	@XmlElement(name="nSocio")
 	public int getnSocio() {
 		return nSocio;
 	}
@@ -69,6 +82,7 @@ public class Socios {
 	/**
 	 * @return Devuelve direccion del socio
 	 */
+	@XmlElement(name="Direccion")
 	public String getDireccion() {
 		return Direccion;
 	}
@@ -83,6 +97,7 @@ public class Socios {
 	/**
 	 * @return Devuelve telefono del socio
 	 */
+	@XmlElement(name="Telefono")
 	public String getTelefono() {
 		return Telefono;
 	}
@@ -101,6 +116,7 @@ public class Socios {
 	}
 	
 	
+
 	
 	
 }
