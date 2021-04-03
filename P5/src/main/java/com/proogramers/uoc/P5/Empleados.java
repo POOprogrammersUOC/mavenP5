@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name="Empleados")
-@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI"})
+//@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI"})
 public class Empleados {
 
 	private String Nombre;
@@ -26,6 +26,9 @@ public class Empleados {
 		Direccion = direccion;
 		Telefono = telefono;
 		DNI = dNI;
+	}
+	public Empleados() {
+		// TODO Esbozo de constructor generado automáticamente
 	}
 	/**
 	 * @return Devuelve Nombre del empleado
