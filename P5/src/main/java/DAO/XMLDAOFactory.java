@@ -14,4 +14,9 @@ public class XMLDAOFactory extends DAOFactory {
 		return new XMLSociosDAO();
 	}
 
+	public XMLEmpleadosDAO getEmpleadosDAO() throws JAXBException {
+		return new XMLEmpleadosDAO();
+
+	}
+
 }

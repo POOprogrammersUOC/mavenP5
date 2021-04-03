@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Empleados>
+    <Apellidos>Sanchez</Apellidos>
+    <DNI>65498722</DNI>
+    <Direccion>Av España</Direccion>
+    <Nombre>Manolo</Nombre>
+    <Telefono>3216548</Telefono>
+</Empleados>
