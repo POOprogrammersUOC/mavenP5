@@ -12,9 +12,8 @@ import org.junit.Test;
 public class TestUnitarioSocios {
 
 	ArrayList<Socios> listaSocios = new ArrayList<>();
-	
+
 	Socios s1 = new Socios("Juan", "Valdes", 123, "Barcelona", "965698986");
-			
 
 	@Before
 	public void setUp() throws Exception {
@@ -25,7 +24,7 @@ public class TestUnitarioSocios {
 	public void testInsert() {
 
 		listaSocios.add(s1);
-		assertEquals(listaSocios.size(), 1); 
+		assertEquals(listaSocios.size(), 1);
 
 	}
 
@@ -34,7 +33,7 @@ public class TestUnitarioSocios {
 
 		listaSocios.add(s1);
 		listaSocios.remove(0);
-		assertEquals(listaSocios.size(), 0); 
+		assertEquals(listaSocios.size(), 0);
 
 	}
 
@@ -49,7 +48,7 @@ public class TestUnitarioSocios {
 		System.out.println("---------S1 UPDATE----------");
 		System.out.println(listaSocios.toString());
 		System.out.println("----------------------------");
-		assertEquals(s1, listaSocios.get(0)); 
+		assertEquals(s1, listaSocios.get(0));
 
 	}
 }
