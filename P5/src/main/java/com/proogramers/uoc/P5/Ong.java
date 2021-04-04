@@ -225,7 +225,7 @@ public class Ong {
 
 		if (NuevaListaSocios.isEmpty()) {
 
-			System.out.println("No hay proyectos creados\n");
+			System.out.println("No hay socios creados\n");
 
 		} else {
 
@@ -254,10 +254,10 @@ public class Ong {
 
 			for (int i = 0; i < EliminarListaSocios.size(); i++) {
 
-				System.out.println("Número de socio: " + EliminarListaSocios.get(i).getNumSocio());
+				System.out.println("Número de socio: " + EliminarListaSocios.get(i).getnSocio());
 			}
 			try {
-				System.out.println("¿Que socio quiere eliminar? Indique el número: ");
+				System.out.println("¿Que socio quiere eliminar? Indique la posición: ");
 				int eliminar = leer.nextInt();
 				leer.nextLine();
 				EliminarListaSocios.remove(eliminar - 1);
