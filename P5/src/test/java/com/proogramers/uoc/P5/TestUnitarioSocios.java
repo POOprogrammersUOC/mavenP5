@@ -11,6 +11,7 @@ import org.junit.Test;
 
 public class TestUnitarioSocios {
 
+	// Añadimos datos a la arraylist de Socios para comprobar que funciona bien
 	ArrayList<Socios> listaSocios = new ArrayList<>();
 
 	Socios s1 = new Socios("Juan", "Valdes", 123, "Barcelona", "965698986");
