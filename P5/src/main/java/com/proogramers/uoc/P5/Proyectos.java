@@ -2,7 +2,6 @@ package com.proogramers.uoc.P5;
 
 import java.time.LocalDate;
 
-
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,8 +10,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-
 
 /**
  * 
@@ -27,24 +24,24 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement
 //@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-/*@XmlType(propOrder = { "NumeroProyecto", "Pais", "Localizacion", "lineaDeAccion", "SublineaDeAccion", "FechaInicio",
-		"FechaFinal", "SocioLocal", "Financiador", "Financiacion", "Acciones", "Personal", "VoluntariosAsignados" })
-*/
+
+  @XmlType(propOrder = { "numProyecto", "pais", "localizacion","lineaDeAccion", "sublineaDeAccion", "fechaInicio", "fechaFinal","socioLocal", "financiador", "financiacion", "acciones", "personal","voluntariosAsignados" })
+ 
 public class Proyectos {
 
-	private String Pais;
-	private String Localizacion;
+	private String pais;
+	private String localizacion;
 	private String lineaDeAccion;
-	private String SublineaDeAccion;
-	private LocalDate FechaInicio;
-	private LocalDate FechaFinal;
-	private String SocioLocal;
-	private String Financiador;
-	private Double Financiacion;
-	private int NumProyecto;
-	private String Acciones;
-	private int Personal;
-	private int VoluntariosAsignados;
+	private String sublineaDeAccion;
+	private LocalDate fechaInicio;
+	private LocalDate fechaFinal;
+	private String socioLocal;
+	private String financiador;
+	private Double financiacion;
+	private int numProyecto;
+	private String acciones;
+	private int personal;
+	private int voluntariosAsignados;
 	private static int contador = 0;
 
 	/**
@@ -69,23 +66,21 @@ public class Proyectos {
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
 			String acciones, int personal, int voluntariosAsignados) {
 		
-		super();
-		Pais = pais;
-		Localizacion = localizacion;
+		this.pais = pais;
+		this.localizacion = localizacion;
 		this.lineaDeAccion = lineaDeAccion;
-		SublineaDeAccion = sublineaDeAccion;
-		FechaInicio = fechaInicio;
-		FechaFinal = fechaFinal;
-		SocioLocal = socioLocal;
-		Financiador = financiador;
-		Financiacion = financiacion;
-		NumProyecto = ++contador;
-		Acciones = acciones;
-		Personal = personal;
-		VoluntariosAsignados = voluntariosAsignados;
+		this.sublineaDeAccion = sublineaDeAccion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.socioLocal = socioLocal;
+		this.financiador = financiador;
+		this.financiacion = financiacion;
+		this.numProyecto = ++contador;
+		this.acciones = acciones;
+		this.personal = personal;
+		this.voluntariosAsignados = voluntariosAsignados;
 	}
 
-	
 	public Proyectos() {
 		super();
 	}
@@ -93,38 +88,38 @@ public class Proyectos {
 	/**
 	 * @return Devuelve el pais
 	 */
-	@XmlElement(name = "Pais")
+	@XmlElement
 	public String getPais() {
-		return Pais;
+		return pais;
 	}
 
 	/**
 	 * @param pais Establece el pais
 	 */
-	//@XmlElement(name = "Pais")
+	// @XmlElement(name = "Pais")
 	public void setPais(String pais) {
-		Pais = pais;
+		this.pais = pais;
 	}
 
 	/**
 	 * @return Devuelve la localizacion
 	 */
-	//@XmlElement(name = "Localizacion")
+	@XmlElement
 	public String getLocalizacion() {
-		return Localizacion;
+		return localizacion;
 	}
 
 	/**
 	 * @param localizacion Establece la localizacion
 	 */
 	public void setLocalizacion(String localizacion) {
-		Localizacion = localizacion;
+		this.localizacion = localizacion;
 	}
 
 	/**
 	 * @return Devuelve la lineaDeAccion
 	 */
-	//@XmlElement(name = "LineaDeAccion")
+	@XmlElement
 	public String getLineaDeAccion() {
 		return lineaDeAccion;
 	}
@@ -139,162 +134,162 @@ public class Proyectos {
 	/**
 	 * @return Devuelve la sublineaDeAccion
 	 */
-	//@XmlElement(name = "SubLineaDeAccion")
+	@XmlElement
 	public String getSublineaDeAccion() {
-		return SublineaDeAccion;
+		return sublineaDeAccion;
 	}
 
 	/**
 	 * @param sublineaDeAccion Establece la sublineaDeAccion
 	 */
 	public void setSublineaDeAccion(String sublineaDeAccion) {
-		SublineaDeAccion = sublineaDeAccion;
+		this.sublineaDeAccion = sublineaDeAccion;
 	}
 
 	/**
 	 * @return Devuelve fechaInicio
 	 */
-	//@XmlElement(name = "FechaInicio")
+	@XmlElement
 	public LocalDate getFechaInicio() {
-		return FechaInicio;
+		return fechaInicio;
 	}
 
 	/**
 	 * @param fechaInicio Establece la fechaInicio
 	 */
-	 @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+	@XmlJavaTypeAdapter(value = LocalDateAdapter.class)
 	public void setFechaInicio(LocalDate fechaInicio) {
-		FechaInicio = fechaInicio;
+		this.fechaInicio = fechaInicio;
 	}
 
 	/**
 	 * @return Devuelve fechaFinal
 	 */
-	//@XmlElement(name = "FechaFinal")
+	@XmlElement
 	public LocalDate getFechaFinal() {
-		return FechaFinal;
+		return fechaFinal;
 	}
 
 	/**
 	 * @param fechaFinal Establece la fechaFinal
 	 */
-	 @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+	@XmlJavaTypeAdapter(value = LocalDateAdapter.class)
 	public void setFechaFinal(LocalDate fechaFinal) {
-		FechaFinal = fechaFinal;
+		this.fechaFinal = fechaFinal;
 	}
 
 	/**
 	 * @return Devuelve socioLocal
 	 */
-	//@XmlElement(name = "SocioLocal")
+	@XmlElement
 	public String getSocioLocal() {
-		return SocioLocal;
+		return socioLocal;
 	}
 
 	/**
 	 * @param socioLocal Establece el socioLocal
 	 */
 	public void setSocioLocal(String socioLocal) {
-		SocioLocal = socioLocal;
+		this.socioLocal = socioLocal;
 	}
 
 	/**
 	 * @return Devuelve el financiador
 	 */
-	//@XmlElement(name = "Financiador")
+	@XmlElement
 	public String getFinanciador() {
-		return Financiador;
+		return financiador;
 	}
 
 	/**
 	 * @param financiador Establece el financiador
 	 */
 	public void setFinanciador(String financiador) {
-		Financiador = financiador;
+		this.financiador = financiador;
 	}
 
 	/**
 	 * @return Devuelve la financiacion
 	 */
-	//@XmlElement(name = "Financiacion")
+	@XmlElement
 	public Double getFinanciacion() {
-		return Financiacion;
+		return financiacion;
 	}
 
 	/**
 	 * @param financiacion Establece la financiacion
 	 */
 	public void setFinanciacion(Double financiacion) {
-		Financiacion = financiacion;
+		this.financiacion = financiacion;
 	}
 
 	/**
 	 * @return Devuelve el numProyecto
 	 */
-	//@XmlElement(name = "NumeroProyecto")
+	@XmlElement
 	public int getNumProyecto() {
-		return NumProyecto;
+		return numProyecto;
 	}
 
 	/**
 	 * @param numProyecto Establece el numProyecto
 	 */
 	public void setNumProyecto(int numProyecto) {
-		NumProyecto = numProyecto;
+		this.numProyecto = numProyecto;
 	}
 
 	/**
 	 * @return Devuelve las acciones
 	 */
-	//@XmlElement(name = "Acciones")
+	@XmlElement
 	public String getAcciones() {
-		return Acciones;
+		return acciones;
 	}
 
 	/**
 	 * @param acciones Establece las acciones
 	 */
 	public void setAcciones(String acciones) {
-		Acciones = acciones;
+		this.acciones = acciones;
 	}
 
 	/**
 	 * @return Devuelve el personal
 	 */
-	//@XmlElement(name = "Personal")
+	@XmlElement
 	public int getPersonal() {
-		return Personal;
+		return personal;
 	}
 
 	/**
 	 * @param personal Establece el personal
 	 */
 	public void setPersonal(int personal) {
-		Personal = personal;
+		this.personal = personal;
 	}
 
 	/**
 	 * @return Devuelve los voluntariosAsignados
 	 */
-	//@XmlElement(name = "VoluntariosAsignados")
+	@XmlElement
 	public int getVoluntariosAsignados() {
-		return VoluntariosAsignados;
+		return voluntariosAsignados;
 	}
 
 	/**
 	 * @param voluntariosAsignados Establece los voluntariosAsignados
 	 */
 	public void setVoluntariosAsignados(int voluntariosAsignados) {
-		VoluntariosAsignados = voluntariosAsignados;
+		this.voluntariosAsignados = voluntariosAsignados;
 	}
 
 	@Override
 	public String toString() {
-		return "Proyectos [Pais=" + Pais + ", Localizacion=" + Localizacion + ", lineaDeAccion=" + lineaDeAccion
-				+ ", SublineaDeAccion=" + SublineaDeAccion + ", FechaInicio=" + FechaInicio + ", FechaFinal="
-				+ FechaFinal + ", SocioLocal=" + SocioLocal + ", Financiador=" + Financiador + ", Financiacion="
-				+ Financiacion + ", NumProyecto=" + NumProyecto + ", Acciones=" + Acciones + ", Personal=" + Personal
-				+ ", VoluntariosAsignados=" + VoluntariosAsignados + "]";
+		return "Proyectos [Pais=" + pais + ", Localizacion=" + localizacion + ", lineaDeAccion=" + lineaDeAccion
+				+ ", SublineaDeAccion=" + sublineaDeAccion + ", FechaInicio=" + fechaInicio + ", FechaFinal="
+				+ fechaFinal + ", SocioLocal=" + socioLocal + ", Financiador=" + financiador + ", Financiacion="
+				+ financiacion + ", NumProyecto=" + numProyecto + ", Acciones=" + acciones + ", Personal=" + personal
+				+ ", VoluntariosAsignados=" + voluntariosAsignados + "]";
 	}
 
 }
