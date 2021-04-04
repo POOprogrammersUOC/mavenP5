@@ -174,7 +174,7 @@ public class Ong {
 	/**
 	 * @param listaProyectos Establecer lista de proyectos
 	 */
-	//@XmlElement(name = "Proyectos")
+	// @XmlElement(name = "Proyectos")
 	public void setListaProyectos(ArrayList<Proyectos> listaProyectos) {
 		ListaProyectos = listaProyectos;
 	}
@@ -415,23 +415,25 @@ public class Ong {
 
 	}
 
-	public void AgregarEmpleado() {		//Este metodo pide los datos de un empleado, y los agrega en array a la lista de empleados
+	public void AgregarEmpleado() { // Este metodo pide los datos de un empleado, y los agrega en array a la lista
+									// de empleados
 
-		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados(); // Se crea un arrayList de empleados para poder recorrer la lista
+		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados(); // Se crea un arrayList de empleados para
+																				// poder recorrer la lista
 
 		System.out.println("Introduce nombre");
 
 		String Nombre = leer.nextLine();
-		
-		System.out.println("Introduce numero");
-
-		int Numero = leer.nextInt();
-		
-		leer.nextLine();
 
 		System.out.println("Introduce apellido");
 
 		String Apellidos = leer.nextLine();
+
+		System.out.println("Introduce numero");
+
+		int Numero = leer.nextInt();
+
+		leer.nextLine();
 
 		System.out.println("Introduce direccion");
 
@@ -450,7 +452,7 @@ public class Ong {
 
 	}
 
-	public void imprimirEmpleados() {		//Imprime por consola los datos de empleado del array
+	public void imprimirEmpleados() { // Imprime por consola los datos de empleado del array
 
 		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados();
 
@@ -468,7 +470,7 @@ public class Ong {
 
 	}
 
-	public void EliminarEmpleado() {		//Busca el nombre ingrsado en el array de empleados y lo elimina de este
+	public void EliminarEmpleado() { // Busca el nombre ingrsado en el array de empleados y lo elimina de este
 
 		ArrayList<Empleados> EliminarListaEmpleados = this.getListaEmpleados();
 
@@ -482,9 +484,9 @@ public class Ong {
 			}
 			try {
 				System.out.println("Indique el numero del empleado a eliminar: ");
-				int  eliminar = leer.nextInt();
+				int eliminar = leer.nextInt();
 
-				EliminarListaEmpleados.remove(eliminar -1);
+				EliminarListaEmpleados.remove(eliminar - 1);
 
 			} catch (Exception e) {
 				System.out.println("El empleado no se encuentra en la lista\n");
