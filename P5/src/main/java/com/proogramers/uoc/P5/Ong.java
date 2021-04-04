@@ -396,7 +396,7 @@ public class Ong {
 
 	}
 
-	public void AgregarEmpleado() {
+	public void AgregarEmpleado() {		//Este metodo pide los datos de un empleado, y los agrega en array a la lista de empleados
 
 		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados(); // Se crea un arrayList de empleados para poder recorrer la lista
 
@@ -425,7 +425,7 @@ public class Ong {
 
 	}
 
-	public void imprimirEmpleados() {
+	public void imprimirEmpleados() {		//Imprime por consola los datos de empleado del array
 
 		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados();
 
@@ -443,7 +443,7 @@ public class Ong {
 
 	}
 
-	public void EliminarEmpleado() {
+	public void EliminarEmpleado() {		//Busca el nombre ingrsado en el array de empleados y lo elimina de este
 
 		ArrayList<Empleados> EliminarListaEmpleados = this.getListaEmpleados();
 

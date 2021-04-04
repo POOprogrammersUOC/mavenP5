@@ -14,14 +14,14 @@ import com.proogramers.uoc.P5.Ong;
 
 public class XMLEmpleadosDAO implements IEmpleadosDAO{
 
-	private JAXBContext contexto = null;	//Iniciamos las variables a null para evitar que se inicien con residuos
+	private JAXBContext contexto = null;	//Iniciamos las variables a null
 	private String nombreFichero = null;
 	
 	
 	public XMLEmpleadosDAO() throws JAXBException {		//creamos el constructor para que cada vez que se llame a la función
 		
-		this.contexto = JAXBContext.newInstance(Empleados.class); //creamos la nueva instancia de proyectos
-		this.nombreFichero = "xml/Empleados.xml"; //indicamos la ruta del fichero
+		this.contexto = JAXBContext.newInstance(Empleados.class); //creamos nueva instancia
+		this.nombreFichero = "xml/Empleados.xml"; //ruta del fichero
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class XMLEmpleadosDAO implements IEmpleadosDAO{
 		
 		Unmarshaller unmar = contexto.createUnmarshaller(); //creamos el objeto unmarshaller
 		Empleados empleados = (Empleados) unmar.unmarshal(new File(nombreFichero)); //leemos del fichero seleccionado
-		//Ong ong = new Ong();
+	
 		
 		System.out.println("************************************************************************");
 		System.out.println(" Se van a cargar los siguientes empleados del fichero: " + nombreFichero);
