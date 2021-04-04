@@ -415,13 +415,19 @@ public class Ong {
 
 	}
 
-	public void AgregarEmpleado() {
+	public void AgregarEmpleado() {		//Este metodo pide los datos de un empleado, y los agrega en array a la lista de empleados
 
 		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados(); // Se crea un arrayList de empleados para poder recorrer la lista
 
 		System.out.println("Introduce nombre");
 
 		String Nombre = leer.nextLine();
+		
+		System.out.println("Introduce numero");
+
+		int Numero = leer.nextInt();
+		
+		leer.nextLine();
 
 		System.out.println("Introduce apellido");
 
@@ -439,12 +445,12 @@ public class Ong {
 
 		String DNI = leer.nextLine();
 
-		Empleados empleado = new Empleados(Nombre, Apellidos, Direccion, Telefono, DNI);
+		Empleados empleado = new Empleados(Nombre, Numero, Apellidos, Direccion, Telefono, DNI);
 		NuevaListaEmpleados.add(empleado);
 
 	}
 
-	public void imprimirEmpleados() {
+	public void imprimirEmpleados() {		//Imprime por consola los datos de empleado del array
 
 		ArrayList<Empleados> NuevaListaEmpleados = this.getListaEmpleados();
 
@@ -462,7 +468,7 @@ public class Ong {
 
 	}
 
-	public void EliminarEmpleado() {
+	public void EliminarEmpleado() {		//Busca el nombre ingrsado en el array de empleados y lo elimina de este
 
 		ArrayList<Empleados> EliminarListaEmpleados = this.getListaEmpleados();
 
@@ -472,13 +478,13 @@ public class Ong {
 
 			for (int i = 0; i < EliminarListaEmpleados.size(); i++) {
 
-				System.out.println("Nombre del empleado: " + EliminarListaEmpleados.get(i).getNombre());
+				System.out.println("Nombre del empleado: " + EliminarListaEmpleados.get(i).getNumero());
 			}
 			try {
-				System.out.println("Indique el nombre del empleado a eliminar: ");
-				String eliminar = leer.nextLine();
+				System.out.println("Indique el numero del empleado a eliminar: ");
+				int  eliminar = leer.nextInt();
 
-				EliminarListaEmpleados.remove(eliminar);
+				EliminarListaEmpleados.remove(eliminar -1);
 
 			} catch (Exception e) {
 				System.out.println("El empleado no se encuentra en la lista\n");

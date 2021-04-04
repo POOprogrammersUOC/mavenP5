@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Empleados {
 
 	private String Nombre;
+	private int Numero;
 	private String Apellidos;
 	private String Direccion;
 	private String Telefono;
@@ -20,8 +21,9 @@ public class Empleados {
 	 * @param telefono Telefono del empleado
 	 * @param dNI DNI del empleado
 	 */
-	public Empleados(String nombre, String apellidos, String direccion, String telefono, String dNI) {
+	public Empleados(String nombre, int numero, String apellidos, String direccion, String telefono, String dNI) {
 		Nombre = nombre;
+		Numero = numero;
 		Apellidos = apellidos;
 		Direccion = direccion;
 		Telefono = telefono;
@@ -99,6 +101,12 @@ public class Empleados {
 	public String toString() {
 		return "Empleados [Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", Direccion=" + Direccion + ", Telefono="
 				+ Telefono + ", DNI=" + DNI + "]";
+	}
+	public int getNumero() {
+		return Numero;
+	}
+	public void setNumero(int numero) {
+		Numero = numero;
 	}
 	
 	
