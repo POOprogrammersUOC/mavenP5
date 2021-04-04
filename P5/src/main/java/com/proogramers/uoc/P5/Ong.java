@@ -403,6 +403,12 @@ public class Ong {
 		System.out.println("Introduce nombre");
 
 		String Nombre = leer.nextLine();
+		
+		System.out.println("Introduce numero");
+
+		int Numero = leer.nextInt();
+		
+		leer.nextLine();
 
 		System.out.println("Introduce apellido");
 
@@ -420,7 +426,7 @@ public class Ong {
 
 		String DNI = leer.nextLine();
 
-		Empleados empleado = new Empleados(Nombre, Apellidos, Direccion, Telefono, DNI);
+		Empleados empleado = new Empleados(Nombre, Numero, Apellidos, Direccion, Telefono, DNI);
 		NuevaListaEmpleados.add(empleado);
 
 	}
@@ -453,13 +459,13 @@ public class Ong {
 
 			for (int i = 0; i < EliminarListaEmpleados.size(); i++) {
 
-				System.out.println("Nombre del empleado: " + EliminarListaEmpleados.get(i).getNombre());
+				System.out.println("Nombre del empleado: " + EliminarListaEmpleados.get(i).getNumero());
 			}
 			try {
-				System.out.println("Indique el nombre del empleado a eliminar: ");
-				String eliminar = leer.nextLine();
+				System.out.println("Indique el numero del empleado a eliminar: ");
+				int  eliminar = leer.nextInt();
 
-				EliminarListaEmpleados.remove(eliminar);
+				EliminarListaEmpleados.remove(eliminar -1);
 
 			} catch (Exception e) {
 				System.out.println("El empleado no se encuentra en la lista\n");
