@@ -99,11 +99,12 @@ public class Empleados {
 	}
 	@Override
 	public String toString() {
-		return "Empleados [Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", Direccion=" + Direccion + ", Telefono="
+		return "Empleados [Numero =" + Numero + ", Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", Direccion=" + Direccion + ", Telefono="
 				+ Telefono + ", DNI=" + DNI + "]";
 	}
 	public int getNumero() {
 		return Numero;
+		
 	}
 	public void setNumero(int numero) {
 		Numero = numero;
