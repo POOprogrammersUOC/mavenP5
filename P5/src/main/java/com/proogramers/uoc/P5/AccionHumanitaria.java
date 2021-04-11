@@ -19,12 +19,13 @@ public class AccionHumanitaria extends Proyectos {
 	 * @param personal Personal para el proyecto
 	 * @param voluntariosAsignados Voluntarios para el proyecto
 	 */
+
 	public AccionHumanitaria(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
-			String acciones, int personal, int voluntariosAsignados) {
+			int numProyecto, String acciones, int personal, int voluntariosAsignados) {
 		super(pais, localizacion, lineaDeAccion, sublineaDeAccion, fechaInicio, fechaFinal, socioLocal, financiador,
 				financiacion, acciones, personal, voluntariosAsignados);
-		// TODO Esbozo de constructor generado autom�ticamente
+		// TODO Esbozo de constructor generado automáticamente
 	}
 
 	
