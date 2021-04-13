@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement
 //@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 
-  @XmlType(propOrder = { "numProyecto", "pais", "localizacion","lineaDeAccion", "sublineaDeAccion", "fechaInicio", "fechaFinal","socioLocal", "financiador", "financiacion", "acciones", "personal","voluntariosAsignados" })
- 
+@XmlType(propOrder = { "numProyecto", "pais", "localizacion", "lineaDeAccion", "sublineaDeAccion", "fechaInicio",
+		"fechaFinal", "socioLocal", "financiador", "financiacion", "acciones", "personal", "voluntariosAsignados" })
+
 public class Proyectos {
 
 	private String pais;
@@ -62,10 +63,11 @@ public class Proyectos {
 	 *                             cuando se agrega
 	 */
 
+	// constructor para insertar desde SQL
 	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
 			String acciones, int personal, int voluntariosAsignados) {
-		
+
 		this.pais = pais;
 		this.localizacion = localizacion;
 		this.lineaDeAccion = lineaDeAccion;
@@ -79,6 +81,34 @@ public class Proyectos {
 		this.acciones = acciones;
 		this.personal = personal;
 		this.voluntariosAsignados = voluntariosAsignados;
+	}
+
+	///
+	// Sobrecarga de constructores para las diferentes peticiones desde SQL
+	///
+
+	// Constructor para modificar desde SQL
+	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
+			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
+			int numProyecto, String acciones, int personal, int voluntariosAsignados) {
+		this.pais = pais;
+		this.localizacion = localizacion;
+		this.lineaDeAccion = lineaDeAccion;
+		this.sublineaDeAccion = sublineaDeAccion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.socioLocal = socioLocal;
+		this.financiador = financiador;
+		this.financiacion = financiacion;
+		this.numProyecto = numProyecto;
+		this.acciones = acciones;
+		this.personal = personal;
+		this.voluntariosAsignados = voluntariosAsignados;
+	}
+
+	// Constructor para eliminar desde SQL
+	public Proyectos(int numProyecto) {
+		this.numProyecto = numProyecto;
 	}
 
 	public Proyectos() {
