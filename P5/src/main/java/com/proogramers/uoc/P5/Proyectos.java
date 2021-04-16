@@ -43,6 +43,7 @@ public class Proyectos {
 	private String acciones;
 	private int personal;
 	private int voluntariosAsignados;
+	private String ongCif;							//se añade para la inserción en sql
 	private static int contador = 0;
 
 	/**
@@ -63,7 +64,7 @@ public class Proyectos {
 	 *                             cuando se agrega
 	 */
 
-	// constructor para insertar desde SQL
+	
 	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
 			String acciones, int personal, int voluntariosAsignados) {
@@ -109,6 +110,25 @@ public class Proyectos {
 	// Constructor para eliminar desde SQL
 	public Proyectos(int numProyecto) {
 		this.numProyecto = numProyecto;
+	}
+
+	// constructor para insertar desde SQL
+	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
+			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
+			String acciones, int personal, int voluntariosAsignados, String ongCif) {
+		this.pais = pais;
+		this.localizacion = localizacion;
+		this.lineaDeAccion = lineaDeAccion;
+		this.sublineaDeAccion = sublineaDeAccion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.socioLocal = socioLocal;
+		this.financiador = financiador;
+		this.financiacion = financiacion;
+		this.acciones = acciones;
+		this.personal = personal;
+		this.voluntariosAsignados = voluntariosAsignados;
+		this.ongCif = ongCif;
 	}
 
 	public Proyectos() {
@@ -311,6 +331,22 @@ public class Proyectos {
 	 */
 	public void setVoluntariosAsignados(int voluntariosAsignados) {
 		this.voluntariosAsignados = voluntariosAsignados;
+	}
+	
+	
+
+	/**
+	 * @return retorna el ongCif
+	 */
+	public String getOngCif() {
+		return ongCif;
+	}
+
+	/**
+	 * @param ongCif Establece el cif en la base de datos sql
+	 */
+	public void setOngCif(String ongCif) {
+		this.ongCif = ongCif;
 	}
 
 	@Override

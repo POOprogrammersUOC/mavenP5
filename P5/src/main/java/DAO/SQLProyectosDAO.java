@@ -13,7 +13,7 @@ import datosMysql.Conexion;
 public class SQLProyectosDAO {
 
 	private static final String SQL_SELECT = "SELECT Id_proyecto, Pais, Localizacion, LineaDeAccion, FechaInicio, FechaFinal, SocioLocal, Financiador, Financiacion, Acciones, Personal, VoluntariosAsignados, Ong_CIF FROM mydb.proyectos";
-	private static final String SQL_INSERT = "INSERT INTO mydb.proyectos(Pais, Localizacion, LineaDeAccion, FechaInicio, FechaFinal, SocioLocal, Financiador, Financiacion, Acciones, Personal, VoluntariosAsignados, Ong_CIF) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_INSERT = "INSERT INTO mydb.proyectos(Pais, Localizacion, LineaDeAccion, SublineaDeAccion, FechaInicio, FechaFinal, SocioLocal, Financiador, Financiacion, Acciones, Personal, VoluntariosAsignados, Ong_CIF) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	
 	
 
@@ -98,13 +98,14 @@ public class SQLProyectosDAO {
 			//if (proyectos.getFechaInicio() != null) {						//*********REVISAR*********\\
 			pstat.setObject(5,proyectos.getFechaInicio());
 			pstat.setObject(6,proyectos.getFechaFinal());
-			pstat.setString(6, proyectos.getSocioLocal());
-			pstat.setString(7, proyectos.getFinanciador());
-			pstat.setDouble(8, proyectos.getFinanciacion());
-			pstat.setString(9, proyectos.getAcciones());
-			pstat.setInt(10, proyectos.getPersonal());
-			pstat.setInt(11, proyectos.getVoluntariosAsignados());
-			//pstat.setString(12, proyectos.getOngCif)); falta incluirla en la clase proyectos
+			pstat.setString(7, proyectos.getSocioLocal());
+			pstat.setString(8, proyectos.getFinanciador());
+			pstat.setDouble(9, proyectos.getFinanciacion());
+			pstat.setString(10, proyectos.getAcciones());
+			pstat.setInt(11, proyectos.getPersonal());
+			pstat.setInt(12, proyectos.getVoluntariosAsignados());
+			pstat.setString(13, proyectos.getOngCif()); 
+
 			//}
 			registros = pstat.executeUpdate();
 			
@@ -117,7 +118,7 @@ public class SQLProyectosDAO {
 				close(conn);
 			} catch (SQLException e) {
 				// TODO Bloque catch generado automáticamente
-				e.printStackTrace();
+				e.printStackTrace(System.out);
 			}
 		}
 		return registros;
