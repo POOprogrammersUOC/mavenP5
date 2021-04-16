@@ -91,7 +91,7 @@ public class Proyectos {
 	// Constructor para modificar desde SQL
 	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
-			int numProyecto, String acciones, int personal, int voluntariosAsignados) {
+			int numProyecto, String acciones, int personal, int voluntariosAsignados, String ongCif) {
 		this.pais = pais;
 		this.localizacion = localizacion;
 		this.lineaDeAccion = lineaDeAccion;
@@ -105,6 +105,7 @@ public class Proyectos {
 		this.acciones = acciones;
 		this.personal = personal;
 		this.voluntariosAsignados = voluntariosAsignados;
+		this.ongCif = ongCif;
 	}
 
 	// Constructor para eliminar desde SQL
