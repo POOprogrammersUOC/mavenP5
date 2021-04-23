@@ -10,7 +10,7 @@ import com.proogramers.uoc.P5.Proyectos;
 
 import datosMysql.Conexion;
 
-public class SQLProyectosDAO {
+public class SQLProyectosDAO implements IProyectosSQLDAO {
 
 	private static final String SQL_SELECT = "SELECT Id_proyecto, Pais, Localizacion, LineaDeAccion, SublineaDeAccion, FechaInicio, FechaFinal, SocioLocal, Financiador, Financiacion, Acciones, Personal, VoluntariosAsignados, Ong_CIF FROM mydb.proyectos";
 	private static final String SQL_INSERT = "INSERT INTO mydb.proyectos(Pais, Localizacion, LineaDeAccion, SublineaDeAccion, FechaInicio, FechaFinal, SocioLocal, Financiador, Financiacion, Acciones, Personal, VoluntariosAsignados, Ong_CIF) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
@@ -21,6 +21,7 @@ public class SQLProyectosDAO {
 	// Método seleccionar, recoge toda la información de la tabla proyectos mysql
 	// ******************************************************************************
 
+	@Override
 	public List<Proyectos> seleccionar() {
 
 		Connection conn = null;
@@ -87,6 +88,7 @@ public class SQLProyectosDAO {
 	// Método Insertar, inserta la información indicada a la base de datos
 	// ******************************************************************************
 
+	@Override
 	public int insertar(Proyectos proyectos) {
 		Connection conn = null;
 		PreparedStatement pstat = null;
@@ -112,6 +114,7 @@ public class SQLProyectosDAO {
 
 			// }
 			registros = pstat.executeUpdate();
+			System.out.println("Se ha(n) insertado(s) " + registros + "correctamente");
 
 		} catch (SQLException e) {
 			// TODO Bloque catch generado automáticamente
@@ -132,6 +135,7 @@ public class SQLProyectosDAO {
 	// Método Update, Actualiza la información indicada a la base de datos
 	// ******************************************************************************
 
+	@Override
 	public int actualizar(Proyectos proyectos) {
 		Connection conn = null;
 		PreparedStatement pstat = null;
@@ -158,7 +162,7 @@ public class SQLProyectosDAO {
 
 			// }
 			registros = pstat.executeUpdate();
-
+			System.out.println("Se han actualizado " + registros + " registro(s) " + "del ID: " + proyectos.getNumProyecto());
 		} catch (SQLException e) {
 			// TODO Bloque catch generado automáticamente
 			e.printStackTrace(System.out);
@@ -171,6 +175,7 @@ public class SQLProyectosDAO {
 				e.printStackTrace(System.out);
 			}
 		}
+		
 		return registros;
 	}
 
@@ -179,6 +184,7 @@ public class SQLProyectosDAO {
 	// ID
 	// ******************************************************************************
 
+	@Override
 	public int eliminar(Proyectos proyectos) {
 		Connection conn = null;
 		PreparedStatement pstat = null;
@@ -190,6 +196,7 @@ public class SQLProyectosDAO {
 
 			// }
 			registros = pstat.executeUpdate();
+			System.out.println("Se ha eliminado " + registros + " registro con ID: " + proyectos.getNumProyecto() );
 
 		} catch (SQLException e) {
 			// TODO Bloque catch generado automáticamente
@@ -205,4 +212,6 @@ public class SQLProyectosDAO {
 		}
 		return registros;
 	}
+
+	
 }

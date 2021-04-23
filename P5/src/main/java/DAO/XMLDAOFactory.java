@@ -19,4 +19,12 @@ public class XMLDAOFactory extends DAOFactory {
 
 	}
 
+	@Override
+	public SQLProyectosDAO sqlProyectosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
+	
+
+
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+import DAO.DAOFactory;
 import DAO.SQLProyectosDAO;
 import datosMysql.*;
 
@@ -19,6 +20,7 @@ public class TestConexionMysql {
 		// TEST DE LAS FUNCIONALIDADES INSERT,SELECT,UPDATE,DELETE
 		// *******************************************************************************************************//
 
+		
 		testDatabase();
 		testSelect();
 		System.out.println("***************************************");
@@ -26,11 +28,13 @@ public class TestConexionMysql {
 		System.out.println("***************************************");
 		testInsert();
 		testSelect();
+		
 		System.out.println("***************************************");
 		System.out.println("              ACTUALIZAR");
-		System.out.println("***************************************");		
+		System.out.println("***************************************");
 		testUpdate();
 		testSelect();
+		
 		System.out.println("***************************************");
 		System.out.println("              ELIMINAR");
 		System.out.println("***************************************");
@@ -57,7 +61,7 @@ public class TestConexionMysql {
 		 */
 	}
 
-	public static void testDatabase() {
+	private static void testDatabase() {
 		try {
 			Connection conn = null;
 			if (conn != Conexion.getConection()) {
@@ -72,40 +76,42 @@ public class TestConexionMysql {
 		}
 	}
 
-	public static void testSelect() {
+	private static void testSelect() {
 		// SQLProyectosDAO sqlProyectosDao = new SQLProyectosDAO();
-		List<Proyectos> proyectos = sqlProyectosDao.seleccionar();
+		List<Proyectos> proyectos =  DAOFactory.getDAOFactory(2).sqlProyectosDAO().seleccionar();  //sqlProyectosDao.seleccionar();
 
 		for (Proyectos nuevoproject : proyectos) {
 			System.out.println(nuevoproject);
-		
-			}
+
 		}
+	}
 
-	
-
-	public static void testInsert() {
+	private static void testInsert() {
 
 		Date sqlDate = Date.valueOf("2000-01-01");
 		LocalDate fInicio = sqlDate.toLocalDate();
 		Date sqlDate2 = Date.valueOf("2001-12-12");
 		LocalDate fFinal = sqlDate2.toLocalDate();
-		Proyectos project = new Proyectos("Holanda", "Amsterdam", "no hay datos", "no aplica", fInicio, fFinal, "Angel",
+		Proyectos project = new Proyectos("PEPINO", "Amsterdam", "no hay datos", "no aplica", fInicio, fFinal, "Angel",
 				"Secure", 20000.36, "Sin acciones", 10, 60, "B154896325"); // insertar
-		sqlProyectosDao.insertar(project);
+		//sqlProyectosDao.insertar(project);
+		DAOFactory.getDAOFactory(2).sqlProyectosDAO().insertar(project);
 	}
 
-	public static void testUpdate() {
-		Date sqlDate = Date.valueOf("2021-12-12");
+	private static void testUpdate() {
+		Date sqlDate = Date.valueOf("2021-12-11");
 		LocalDate fInicio = sqlDate.toLocalDate();
-		Date sqlDate2 = Date.valueOf("2022-12-12");
+		Date sqlDate2 = Date.valueOf("2022-12-11");
 		LocalDate fFinal = sqlDate2.toLocalDate();
-		Proyectos project = new Proyectos("Alemania", "Berlin", "mod", "mod1", fInicio, fFinal, "Alberto", "ktm",
-				7000.20, 1, "Incidencias encontradas", 3, 7, "B154896325"); // modificar
-		sqlProyectosDao.actualizar(project);
+		Proyectos project = new Proyectos("Polonia", "Berlin", "mod", "mod1", fInicio, fFinal, "Alberto", "ktm",
+				7000.20, 3, "Incidencias encontradas", 3, 7, "B154896325"); // modificar
+		//sqlProyectosDao.actualizar(project);
+		DAOFactory.getDAOFactory(2).sqlProyectosDAO().actualizar(project);
 	}
-	public static void testDelete() {
-		Proyectos project = new Proyectos(1); //eliminar
-		 sqlProyectosDao.eliminar(project);
+
+	private static void testDelete() {
+		Proyectos project = new Proyectos(9); // eliminar
+		//sqlProyectosDao.eliminar(project);
+		DAOFactory.getDAOFactory(2).sqlProyectosDAO().eliminar(project);
 	}
 }

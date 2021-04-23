@@ -15,6 +15,8 @@ public abstract class DAOFactory {
 	public abstract XMLEmpleadosDAO getEmpleadosDAO() throws JAXBException;
 
 	public abstract XMLSociosDAO getSociosDAO() throws JAXBException;
+	
+	public abstract SQLProyectosDAO sqlProyectosDAO();
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 
@@ -22,7 +24,7 @@ public abstract class DAOFactory {
 		case 1:
 			return new XMLDAOFactory();
 		case 2:
-			// return new SQLDAOFactory();
+			return new SQLDAOFactory();
 		default:
 			return null;
 
