@@ -8,7 +8,7 @@ public class Conexion {
 	private static final String USER_JDBC ="root";
 	private static final String PASSWORD_JDBC ="admin";
 	
-	public static Connection getConection() throws SQLException {				//creamos el metodo getconection() para que nos devuelva el driverManager montado con  su cadena use y passw
+	public static Connection getConection() throws SQLException {				//creamos el metodo getconection() para que nos devuelva el driverManager montado con  su cadena user y passw
 		
 		return DriverManager.getConnection(URL_JDBC, USER_JDBC, PASSWORD_JDBC);
 	}

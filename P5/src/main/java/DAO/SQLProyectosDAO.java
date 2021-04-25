@@ -16,21 +16,29 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 	private static final String SQL_INSERT = "INSERT INTO mydb.proyectos(Pais, Localizacion, LineaDeAccion, SublineaDeAccion, FechaInicio, FechaFinal, SocioLocal, Financiador, Financiacion, Acciones, Personal, VoluntariosAsignados, Ong_CIF) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	private static final String SQL_UPDATE = "UPDATE mydb.proyectos SET Pais = ?, Localizacion = ?, LineaDeAccion = ?, SublineaDeAccion = ?, FechaInicio = ?, FechaFinal = ?, SocioLocal = ?, Financiador = ?, Financiacion = ?, Acciones = ?, Personal = ?, VoluntariosAsignados = ?, Ong_CIF = ? WHERE Id_proyecto = ? ";
 	private static final String SQL_DELETE = "DELETE FROM mydb.proyectos WHERE Id_proyecto = ?";
+	private Connection conexiontransaccion;
+
+	public SQLProyectosDAO() {
+	}
+
+	public SQLProyectosDAO(Connection conexiontransaccion) {
+		this.conexiontransaccion = conexiontransaccion;
+	}
 
 	// ******************************************************************************
 	// Método seleccionar, recoge toda la información de la tabla proyectos mysql
 	// ******************************************************************************
 
 	@Override
-	public List<Proyectos> seleccionar() {
+	public List<Proyectos> seleccionar() throws SQLException {
 
-		Connection conn = null;
-		PreparedStatement pstat = null;
+		Connection conn = null;					
+		PreparedStatement pstat = null;			
 		ResultSet rs = null;
 		Proyectos proyectos = null;
 		List<Proyectos> listaProyectos = new ArrayList<>();
 		try {
-			conn = getConection();
+			conn = this.conexiontransaccion != null ? this.conexiontransaccion : getConection();  //usamos una operacion ternaria para saber el tipo de conexion que tenemos
 			pstat = conn.prepareStatement(SQL_SELECT);
 			rs = pstat.executeQuery();
 			while (rs.next()) {
@@ -39,13 +47,13 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 				String localizacion = rs.getString("Localizacion");
 				String lineaDeAccion = rs.getString("LineaDeAccion");
 				String sublineaDeAcion = rs.getString("SublineaDeAccion");
-				LocalDate fechaInicio = null; // ********************REVISAR*********************\\
+				LocalDate fechaInicio = null; 
 				if (rs.getString("FechaInicio") != null) {
 					fechaInicio = LocalDate.parse(rs.getString("FechaInicio"));
 				}
 				LocalDate fechaFinal = null;
 				if (rs.getString("FechaFinal") != null) {
-					fechaFinal = LocalDate.parse(rs.getString("FechaFinal")); // ********************REVISAR*********************\\
+					fechaFinal = LocalDate.parse(rs.getString("FechaFinal")); 
 				}
 				String socioLocal = rs.getString("SocioLocal");
 				String financiador = rs.getString("Financiador");
@@ -59,22 +67,19 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 						socioLocal, financiador, financiacion, numProyecto, acciones, personal, voluntariosAsignados,
 						ongCif);
 
-				
-					listaProyectos.add(proyectos);
-				
-				
-				
+				listaProyectos.add(proyectos);
+
 			}
 
-		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
-			e.printStackTrace(System.out);
 		} finally {
 
 			try {
 				close(rs);
 				close(pstat);
-				close(conn);
+				if (this.conexiontransaccion == null) {
+					close(conn);
+				}
+
 			} catch (SQLException e) {
 				// TODO Bloque catch generado automáticamente
 				e.printStackTrace(System.out);
@@ -89,19 +94,17 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 	// ******************************************************************************
 
 	@Override
-	public int insertar(Proyectos proyectos) {
+	public int insertar(Proyectos proyectos) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstat = null;
 		int registros = 0;
 		try {
-			conn = getConection();
+			conn = this.conexiontransaccion != null ? this.conexiontransaccion : getConection();
 			pstat = conn.prepareStatement(SQL_INSERT);
 			pstat.setString(1, proyectos.getPais());
 			pstat.setString(2, proyectos.getLocalizacion());
 			pstat.setString(3, proyectos.getLineaDeAccion());
 			pstat.setString(4, proyectos.getSublineaDeAccion());
-			// LocalDate fechaInicio = null;
-			// if (proyectos.getFechaInicio() != null) { //*********REVISAR*********\\
 			pstat.setObject(5, proyectos.getFechaInicio());
 			pstat.setObject(6, proyectos.getFechaFinal());
 			pstat.setString(7, proyectos.getSocioLocal());
@@ -114,15 +117,14 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 
 			// }
 			registros = pstat.executeUpdate();
-			System.out.println("Se ha(n) insertado(s) " + registros + "correctamente");
+			System.out.println("Se ha(n) insertado(s) " + registros + " registro(s) correctamente");
 
-		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
-			e.printStackTrace(System.out);
 		} finally {
 			try {
 				close(pstat);
-				close(conn);
+				if (this.conexiontransaccion == null) {
+					close(conn);
+				}
 			} catch (SQLException e) {
 				// TODO Bloque catch generado automáticamente
 				e.printStackTrace(System.out);
@@ -136,19 +138,17 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 	// ******************************************************************************
 
 	@Override
-	public int actualizar(Proyectos proyectos) {
+	public int actualizar(Proyectos proyectos) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstat = null;
 		int registros = 0;
 		try {
-			conn = getConection();
+			conn = this.conexiontransaccion != null ? this.conexiontransaccion : getConection();
 			pstat = conn.prepareStatement(SQL_UPDATE);
 			pstat.setString(1, proyectos.getPais());
 			pstat.setString(2, proyectos.getLocalizacion());
 			pstat.setString(3, proyectos.getLineaDeAccion());
 			pstat.setString(4, proyectos.getSublineaDeAccion());
-			// LocalDate fechaInicio = null;
-			// if (proyectos.getFechaInicio() != null) { //*********REVISAR*********\\
 			pstat.setObject(5, proyectos.getFechaInicio());
 			pstat.setObject(6, proyectos.getFechaFinal());
 			pstat.setString(7, proyectos.getSocioLocal());
@@ -162,20 +162,21 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 
 			// }
 			registros = pstat.executeUpdate();
-			System.out.println("Se han actualizado " + registros + " registro(s) " + "del ID: " + proyectos.getNumProyecto());
-		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
-			e.printStackTrace(System.out);
+			System.out.println(
+					"Se ha(n) actualizado " + registros + " registro(s) " + "del ID: " + proyectos.getNumProyecto());
+
 		} finally {
 			try {
 				close(pstat);
-				close(conn);
+				if (this.conexiontransaccion == null) {
+					close(conn);
+				}
 			} catch (SQLException e) {
 				// TODO Bloque catch generado automáticamente
 				e.printStackTrace(System.out);
 			}
 		}
-		
+
 		return registros;
 	}
 
@@ -185,26 +186,25 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 	// ******************************************************************************
 
 	@Override
-	public int eliminar(Proyectos proyectos) {
+	public int eliminar(Proyectos proyectos) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstat = null;
 		int registros = 0;
 		try {
-			conn = getConection();
+			conn = this.conexiontransaccion != null ? this.conexiontransaccion : getConection();
 			pstat = conn.prepareStatement(SQL_DELETE);
 			pstat.setInt(1, proyectos.getNumProyecto());
 
 			// }
 			registros = pstat.executeUpdate();
-			System.out.println("Se ha eliminado " + registros + " registro con ID: " + proyectos.getNumProyecto() );
+			System.out.println("Se ha(n) eliminado " + registros + " registro(s) con ID: " + proyectos.getNumProyecto());
 
-		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
-			e.printStackTrace(System.out);
 		} finally {
 			try {
 				close(pstat);
-				close(conn);
+				if (this.conexiontransaccion == null) {
+					close(conn);
+				}
 			} catch (SQLException e) {
 				// TODO Bloque catch generado automáticamente
 				e.printStackTrace(System.out);
@@ -213,5 +213,4 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 		return registros;
 	}
 
-	
 }

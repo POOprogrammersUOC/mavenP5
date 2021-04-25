@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @XmlRootElement indica la raiz del xml
  * @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER) Indica que tiene acceso p�blico
  * @XmlType(propOrder = {}) indica el orden para mostrar las etiquetas
- * @version 1.1
+ * @version 1.2
  * 
  */
 
