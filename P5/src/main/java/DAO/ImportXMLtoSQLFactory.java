@@ -2,7 +2,7 @@ package DAO;
 
 import javax.xml.bind.JAXBException;
 
-public class SQLDAOFactory extends DAOFactory {
+public class ImportXMLtoSQLFactory extends DAOFactory {
 
 	@Override
 	public XMLProyectosDAO getProyectosDAO() throws JAXBException {
@@ -21,17 +21,19 @@ public class SQLDAOFactory extends DAOFactory {
 		// TODO Esbozo de método generado automáticamente
 		return null;
 	}
-	
+
 	@Override
 	public SQLProyectosDAO sqlProyectosDAO() {
 		// TODO Esbozo de método generado automáticamente
-		return new SQLProyectosDAO();
+		return null;
 	}
 
 	@Override
-	public importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() {
+	public importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() throws JAXBException {
 		// TODO Esbozo de método generado automáticamente
-		return null;
+		return new importXMLtoSQLProyectosDAO();
 	}
+	
+	
 
 }

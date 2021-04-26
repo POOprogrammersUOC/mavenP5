@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 //@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 
 @XmlType(propOrder = { "numProyecto", "pais", "localizacion", "lineaDeAccion", "sublineaDeAccion", "fechaInicio",
-		"fechaFinal", "socioLocal", "financiador", "financiacion", "acciones", "personal", "voluntariosAsignados" })
+		"fechaFinal", "socioLocal", "financiador", "financiacion", "acciones", "personal", "voluntariosAsignados","ongCif" })
 
 public class Proyectos {
 
@@ -339,6 +339,7 @@ public class Proyectos {
 	/**
 	 * @return retorna el ongCif
 	 */
+	@XmlElement
 	public String getOngCif() {
 		return ongCif;
 	}

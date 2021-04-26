@@ -24,6 +24,12 @@ public class XMLDAOFactory extends DAOFactory {
 		// TODO Esbozo de método generado automáticamente
 		return null;
 	}
+
+	@Override
+	public importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
 	
 
 

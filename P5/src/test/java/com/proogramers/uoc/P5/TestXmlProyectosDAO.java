@@ -26,10 +26,10 @@ public class TestXmlProyectosDAO {
 		Proyectos p1 = new Proyectos();
 		Proyectos p2 = new Proyectos();
 		
-		p1.setPais("España");
-		p1.setLocalizacion("Barcelona");
-		p1.setLineaDeAccion("Nada");
-		p1.setSublineaDeAccion("Nada");;
+		p1.setPais("POL");
+		p1.setLocalizacion("BAR");
+		p1.setLineaDeAccion("NO");
+		p1.setSublineaDeAccion("NO");;
 		LocalDate fInicio = LocalDate.parse("2000-01-01");
 		p1.setFechaInicio(fInicio);
 		LocalDate fFinal = LocalDate.parse("2001-01-01");
@@ -41,6 +41,7 @@ public class TestXmlProyectosDAO {
 		p1.setAcciones("Sin observaciones");
 		p1.setPersonal(30);
 		p1.setVoluntariosAsignados(20);
+		p1.setOngCif("B154896325");
 		
 		p2.setPais("Polonia");
 		p2.setLocalizacion("Barcelona");
@@ -62,7 +63,7 @@ public class TestXmlProyectosDAO {
 		
 		
 		
-		DAOFactory.getDAOFactory(1).getProyectosDAO().guardarProyectos(p2);
+		DAOFactory.getDAOFactory(1).getProyectosDAO().guardarProyectos(p1);
 		//DAOFactory.getDAOFactory(1).getProyectosDAO().listaProyectos();
 
 	}
