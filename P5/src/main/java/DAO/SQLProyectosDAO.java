@@ -21,7 +21,7 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 	public SQLProyectosDAO() {
 	}
 
-	public SQLProyectosDAO(Connection conexiontransaccion) {
+	public SQLProyectosDAO(Connection conexiontransaccion) {		//pasamos objeto de conexion para saber si se hace el autocommit o no
 		this.conexiontransaccion = conexiontransaccion;
 	}
 
@@ -39,17 +39,17 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 		List<Proyectos> listaProyectos = new ArrayList<>();
 		try {
 			conn = this.conexiontransaccion != null ? this.conexiontransaccion : getConection();  //usamos una operacion ternaria para saber el tipo de conexion que tenemos
-			pstat = conn.prepareStatement(SQL_SELECT);
-			rs = pstat.executeQuery();
-			while (rs.next()) {
-				int numProyecto = rs.getInt("Id_proyecto");
+			pstat = conn.prepareStatement(SQL_SELECT);			//creamos un prepareStatment y le pasamos la constante SQL_SELECT
+			rs = pstat.executeQuery();							// ejecutamos el prepareStatment y lo guardamos en resulset
+			while (rs.next()) {									// mientras resulset tenga datos es true
+				int numProyecto = rs.getInt("Id_proyecto");		// con resulset recogemos de la base de datos la columna Id_proyecto que se le asignara a la variable de la clase proyecto
 				String pais = rs.getString("Pais");
 				String localizacion = rs.getString("Localizacion");
 				String lineaDeAccion = rs.getString("LineaDeAccion");
 				String sublineaDeAcion = rs.getString("SublineaDeAccion");
-				LocalDate fechaInicio = null; 
-				if (rs.getString("FechaInicio") != null) {
-					fechaInicio = LocalDate.parse(rs.getString("FechaInicio"));
+				LocalDate fechaInicio = null; 										//ponemos la fecha a null
+				if (rs.getString("FechaInicio") != null) {							// si resulset no es igual anull
+					fechaInicio = LocalDate.parse(rs.getString("FechaInicio"));		// recoge la columna fechaInicio de la base de datos y la parseamos en una variable de LocalDate de la clase proyecto
 				}
 				LocalDate fechaFinal = null;
 				if (rs.getString("FechaFinal") != null) {
@@ -63,7 +63,7 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 				int voluntariosAsignados = rs.getInt("VoluntariosAsignados");
 				String ongCif = rs.getString("Ong_CIF");
 
-				proyectos = new Proyectos(pais, localizacion, lineaDeAccion, sublineaDeAcion, fechaInicio, fechaFinal,
+				proyectos = new Proyectos(pais, localizacion, lineaDeAccion, sublineaDeAcion, fechaInicio, fechaFinal,		// creamos el constructor y lo añadimos a la lista
 						socioLocal, financiador, financiacion, numProyecto, acciones, personal, voluntariosAsignados,
 						ongCif);
 
@@ -74,9 +74,9 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 		} finally {
 
 			try {
-				close(rs);
-				close(pstat);
-				if (this.conexiontransaccion == null) {
+				close(rs);		//cerramos conexion ResulSet
+				close(pstat);	//cerramos el preparedStatment
+				if (this.conexiontransaccion == null) {		// si la conexión que le pasamos es igual null cerramos la base de datos
 					close(conn);
 				}
 
@@ -86,7 +86,7 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 			}
 
 		}
-		return listaProyectos;
+		return listaProyectos; //retornamos listaproyectos
 	}
 
 	// ******************************************************************************
@@ -105,8 +105,8 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 			pstat.setString(2, proyectos.getLocalizacion());
 			pstat.setString(3, proyectos.getLineaDeAccion());
 			pstat.setString(4, proyectos.getSublineaDeAccion());
-			pstat.setObject(5, proyectos.getFechaInicio());
-			pstat.setObject(6, proyectos.getFechaFinal());
+			pstat.setObject(5, proyectos.getFechaInicio());			//pasamos las fechas como objetos
+			pstat.setObject(6, proyectos.getFechaFinal());			//pasamos las fechas como objetos
 			pstat.setString(7, proyectos.getSocioLocal());
 			pstat.setString(8, proyectos.getFinanciador());
 			pstat.setDouble(9, proyectos.getFinanciacion());
@@ -117,7 +117,7 @@ public class SQLProyectosDAO implements IProyectosSQLDAO {
 
 			// }
 			registros = pstat.executeUpdate();
-			System.out.println("Se ha(n) insertado(s) " + registros + " registro(s) correctamente");
+			System.out.println("Se ha(n) insertado(s) " + registros + " registro(s) correctamente"); // printamos los registros que se han efectuado
 
 		} finally {
 			try {
