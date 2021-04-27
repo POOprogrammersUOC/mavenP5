@@ -3,7 +3,7 @@ package com.proogramers.uoc.P5;
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name="socios")
-@XmlType(propOrder={"nombre", "apellidos", "nSocio", "direccion", "telefono"})
+@XmlType(propOrder={"nombre", "apellidos", "nSocio", "direccion", "telefono","ongCif"})
   
 public class Socios {
 
@@ -12,6 +12,8 @@ public class Socios {
 	private int nSocio;
 	private String Direccion;
 	private String Telefono;
+	private String ongCif;
+	
 	
 	/**
 	 * @param nombre Nombre del socio
@@ -29,8 +31,15 @@ public class Socios {
 	}
 
 
-	public Socios() {
-		// TODO Auto-generated constructor stub
+	// constructor para metodo SQL
+	
+	public Socios(String nombre, String apellidos, int nSocio, String direccion, String telefono, String ongCif) {
+		Nombre = nombre;
+		Apellidos = apellidos;
+		this.nSocio = nSocio;
+		Direccion = direccion;
+		Telefono = telefono;
+		this.ongCif = ongCif;
 	}
 
 
@@ -121,8 +130,20 @@ public class Socios {
 		return null;
 	}
 	
-	
+	/**
+	 * @return retorna el ongCif
+	 */
+	@XmlElement
+	public String getOngCif() {
+		return ongCif;
+	}
 
-	
+	/**
+	 * @param ongCif Establece el cif en la base de datos sql
+	 */
+	public void setOngCif(String ongCif) {
+		this.ongCif = ongCif;
+
+	}
 	
 }

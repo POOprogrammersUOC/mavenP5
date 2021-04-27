@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
 
 import com.proogramers.uoc.P5.Socios;
 
@@ -22,6 +21,7 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 			st.setString(2, socios.getApellidos());
 			st.setString(3,  socios.getDireccion());
 			st.setString(4, socios.getTelefono());
+			st.setString(5, socios.getOngCif);
 			st.executeUpdate();
 		} catch(SQLException e) {
 		} finally {
@@ -34,17 +34,10 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 
 	@Override
 	public int modificar(Socios socios) throws SQLException {
-		
-		return 0;
-	}
-
-
-	
-	
-	public int eliminar(Socios socios) throws SQLException {
+		int datos = 0;
 		try {
 			this.conectar();
-			PreparedStatement st = this.conexion.prepareStatement("DELETE FROM mydb.socios WHERE IdSocios = ?;")
+			PreparedStatement st = this.conexion.prepareStatement("UPDATE mydb.socios SET Nombre = ?, Apellido = ?, Direccion = ?, Telefono = ?, Ong_CIF = ? WHERE IdSocios = ? ");
 			st.setString(1, socios.getNombre());
 			st.setString(2, socios.getApellidos());
 			st.setString(3,  socios.getDireccion());
@@ -56,6 +49,33 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 			this.cerrar();
 		}
 		
+		return datos;
+	}
+	
+		
+		return 0;
+	}
+
+
+	
+	
+	public int eliminar(Socios socios) throws SQLException {
+		int datos = 0;
+		try {
+			this.conectar();
+			PreparedStatement st = this.conexion.prepareStatement("DELETE FROM mydb.socios WHERE IdSocios = ?");
+			st.setString(1, socios.getNombre());
+			st.setString(2, socios.getApellidos());
+			st.setString(3,  socios.getDireccion());
+			st.setString(4, socios.getTelefono());
+			st.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			this.cerrar();
+		}
+		
+		return datos;
 	}
 	
 	
@@ -80,7 +100,7 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 				socios.setApellidos(rs.getString("Apellido"));
 				socios.setDireccion(rs.getString("Direccion"));
 				socios.setTelefono(rs.getString("Telefono"));
-				String ongCif = rs.getString("Ong_CIF");
+				String ong_Cif = rs.getString("Ong_Cif");
 			}	
 			rs.close();
 			st.close();
