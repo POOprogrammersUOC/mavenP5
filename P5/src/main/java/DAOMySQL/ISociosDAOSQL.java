@@ -10,7 +10,7 @@ package DAOMySQL;
 
 		
 		public int insertar(Socios socios) throws SQLException;
-		public int actualizar(Socios socios) throws SQLException;
+		public int modificar(Socios socios) throws SQLException;
 		public int eliminar(Socios socios) throws SQLException;
 		public List<Socios> seleccionar() throws SQLException;
 }

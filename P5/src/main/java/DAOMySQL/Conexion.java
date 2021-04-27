@@ -16,12 +16,12 @@ public class Conexion {
 	private final String USER = "root";
 	private final String PASS = "admin";
 	
-	public void conectar() throws Exception {
+	public void conectar() throws SQLException {
 		try {
 			conexion = DriverManager.getConnection(DB_URL, USER, PASS);
 			
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			throw e;
 		}
 	}
