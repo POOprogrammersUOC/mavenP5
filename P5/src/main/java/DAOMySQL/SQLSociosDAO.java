@@ -21,7 +21,7 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 			st.setString(2, socios.getApellidos());
 			st.setString(3,  socios.getDireccion());
 			st.setString(4, socios.getTelefono());
-			st.setString(5, socios.getOngCif);
+			st.setString(5, socios.get);
 			st.executeUpdate();
 		} catch(SQLException e) {
 		} finally {
