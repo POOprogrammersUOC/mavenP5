@@ -21,7 +21,7 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 			st.setString(2, socios.getApellidos());
 			st.setString(3,  socios.getDireccion());
 			st.setString(4, socios.getTelefono());
-			st.setString(5, socios.get);
+			st.setString(5, socios.getOngCif());
 			st.executeUpdate();
 		} catch(SQLException e) {
 		} finally {
@@ -51,12 +51,6 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 		
 		return datos;
 	}
-	
-		
-		return 0;
-	}
-
-
 	
 	
 	public int eliminar(Socios socios) throws SQLException {

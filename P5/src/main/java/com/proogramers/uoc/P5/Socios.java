@@ -13,25 +13,28 @@ public class Socios {
 	private String Direccion;
 	private String Telefono;
 	private String ongCif;
+	private static int contador = 0;
 	
 	
 	/**
 	 * @param nombre Nombre del socio
 	 * @param apellidos Apellidos del socio
-	 * @param nSocio N�mero de socio
-	 * @param direccion direcci�n del socio
-	 * @param telefono teleono del socio
+	 * @param nSocio Numero de socio
+	 * @param direccion direccion del socio
+	 * @param telefono telefono del socio
+	 * @param contador inicia numero de socio a 0 para incrementar
 	 */
 	public Socios(String nombre, String apellidos, int nSocio, String direccion, String telefono) {
 		Nombre = nombre;
 		Apellidos = apellidos;
-		this.nSocio = nSocio;
+		this.nSocio = ++contador;
 		Direccion = direccion;
 		Telefono = telefono;
+		
 	}
 
 
-	// constructor para metodo SQL
+	// constructor para metodo modificar SQL
 	
 	public Socios(String nombre, String apellidos, int nSocio, String direccion, String telefono, String ongCif) {
 		Nombre = nombre;
@@ -43,6 +46,27 @@ public class Socios {
 	}
 
 
+	// Constructor para eliminar desde SQL
+		public Socios(int IdSocios) {
+			this.nSocio = IdSocios;
+		}
+	
+		
+		// constructor para metodo insertar SQL
+		
+		public Socios(String nombre, String apellidos, int nSocio, String direccion, String telefono, String ongCif) {
+			Nombre = nombre;
+			Apellidos = apellidos;
+			this.nSocio = nSocio;
+			Direccion = direccion;
+			Telefono = telefono;
+			this.ongCif = ongCif;
+		}
+	
+		public Socios() {
+			super();
+		}
+	
 	/**
 	 * @return Devuelve Nombre del socio
 	 */
