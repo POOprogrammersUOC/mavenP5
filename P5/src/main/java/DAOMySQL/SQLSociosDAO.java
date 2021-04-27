@@ -22,7 +22,10 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 			st.setString(3,  socios.getDireccion());
 			st.setString(4, socios.getTelefono());
 			st.setString(5, socios.getOngCif());
-			st.executeUpdate();
+			
+			datos = st.executeUpdate();
+			System.out.println("Se ha(n) insertado(s) " + datos + " registro(s) correctamente"); // printamos los registros que se han efectuado
+		
 		} catch(SQLException e) {
 		} finally {
 			this.cerrar();
@@ -42,7 +45,11 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 			st.setString(2, socios.getApellidos());
 			st.setString(3,  socios.getDireccion());
 			st.setString(4, socios.getTelefono());
-			st.executeUpdate();
+			
+			datos = st.executeUpdate();
+			System.out.println(
+					"Se ha(n) actualizado " + datos + " registro(s) " + "del ID: " + socios.getnSocio());
+			
 		} catch(SQLException e) {
 			throw e;
 		} finally {
@@ -62,7 +69,10 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 			st.setString(2, socios.getApellidos());
 			st.setString(3,  socios.getDireccion());
 			st.setString(4, socios.getTelefono());
-			st.executeUpdate();
+			
+			datos = st.executeUpdate();
+			System.out.println("Se ha(n) eliminado " + datos + " registro(s) con ID: " + socios.getnSocio());
+			
 		} catch(SQLException e) {
 			throw e;
 		} finally {
@@ -79,7 +89,7 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 	
 	@Override
 	public List<Socios> seleccionar() throws SQLException {
-		
+		List<Socios> listaSocios = new ArrayList<>();
 		try {
 			
 			this.conectar();
@@ -94,7 +104,11 @@ public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
 				socios.setApellidos(rs.getString("Apellido"));
 				socios.setDireccion(rs.getString("Direccion"));
 				socios.setTelefono(rs.getString("Telefono"));
-				String ong_Cif = rs.getString("Ong_Cif");
+				socios.setOngCif (rs.getString("Ong_Cif"));
+				
+				socios = new Socios(nSocio, Nombre, Apellidos, Direccion, Telefono, OngCif);
+				
+				listaSocios.add(socios);
 			}	
 			rs.close();
 			st.close();
