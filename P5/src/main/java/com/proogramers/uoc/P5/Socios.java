@@ -47,26 +47,32 @@ public class Socios {
 
 
 	// Constructor para eliminar desde SQL
-		public Socios(int IdSocios) {
-			this.nSocio = IdSocios;
-		}
-	
-		
+		 
+	public Socios(int nSocio) {
+		super();
+		this.nSocio = nSocio;
+	}
+
+				
 		// constructor para metodo insertar SQL
 		
-		public Socios(String nombre, String apellidos, int nSocio, String direccion, String telefono, String ongCif) {
-			Nombre = nombre;
-			Apellidos = apellidos;
-			this.nSocio = nSocio;
-			Direccion = direccion;
-			Telefono = telefono;
-			this.ongCif = ongCif;
-		}
+	public Socios(String nombre, String apellidos, String direccion, String telefono, String ongCif) {
+		super();
+		Nombre = nombre;
+		Apellidos = apellidos;
+		Direccion = direccion;
+		Telefono = telefono;
+		this.ongCif = ongCif;
+	}
 	
+
 		public Socios() {
 			super();
 		}
 	
+	
+
+
 	/**
 	 * @return Devuelve Nombre del socio
 	 */

@@ -1,5 +1,6 @@
 package DAOMySQL;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +15,11 @@ public class SQLSociosDAO extends ISociosDAOSQL {
 	@Override
 	public int insertar(Socios socios) throws SQLException {
 		int datos = 0;
+		Connection conn = null;
+		PreparedStatement st = null;
 		try {
-			this.conectar();
-			PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Socios (Nombre, Apellido, Direccion, Telefono, Ong_CIF)  VALUES(?,?,?,?,?)");
+			conn = getConection();
+			PreparedStatement st = this.conn.prepareStatement("INSERT INTO Socios (Nombre, Apellido, Direccion, Telefono, Ong_CIF)  VALUES(?,?,?,?,?)");
 			st.setString(1, socios.getNombre());
 			st.setString(2, socios.getApellidos());
 			st.setString(3,  socios.getDireccion());

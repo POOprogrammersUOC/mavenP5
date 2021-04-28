@@ -1,6 +1,10 @@
 package DAO;
 
+import java.sql.SQLException;
+
 import javax.xml.bind.JAXBException;
+
+import DAOMySQL.SQLSociosDAO;
 
 public abstract class DAOFactory {
 
@@ -15,6 +19,8 @@ public abstract class DAOFactory {
 	public abstract XMLEmpleadosDAO getEmpleadosDAO() throws JAXBException;
 
 	public abstract XMLSociosDAO getSociosDAO() throws JAXBException;
+	
+	public abstract SQLSociosDAO sQLSociosDAO() throws SQLException;
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 
