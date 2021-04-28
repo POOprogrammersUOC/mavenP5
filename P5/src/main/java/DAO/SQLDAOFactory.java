@@ -1,28 +1,31 @@
-
 package DAO;
 
 import javax.xml.bind.JAXBException;
 
-public class XMLDAOFactory extends DAOFactory {
+public class SQLDAOFactory extends DAOFactory {
 
+	@Override
 	public XMLProyectosDAO getProyectosDAO() throws JAXBException {
-		return new XMLProyectosDAO();
-	}
-
-	public XMLSociosDAO getSociosDAO() throws JAXBException {
-
-		return new XMLSociosDAO();
-	}
-
-	public XMLEmpleadosDAO getEmpleadosDAO() throws JAXBException {
-		return new XMLEmpleadosDAO();
-
+		// TODO Esbozo de método generado automáticamente
+		return null;
 	}
 
 	@Override
-	public SQLProyectosDAO sqlProyectosDAO() {
+	public XMLEmpleadosDAO getEmpleadosDAO() throws JAXBException {
 		// TODO Esbozo de método generado automáticamente
 		return null;
+	}
+
+	@Override
+	public XMLSociosDAO getSociosDAO() throws JAXBException {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
+	
+	@Override
+	public SQLProyectosDAO sqlProyectosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return new SQLProyectosDAO();
 	}
 
 	@Override
@@ -30,7 +33,5 @@ public class XMLDAOFactory extends DAOFactory {
 		// TODO Esbozo de método generado automáticamente
 		return null;
 	}
-	
-
 
 }

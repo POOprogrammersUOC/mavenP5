@@ -18,15 +18,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @XmlRootElement indica la raiz del xml
  * @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER) Indica que tiene acceso p�blico
  * @XmlType(propOrder = {}) indica el orden para mostrar las etiquetas
- * @version 1.1
+ * @version 1.2
  * 
  */
 
 @XmlRootElement
 //@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 
-  @XmlType(propOrder = { "numProyecto", "pais", "localizacion","lineaDeAccion", "sublineaDeAccion", "fechaInicio", "fechaFinal","socioLocal", "financiador", "financiacion", "acciones", "personal","voluntariosAsignados" })
- 
+@XmlType(propOrder = { "numProyecto", "pais", "localizacion", "lineaDeAccion", "sublineaDeAccion", "fechaInicio",
+		"fechaFinal", "socioLocal", "financiador", "financiacion", "acciones", "personal", "voluntariosAsignados","ongCif" })
+
 public class Proyectos {
 
 	private String pais;
@@ -42,6 +43,7 @@ public class Proyectos {
 	private String acciones;
 	private int personal;
 	private int voluntariosAsignados;
+	private String ongCif;							//se añade para la inserción en sql
 	private static int contador = 0;
 
 	/**
@@ -62,10 +64,11 @@ public class Proyectos {
 	 *                             cuando se agrega
 	 */
 
+	
 	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
 			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
 			String acciones, int personal, int voluntariosAsignados) {
-		
+
 		this.pais = pais;
 		this.localizacion = localizacion;
 		this.lineaDeAccion = lineaDeAccion;
@@ -79,6 +82,54 @@ public class Proyectos {
 		this.acciones = acciones;
 		this.personal = personal;
 		this.voluntariosAsignados = voluntariosAsignados;
+	}
+
+	///
+	// Sobrecarga de constructores para las diferentes peticiones desde SQL
+	///
+
+	// Constructor para modificar desde SQL
+	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
+			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
+			int numProyecto, String acciones, int personal, int voluntariosAsignados, String ongCif) {
+		this.pais = pais;
+		this.localizacion = localizacion;
+		this.lineaDeAccion = lineaDeAccion;
+		this.sublineaDeAccion = sublineaDeAccion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.socioLocal = socioLocal;
+		this.financiador = financiador;
+		this.financiacion = financiacion;
+		this.numProyecto = numProyecto;
+		this.acciones = acciones;
+		this.personal = personal;
+		this.voluntariosAsignados = voluntariosAsignados;
+		this.ongCif = ongCif;
+	}
+
+	// Constructor para eliminar desde SQL
+	public Proyectos(int numProyecto) {
+		this.numProyecto = numProyecto;
+	}
+
+	// constructor para insertar desde SQL
+	public Proyectos(String pais, String localizacion, String lineaDeAccion, String sublineaDeAccion,
+			LocalDate fechaInicio, LocalDate fechaFinal, String socioLocal, String financiador, Double financiacion,
+			String acciones, int personal, int voluntariosAsignados, String ongCif) {
+		this.pais = pais;
+		this.localizacion = localizacion;
+		this.lineaDeAccion = lineaDeAccion;
+		this.sublineaDeAccion = sublineaDeAccion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.socioLocal = socioLocal;
+		this.financiador = financiador;
+		this.financiacion = financiacion;
+		this.acciones = acciones;
+		this.personal = personal;
+		this.voluntariosAsignados = voluntariosAsignados;
+		this.ongCif = ongCif;
 	}
 
 	public Proyectos() {
@@ -281,6 +332,23 @@ public class Proyectos {
 	 */
 	public void setVoluntariosAsignados(int voluntariosAsignados) {
 		this.voluntariosAsignados = voluntariosAsignados;
+	}
+	
+	
+
+	/**
+	 * @return retorna el ongCif
+	 */
+	@XmlElement
+	public String getOngCif() {
+		return ongCif;
+	}
+
+	/**
+	 * @param ongCif Establece el cif en la base de datos sql
+	 */
+	public void setOngCif(String ongCif) {
+		this.ongCif = ongCif;
 	}
 
 	@Override
