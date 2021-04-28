@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <proyectos>
     <numProyecto>0</numProyecto>
-    <pais>Polonia</pais>
-    <localizacion>Barcelona</localizacion>
-    <lineaDeAccion>Nada</lineaDeAccion>
-    <sublineaDeAccion>Nada</sublineaDeAccion>
+    <pais>POL</pais>
+    <localizacion>BAR</localizacion>
+    <lineaDeAccion>NO</lineaDeAccion>
+    <sublineaDeAccion>NO</sublineaDeAccion>
     <fechaInicio>2000-01-01</fechaInicio>
     <fechaFinal>2001-01-01</fechaFinal>
     <socioLocal>Pedro Martinez</socioLocal>
@@ -13,4 +13,35 @@
     <acciones>Sin observaciones</acciones>
     <personal>30</personal>
     <voluntariosAsignados>20</voluntariosAsignados>
+    <ongCif>B154896325</ongCif>
+
+    <numProyecto>0</numProyecto>
+    <pais>POL1</pais>
+    <localizacion>BAR1</localizacion>
+    <lineaDeAccion>NO1</lineaDeAccion>
+    <sublineaDeAccion>NO1</sublineaDeAccion>
+    <fechaInicio>2000-01-01</fechaInicio>
+    <fechaFinal>2001-01-01</fechaFinal>
+    <socioLocal>Pedro Martinez1</socioLocal>
+    <financiador>Daniel carrillo1</financiador>
+    <financiacion>2000.1</financiacion>
+    <acciones>Sin observaciones1</acciones>
+    <personal>301</personal>
+    <voluntariosAsignados>201</voluntariosAsignados>
+    <ongCif>B154896325</ongCif>
+
+    <numProyecto>0</numProyecto>
+    <pais>POL3</pais>
+    <localizacion>BAR3</localizacion>
+    <lineaDeAccion>NO3</lineaDeAccion>
+    <sublineaDeAccion>NO3</sublineaDeAccion>
+    <fechaInicio>2000-01-01</fechaInicio>
+    <fechaFinal>2001-01-01</fechaFinal>
+    <socioLocal>Pedro Martinez3</socioLocal>
+    <financiador>Daniel carrillo3</financiador>
+    <financiacion>2000.3</financiacion>
+    <acciones>Sin observaciones3</acciones>
+    <personal>303</personal>
+    <voluntariosAsignados>203</voluntariosAsignados>
+    <ongCif>B154896325</ongCif>
 </proyectos>
