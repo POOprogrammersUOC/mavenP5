@@ -134,7 +134,7 @@ public class TestSQLProyectosDAO {
 			Date sqlDate2 = Date.valueOf("2021-12-12");
 			LocalDate fFinal = sqlDate2.toLocalDate();
 			Proyectos projectInsert = new Proyectos(
-					"BCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCNBCN",
+					"BCN",
 					"BCN", "BCN", "BCN", fInicio, fFinal, "Angel", "BCN", 20000.36, "BCN", 10, 60, "B154896325"); // creamos objeto proyectos para insertar en la base de datos
 			
 			DAOFactory.getDAOFactory(2).sqlProyectosDAO().insertar(projectInsert); //ejecutamos el insert desde FACTORY y DAO
