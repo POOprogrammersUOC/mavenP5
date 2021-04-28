@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.proogramers.uoc.P5.Socios;
 
-public class SQLSociosDAO extends Conexion implements ISociosDAOSQL {
+public class SQLSociosDAO extends ISociosDAOSQL {
 
 	@Override
 	public int insertar(Socios socios) throws SQLException {
