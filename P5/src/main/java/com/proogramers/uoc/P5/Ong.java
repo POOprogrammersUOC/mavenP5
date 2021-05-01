@@ -446,8 +446,10 @@ public class Ong {
 		System.out.println("Introduce dni");
 
 		String DNI = leer.nextLine();
+		
+		String OngCif = leer.nextLine();
 
-		Empleados empleado = new Empleados(Nombre, Numero, Apellidos, Direccion, Telefono, DNI);
+		Empleados empleado = new Empleados(Nombre, Numero, Apellidos, Direccion, Telefono, DNI, OngCif);
 		NuevaListaEmpleados.add(empleado);
 
 	}

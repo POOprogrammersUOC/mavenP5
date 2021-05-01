@@ -96,8 +96,7 @@ public class SQLEmpleadosDAO implements IEmpleadosSQLDAO{
 					close(conn);
 				}
 			} catch (SQLException e) {
-				// TODO Bloque catch generado automáticamente
-				e.printStackTrace(System.out);
+					e.printStackTrace(System.out);
 			}
 		}
 		return registro ;
@@ -105,6 +104,7 @@ public class SQLEmpleadosDAO implements IEmpleadosSQLDAO{
 
 	
 	//Metodo que actualiza los datos de la tabla empleados
+	
 	@Override
 	public int actualizar(Empleados empleados) throws SQLException {
 		
@@ -134,7 +134,6 @@ public class SQLEmpleadosDAO implements IEmpleadosSQLDAO{
 					close(conn);
 				}
 			} catch (SQLException e) {
-				// TODO Bloque catch generado automáticamente
 				e.printStackTrace(System.out);
 			}
 		}

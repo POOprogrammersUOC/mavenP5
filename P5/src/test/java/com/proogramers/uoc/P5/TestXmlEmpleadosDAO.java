@@ -21,12 +21,14 @@ public class TestXmlEmpleadosDAO {
 			p1.setDireccion("Calle Mayor 26");
 			p1.setTelefono("456786");;
 			p1.setDNI("6549874");
+			p1.setOngCif("12345b");
 			
 			p2.setNombre("Manolo");
 			p2.setApellidos("Sanchez");
 			p2.setDireccion("Av España");
 			p2.setTelefono("3216548");;
 			p2.setDNI("65498722");
+			p2.setOngCif("12345b");
 			nuevaLista.add(p1);
 			nuevaLista.add(p2);
 			

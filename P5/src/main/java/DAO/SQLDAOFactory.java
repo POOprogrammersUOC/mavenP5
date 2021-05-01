@@ -40,4 +40,10 @@ public class SQLDAOFactory extends DAOFactory {
 		return new SQLEmpleadosDAO();
 	}
 
+	@Override
+	public importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
+
 }

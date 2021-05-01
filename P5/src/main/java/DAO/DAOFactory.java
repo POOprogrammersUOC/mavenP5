@@ -22,6 +22,8 @@ public abstract class DAOFactory {
 	public abstract SQLEmpleadosDAO sqlEmpleadosDAO();
 	
 	public abstract importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() throws JAXBException;
+	
+	public abstract importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException;
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 
