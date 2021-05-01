@@ -34,4 +34,10 @@ public class SQLDAOFactory extends DAOFactory {
 		return null;
 	}
 
+	@Override
+	public SQLEmpleadosDAO sqlEmpleadosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return new SQLEmpleadosDAO();
+	}
+
 }
