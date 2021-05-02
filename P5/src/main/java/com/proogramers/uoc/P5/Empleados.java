@@ -67,7 +67,20 @@ public class Empleados {
 		
 	}
 	
+	//Metodo para actualizar Update SQL
 	
+	public Empleados(String Nombre, String Apellidos, String Direccion, String Telefono, String DNI, String OngCif,
+			int Numero) {
+		
+		this.Nombre = Nombre;
+		this.Apellidos = Apellidos;
+		this.Direccion = Direccion;
+		this.Telefono = Telefono;
+		this.DNI = DNI;
+		this.OngCif = OngCif;
+		this.Numero = Numero;
+		// TODO Esbozo de constructor generado automáticamente
+	}
 	/**
 	 * @return Devuelve Nombre del empleado
 	 */

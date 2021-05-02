@@ -17,8 +17,9 @@ public class TestSQLEmpleadosDAO {
 		// *******************************************************************************************************//
 		// TEST DE LAS FUNCIONALIDADES INSERT,SELECT,UPDATE,DELETE,COMMIT & ROLLBACK
 		// *******************************************************************************************************//
-		testRollback();
-		testSelect();
+		testUpdate();
+		//testRollback();
+		//testSelect();
 		
 }
 	
@@ -58,12 +59,12 @@ public class TestSQLEmpleadosDAO {
 
 	private static void testUpdate() throws SQLException {
 	
-	Empleados empleado = new Empleados("Jaime", "hdhdhd", "kjjkhjk", "65465464", "5665465468", "12345b"); // modificar
+	Empleados empleado = new Empleados("Julio", "JGJGhdhdhd", "kjjkhjk", "65465464", "5665465", "12345b", 8); // modificar
 	DAOFactory.getDAOFactory(2).sqlEmpleadosDAO().actualizar(empleado);
 	}
 	
 	private static void testDelete() throws SQLException {
-		Empleados empleado = new Empleados(9); // eliminar
+		Empleados empleado = new Empleados(10); // eliminar
 		DAOFactory.getDAOFactory(2).sqlEmpleadosDAO().eliminar(empleado);
 	}
 	
@@ -84,7 +85,7 @@ public class TestSQLEmpleadosDAO {
 			
 			DAOFactory.getDAOFactory(2).sqlEmpleadosDAO().insertar(empleadoInsert); //insert desde FACTORY y DAO
 
-			Empleados empleadoDelete = new Empleados();							// creamos un objeto 
+			Empleados empleadoDelete = new Empleados(9);							// creamos un objeto 
 			DAOFactory.getDAOFactory(2).sqlEmpleadosDAO().eliminar(empleadoDelete); //delete desde FACTORY y DAO
 
 			conexion.commit();														

@@ -17,7 +17,7 @@ public class SQLEmpleadosDAO implements IEmpleadosSQLDAO{
 	private static final String SQL_SELECT = "SELECT Numero, Nombre, Apellido_1, Direccion, Telefono, Dni, Ong_CIF FROM mydb.empleados";
 	private static final String SQL_INSERT = "INSERT INTO mydb.empleados(Nombre, Apellido_1, Direccion, Telefono, Dni, Ong_CIF) VALUES(?, ?, ?, ?, ?, ?)";
 	private static final String SQL_UPDATE = "UPDATE mydb.empleados SET Nombre = ?, Apellido_1 = ?, Direccion = ?, Telefono = ?, Dni = ?, Ong_CIF = ? WHERE Numero = ? ";
-	private static final String SQL_DELETE = "DELETE FROM mydb.proyectos WHERE Id_proyecto = ?";
+	private static final String SQL_DELETE = "DELETE FROM mydb.empleados WHERE Numero = ?";
 	private Connection conexiontransaccion;
 	
 	public SQLEmpleadosDAO() {
@@ -122,7 +122,6 @@ public class SQLEmpleadosDAO implements IEmpleadosSQLDAO{
 			pstat.setString(6, empleados.getOngCif());
 			pstat.setInt(7, empleados.getNumero());
 
-			// }
 			registro = pstat.executeUpdate();
 			System.out.println(
 					"Se ha(n) actualizado " + registro + " registro(s) " + "del Empleado numero: " + empleados.getNumero());
