@@ -6,8 +6,8 @@ public abstract class DAOFactory {
 
 	// Lista de tipos DAO soportado por la factoria.
 
-	public static final int 		   XML = 1;
-	public static final int            SQL = 2;
+	public static final int XML = 1;
+	public static final int SQL = 2;
 	public static final int IMPORTXMLTOSQL = 3;
 
 	// Para cada clase tenemos un DAO que es creado
@@ -16,10 +16,14 @@ public abstract class DAOFactory {
 	public abstract XMLEmpleadosDAO getEmpleadosDAO() throws JAXBException;
 
 	public abstract XMLSociosDAO getSociosDAO() throws JAXBException;
-	
+
 	public abstract SQLProyectosDAO sqlProyectosDAO();
-	
+
 	public abstract importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() throws JAXBException;
+
+	public abstract SQLSociosDAO sqlSociosDAO();
+
+	public abstract importXMLtoSQLSociosDAO setImportXMLtoSQLSocios() throws JAXBException;
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 

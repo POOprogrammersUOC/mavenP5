@@ -30,6 +30,18 @@ public class XMLDAOFactory extends DAOFactory {
 		// TODO Esbozo de método generado automáticamente
 		return null;
 	}
+
+	@Override
+	public SQLSociosDAO sqlSociosDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public importXMLtoSQLSociosDAO setImportXMLtoSQLSocios() throws JAXBException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 
