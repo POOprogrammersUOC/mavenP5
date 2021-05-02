@@ -36,6 +36,7 @@ public class Empleados {
 	}
 	
 	//CONSTRUCTOR PARA METODO SELECCIONAR SQL
+	
 	public Empleados(int Numero, String Nombre, String Apellidos, String Direccion, String Telefono,
 			String DNI, String OngCif) {
 		
@@ -67,7 +68,7 @@ public class Empleados {
 		
 	}
 	
-	//Metodo para actualizar Update SQL
+	//Constructor para actualizar Update SQL
 	
 	public Empleados(String Nombre, String Apellidos, String Direccion, String Telefono, String DNI, String OngCif,
 			int Numero) {
@@ -79,7 +80,6 @@ public class Empleados {
 		this.DNI = DNI;
 		this.OngCif = OngCif;
 		this.Numero = Numero;
-		// TODO Esbozo de constructor generado automáticamente
 	}
 	/**
 	 * @return Devuelve Nombre del empleado
