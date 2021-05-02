@@ -35,6 +35,7 @@ public class ImportXMLtoSQLFactory extends DAOFactory {
 	}
 
 	@Override
+
 	public SQLSociosDAO sqlSociosDAO() {
 		// TODO Esbozo de método generado automáticamente
 		return new SQLSociosDAO();
@@ -44,6 +45,17 @@ public class ImportXMLtoSQLFactory extends DAOFactory {
 	public importXMLtoSQLSociosDAO setImportXMLtoSQLSocios() throws JAXBException {
 		// TODO Esbozo de método generado automáticamente
 		return null;
+	}
+
+	public SQLEmpleadosDAO sqlEmpleadosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
+
+	@Override
+	public importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException {
+		// TODO Esbozo de método generado automáticamente
+		return new importXMLtoSQLEmpleadosDAO();
 	}
 
 }

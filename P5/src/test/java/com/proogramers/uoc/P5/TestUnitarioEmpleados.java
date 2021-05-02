@@ -14,7 +14,7 @@ public class TestUnitarioEmpleados {
 	ArrayList<Empleados> listaEmpleados = new ArrayList<>();
 
 
-	Empleados p1 = new Empleados("Jose", 1, "rodriguez", "Calle Mayor 21", "1235485", "3216548s");
+	Empleados p1 = new Empleados("Jose", 1, "rodriguez", "Calle Mayor 21", "1235485", "3216548s", "12345b");
 
 	@Before
 	public void setUp() throws Exception {

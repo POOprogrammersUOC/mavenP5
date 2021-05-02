@@ -4,5 +4,7 @@
     <DNI>65498722</DNI>
     <Direccion>Av España</Direccion>
     <Nombre>Manolo</Nombre>
+    <numero>0</numero>
+    <ongCif>12345b</ongCif>
     <Telefono>3216548</Telefono>
 </Empleados>

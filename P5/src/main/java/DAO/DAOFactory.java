@@ -19,7 +19,11 @@ public abstract class DAOFactory {
 
 	public abstract SQLProyectosDAO sqlProyectosDAO();
 
+	public abstract SQLEmpleadosDAO sqlEmpleadosDAO();
+	
 	public abstract importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() throws JAXBException;
+	
+	public abstract importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException;
 
 	public abstract SQLSociosDAO sqlSociosDAO();
 

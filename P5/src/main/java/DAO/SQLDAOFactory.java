@@ -42,7 +42,20 @@ public class SQLDAOFactory extends DAOFactory {
 
 	@Override
 	public importXMLtoSQLSociosDAO setImportXMLtoSQLSocios() throws JAXBException {
+		
+		return null;
+	}
 		// TODO Auto-generated method stub
+
+	public SQLEmpleadosDAO sqlEmpleadosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return new SQLEmpleadosDAO();
+	}
+
+	@Override
+	public importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException {
+		// TODO Esbozo de método generado automáticamente
+
 		return null;
 	}
 

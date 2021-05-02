@@ -14,6 +14,7 @@ public class Empleados {
 	private String Direccion;
 	private String Telefono;
 	private String DNI;
+	private String OngCif;
 	/**
 	 * @param nombre Nombre del empleado
 	 * @param apellidos Apellidos del empleado
@@ -21,16 +22,64 @@ public class Empleados {
 	 * @param telefono Telefono del empleado
 	 * @param dNI DNI del empleado
 	 */
-	public Empleados(String nombre, int numero, String apellidos, String direccion, String telefono, String dNI) {
+	public Empleados(String nombre, int numero, String apellidos, String direccion, String telefono, String dNI, String ongCif) {
 		Nombre = nombre;
 		Numero = numero;
 		Apellidos = apellidos;
 		Direccion = direccion;
 		Telefono = telefono;
 		DNI = dNI;
+		OngCif = ongCif; 
 	}
 	public Empleados() {
 		// TODO Esbozo de constructor generado automáticamente
+	}
+	
+	//CONSTRUCTOR PARA METODO SELECCIONAR SQL
+	
+	public Empleados(int Numero, String Nombre, String Apellidos, String Direccion, String Telefono,
+			String DNI, String OngCif) {
+		
+		this.Numero = Numero;
+		this.Nombre = Nombre;
+		this.Apellidos = Apellidos;
+		this.Direccion = Direccion;
+		this.Telefono = Telefono;
+		this.DNI = DNI;
+		this.OngCif = OngCif;
+	}
+	
+	//Constructor para eliminar en SQL
+	
+	public Empleados(int Numero) {
+		this.Numero = Numero;
+	}
+
+	//Constructor para metodo insertar
+	
+	public Empleados(String Nombre,  String Apellidos, String Direccion, String Telefono,
+			String DNI, String OngCif) {
+		this.Nombre = Nombre;
+		this.Apellidos = Apellidos;
+		this.Direccion = Direccion;
+		this.Telefono = Telefono;
+		this.DNI = DNI;
+		this.OngCif = OngCif;		
+		
+	}
+	
+	//Constructor para actualizar Update SQL
+	
+	public Empleados(String Nombre, String Apellidos, String Direccion, String Telefono, String DNI, String OngCif,
+			int Numero) {
+		
+		this.Nombre = Nombre;
+		this.Apellidos = Apellidos;
+		this.Direccion = Direccion;
+		this.Telefono = Telefono;
+		this.DNI = DNI;
+		this.OngCif = OngCif;
+		this.Numero = Numero;
 	}
 	/**
 	 * @return Devuelve Nombre del empleado
@@ -109,6 +158,12 @@ public class Empleados {
 	public void setNumero(int numero) {
 		Numero = numero;
 	}
+	public String getOngCif() {
+		return OngCif;
+	}
 	
+	public void setOngCif(String OngCif) {
+		this.OngCif = OngCif;
+	}
 	
 }
