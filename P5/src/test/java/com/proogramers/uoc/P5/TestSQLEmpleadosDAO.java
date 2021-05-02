@@ -17,7 +17,7 @@ public class TestSQLEmpleadosDAO {
 		// *******************************************************************************************************//
 		// TEST DE LAS FUNCIONALIDADES INSERT,SELECT,UPDATE,DELETE,COMMIT & ROLLBACK
 		// *******************************************************************************************************//
-		testUpdate();
+		testInsert();
 		//testRollback();
 		//testSelect();
 		

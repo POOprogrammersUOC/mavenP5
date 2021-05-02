@@ -43,7 +43,7 @@ public class ImportXMLtoSQLFactory extends DAOFactory {
 	@Override
 	public importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException {
 		// TODO Esbozo de método generado automáticamente
-		return null;
+		return new importXMLtoSQLEmpleadosDAO();
 	}
 	
 	
