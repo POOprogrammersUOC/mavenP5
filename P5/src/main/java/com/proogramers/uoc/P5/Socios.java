@@ -2,9 +2,9 @@ package com.proogramers.uoc.P5;
 
 import javax.xml.bind.annotation.*;
 
-@XmlRootElement(name="socios")
-@XmlType(propOrder={"nombre", "apellidos", "nSocio", "direccion", "telefono"})
-  
+@XmlRootElement(name = "socios")
+@XmlType(propOrder = { "nombre", "apellidos", "nSocio", "direccion", "telefono", "ongCif" })
+
 public class Socios {
 
 	private String Nombre;
@@ -12,13 +12,14 @@ public class Socios {
 	private int nSocio;
 	private String Direccion;
 	private String Telefono;
-	
+	private String ongCif;
+
 	/**
-	 * @param nombre Nombre del socio
+	 * @param nombre    Nombre del socio
 	 * @param apellidos Apellidos del socio
-	 * @param nSocio N�mero de socio
+	 * @param nSocio    N�mero de socio
 	 * @param direccion direcci�n del socio
-	 * @param telefono teleono del socio
+	 * @param telefono  teleono del socio
 	 */
 	public Socios(String nombre, String apellidos, int nSocio, String direccion, String telefono) {
 		Nombre = nombre;
@@ -28,16 +29,54 @@ public class Socios {
 		Telefono = telefono;
 	}
 
-
 	public Socios() {
-		// TODO Auto-generated constructor stub
+		// TODO Esbozo de constructor generado automáticamente
 	}
 
+	// CONSTRUCTOR PARA METODO SELECCIONAR SQL
+	public Socios(int nSocio, String Nombre, String Apellido, String Direccion, String Telefono, String OngCif) {
+
+		this.nSocio = nSocio;
+		this.Nombre = Nombre;
+		this.Apellidos = Apellido;
+		this.Direccion = Direccion;
+		this.Telefono = Telefono;
+		this.ongCif = OngCif;
+	}
+
+	// Constructor para eliminar en SQL
+
+	public Socios(int nSocio) {
+		this.nSocio = nSocio;
+	}
+
+	// Constructor para metodo insertar
+
+	public Socios(String Nombre, String Apellidos, String Direccion, String Telefono, String OngCif) {
+		this.Nombre = Nombre;
+		this.Apellidos = Apellidos;
+		this.Direccion = Direccion;
+		this.Telefono = Telefono;
+		this.ongCif = OngCif;
+
+	}
+
+	// Metodo actualizar SQL
+
+	public Socios(String nombre, String apellidos, int nSocio, String direccion, String telefono, String ongCif) {
+		super();
+		Nombre = nombre;
+		Apellidos = apellidos;
+		this.nSocio = nSocio;
+		Direccion = direccion;
+		Telefono = telefono;
+		this.ongCif = ongCif;
+	}
 
 	/**
 	 * @return Devuelve Nombre del socio
 	 */
-	@XmlElement(name="nombre")
+	@XmlElement(name = "nombre")
 	public String getNombre() {
 		return Nombre;
 	}
@@ -52,7 +91,7 @@ public class Socios {
 	/**
 	 * @return Devuelve apellidos del socio
 	 */
-	@XmlElement(name="Apellidos")
+	@XmlElement(name = "Apellidos")
 	public String getApellidos() {
 		return Apellidos;
 	}
@@ -67,7 +106,7 @@ public class Socios {
 	/**
 	 * @return Devuelve Numero del socio
 	 */
-	@XmlElement(name="nSocio")
+	@XmlElement(name = "nSocio")
 	public int getnSocio() {
 		return nSocio;
 	}
@@ -82,7 +121,7 @@ public class Socios {
 	/**
 	 * @return Devuelve direccion del socio
 	 */
-	@XmlElement(name="Direccion")
+	@XmlElement(name = "Direccion")
 	public String getDireccion() {
 		return Direccion;
 	}
@@ -97,7 +136,7 @@ public class Socios {
 	/**
 	 * @return Devuelve telefono del socio
 	 */
-	@XmlElement(name="Telefono")
+	@XmlElement(name = "Telefono")
 	public String getTelefono() {
 		return Telefono;
 	}
@@ -112,17 +151,25 @@ public class Socios {
 	@Override
 	public String toString() {
 		return "Socios [Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", nSocio=" + nSocio + ", Direccion="
-				+ Direccion + ", Telefono=" + Telefono + "]";
+				+ Direccion + ", Telefono=" + Telefono + ", ongCif=" + ongCif + "]";
 	}
 
-
-	public String getNumSocio() {
+	public int getNumSocio() {
 		// TODO Esbozo de método generado automáticamente
+		return nSocio;
+	}
+
+	@XmlElement(name = "OngCif")
+	public String getOngCif() {
+		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
-	
-	
+	/**
+	 * @param ongCif Establece el cif en la base de datos sql
+	 */
+	public void setOngCif(String ongCif) {
+		this.ongCif = ongCif;
+	}
+
 }
