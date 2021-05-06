@@ -16,8 +16,8 @@ public class TestXmlEmpleadosDAO {
 			Empleados p1 = new Empleados();
 			Empleados p2 = new Empleados();
 			
-			p1.setNombre("Jose");
-			p1.setApellidos("Rodriguez");
+			p1.setNombre("Alfonso");
+			p1.setApellidos("aaaaa");
 			p1.setDireccion("Calle Mayor 26");
 			p1.setTelefono("456786");;
 			p1.setDNI("6549874");
