@@ -20,13 +20,15 @@ public class TestSQLProyectosDAO {
 		// TEST DE LAS FUNCIONALIDADES INSERT,SELECT,UPDATE,DELETE,COMMIT & ROLLBACK
 		// *******************************************************************************************************//
 
-		testRollback();
+		//testRollback();
 		testSelect();
+		testInsert();
 		/*
 		 * testDatabase(); testSelect();
 		 * System.out.println("***************************************");
 		 * System.out.println("              INSERTAR");
-		 * System.out.println("***************************************"); testInsert();
+		 * System.out.println("***************************************"); 
+		 
 		 * testSelect();
 		 * 
 		 * System.out.println("***************************************");
@@ -92,6 +94,7 @@ public class TestSQLProyectosDAO {
 		Proyectos project = new Proyectos("PEPINO", "Amsterdam", "no hay datos", "no aplica", fInicio, fFinal, "Angel",
 				"Secure", 20000.36, "Sin acciones", 10, 60, "B154896325"); // insertar
 		// sqlProyectosDao.insertar(project);
+		System.out.println(project);
 		DAOFactory.getDAOFactory(2).sqlProyectosDAO().insertar(project);
 	}
 
