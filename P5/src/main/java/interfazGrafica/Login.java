@@ -113,7 +113,7 @@ public class Login extends JFrame {
 							}else if(getPrivilegio.equals("usuario")) {
 								Principal principal = new Principal();
 								principal.setVisible(true);
-								principal.getLblAdmin().setVisible(false); //hay que hacer publico todo lo que se quiere ocultar
+								//principal.getLblAdmin().setVisible(false); //hay que hacer publico todo lo que se quiere ocultar
 								
 							}
 						}else {
