@@ -25,11 +25,20 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 	private JLabel lblImageSetUsuario;
 	private JLabel lblPanelDerechoSetUsuario;
 	private JLabel lblPanelDerechoSetRol;
+	private JPanel panelBody;
+	private JPanel panelHome;
+	private JPanel panelSocios;
+	private JPanel panelEmpleados;
+	private JPanel panelProyectos;
+	private JButton btnHome;
 
 	/**
 	 * Launch the application.
@@ -92,7 +101,16 @@ public class Principal extends JFrame {
 		lblPanelDerechoSetRol.setForeground(Color.BLACK);
 		
 		final JButton btnSocios = new JButton("Socios      ");
-		btnSocios.setBounds(0, 279, 201, 38);
+		btnSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelBody.removeAll();
+				panelBody.repaint();
+				panelBody.revalidate();
+				panelBody.add(panelSocios);
+				panelBody.revalidate();
+			}
+		});
+		btnSocios.setBounds(0, 319, 201, 38);
 		panel.add(btnSocios);
 		btnSocios.addMouseListener(new MouseAdapter() {
 			@Override
@@ -112,7 +130,16 @@ public class Principal extends JFrame {
 		btnSocios.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/apreton-de-manos24.png")));
 		
 		final JButton btnEmpleados = new JButton("Empleados");
-		btnEmpleados.setBounds(0, 316, 201, 38);
+		btnEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelBody.removeAll();
+				panelBody.repaint();
+				panelBody.revalidate();
+				panelBody.add(panelEmpleados);
+				panelBody.revalidate();
+			}
+		});
+		btnEmpleados.setBounds(0, 356, 201, 38);
 		panel.add(btnEmpleados);
 		btnEmpleados.addMouseListener(new MouseAdapter() {
 			@Override
@@ -132,7 +159,16 @@ public class Principal extends JFrame {
 		btnEmpleados.setBackground(new Color(177, 191, 212));
 		
 		final JButton btnProyectos = new JButton("Proyectos");
-		btnProyectos.setBounds(0, 353, 201, 38);
+		btnProyectos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelBody.removeAll();
+				panelBody.repaint();
+				panelBody.revalidate();
+				panelBody.add(panelProyectos);
+				panelBody.revalidate();
+			}
+		});
+		btnProyectos.setBounds(0, 393, 201, 38);
 		panel.add(btnProyectos);
 		btnProyectos.addMouseListener(new MouseAdapter() {
 			@Override
@@ -150,6 +186,56 @@ public class Principal extends JFrame {
 		btnProyectos.setBorderPainted(false);
 		btnProyectos.setBorder(null);
 		btnProyectos.setBackground(new Color(177, 191, 212));
+		
+		btnHome = new JButton("Home       ");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelBody.removeAll();
+				panelBody.repaint();
+				panelBody.revalidate();
+				panelBody.add(panelHome);
+				panelBody.revalidate();
+			}
+		});
+		btnHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnHome.setBackground(new Color(100, 127, 189));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnHome.setBackground(new Color(177, 191, 212));
+			}
+		});
+		btnHome.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/home24.png")));
+		btnHome.setForeground(Color.WHITE);
+		btnHome.setFocusPainted(false);
+		btnHome.setBorderPainted(false);
+		btnHome.setBorder(null);
+		btnHome.setBackground(new Color(177, 191, 212));
+		btnHome.setBounds(0, 279, 201, 38);
+		panel.add(btnHome);
+		
+		panelBody = new JPanel();
+		panelBody.setBounds(200, 0, 784, 662);
+		getContentPane().add(panelBody);
+		panelBody.setLayout(new CardLayout(0, 0));
+		
+		panelHome = new JPanel();
+		panelHome.setBounds(new Rectangle(200, 0, 784, 662));
+		panelBody.add(panelHome, "name_161162941260200");
+		
+		panelSocios = new JPanel();
+		panelSocios.setBackground(Color.YELLOW);
+		panelBody.add(panelSocios, "name_161214080585300");
+		
+		panelEmpleados = new JPanel();
+		panelEmpleados.setBackground(Color.CYAN);
+		panelBody.add(panelEmpleados, "name_161410589258100");
+		
+		panelProyectos = new JPanel();
+		panelProyectos.setBackground(Color.ORANGE);
+		panelBody.add(panelProyectos, "name_161445339611100");
 	}
 	public JLabel getLblImageSetUsuario() {
 		return lblImageSetUsuario;
@@ -159,5 +245,20 @@ public class Principal extends JFrame {
 	}
 	public JLabel getLblPanelDerechoSetRol() {
 		return lblPanelDerechoSetRol;
+	}
+	public JPanel getPanelBody() {
+		return panelBody;
+	}
+	public JPanel getPanelHome() {
+		return panelHome;
+	}
+	public JPanel getPanelSocios() {
+		return panelSocios;
+	}
+	public JPanel getPanelEmpleados() {
+		return panelEmpleados;
+	}
+	public JPanel getPanelProyectos() {
+		return panelProyectos;
 	}
 }
