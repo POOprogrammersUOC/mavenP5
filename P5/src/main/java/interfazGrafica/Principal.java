@@ -21,6 +21,10 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Dimension;
 
 public class Principal extends JFrame {
 
@@ -44,54 +48,104 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		getContentPane().setPreferredSize(new Dimension(10, 10));
+		setPreferredSize(new Dimension(1000, 700));
+		setSize(new Dimension(1000, 700));
+		setTitle("ONG Entreculturas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 819, 538);
+		setBounds(100, 100, 1000, 700);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 255));
-		panel.setBounds(0, 0, 237, 500);
+		panel.setPreferredSize(new Dimension(0, 0));
+		panel.setBackground(new Color(177, 191, 212));
+		panel.setBounds(0, 0, 201, 662);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblPanelDerechoImagen = new JLabel("imagen");
-		lblPanelDerechoImagen.setForeground(new Color(255, 255, 255));
-		lblPanelDerechoImagen.setBounds(83, 44, 46, 14);
-		panel.add(lblPanelDerechoImagen);
+		JLabel lblImageSetUsuario = new JLabel("");
+		lblImageSetUsuario.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_usuario.png")));
+		lblImageSetUsuario.setBounds(40, 11, 105, 122);
+		panel.add(lblImageSetUsuario);
 		
 		JLabel lblPanelDerechoUsuario = new JLabel("Usuario:");
-		lblPanelDerechoUsuario.setForeground(new Color(255, 255, 255));
-		lblPanelDerechoUsuario.setBounds(38, 94, 59, 14);
+		lblPanelDerechoUsuario.setBounds(26, 147, 59, 14);
 		panel.add(lblPanelDerechoUsuario);
+		lblPanelDerechoUsuario.setForeground(Color.BLACK);
 		
-		JLabel lblPanelDerechoRol = new JLabel("Rol:");
-		lblPanelDerechoRol.setForeground(new Color(255, 255, 255));
-		lblPanelDerechoRol.setBounds(38, 114, 24, 14);
+		JLabel lblPanelDerechoRol = new JLabel("Privilegios:");
+		lblPanelDerechoRol.setBounds(26, 167, 77, 14);
 		panel.add(lblPanelDerechoRol);
+		lblPanelDerechoRol.setForeground(Color.BLACK);
 		
 		JLabel lblPanelDerechoSetUsuario = new JLabel("Tipo_usuario");
-		lblPanelDerechoSetUsuario.setForeground(new Color(255, 255, 255));
-		lblPanelDerechoSetUsuario.setBounds(94, 94, 96, 14);
+		lblPanelDerechoSetUsuario.setBounds(95, 147, 96, 14);
 		panel.add(lblPanelDerechoSetUsuario);
+		lblPanelDerechoSetUsuario.setForeground(Color.BLACK);
 		
 		JLabel lblPanelDerechoSetRol = new JLabel("Tipo_rol");
-		lblPanelDerechoSetRol.setForeground(new Color(255, 255, 255));
-		lblPanelDerechoSetRol.setBounds(94, 114, 46, 14);
+		lblPanelDerechoSetRol.setBounds(113, 167, 46, 14);
 		panel.add(lblPanelDerechoSetRol);
+		lblPanelDerechoSetRol.setForeground(Color.BLACK);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 102, 255));
-		panel_1.setBounds(0, 222, 237, 38);
-		panel.add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		final JButton btnSocios = new JButton("Socios      ");
+		btnSocios.setBounds(0, 279, 201, 38);
+		panel.add(btnSocios);
+		btnSocios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSocios.setBackground(new Color(100, 127, 189));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSocios.setBackground(new Color(177, 191, 212));
+			}
+		});
+		btnSocios.setForeground(Color.WHITE);
+		btnSocios.setBackground(new Color(177, 191, 212));
+		btnSocios.setFocusPainted(false);
+		btnSocios.setBorderPainted(false);
+		btnSocios.setBorder(null);
+		btnSocios.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/apreton-de-manos24.png")));
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBackground(Color.LIGHT_GRAY);
-		panel_1.add(btnNewButton, BorderLayout.CENTER);
+		final JButton btnEmpleados = new JButton("Empleados");
+		btnEmpleados.setBounds(0, 316, 201, 38);
+		panel.add(btnEmpleados);
+		btnEmpleados.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnEmpleados.setBackground(new Color(100, 127, 189));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnEmpleados.setBackground(new Color(177, 191, 212));
+			}
+		});
+		btnEmpleados.setForeground(Color.WHITE);
+		btnEmpleados.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/trabajo-en-equipo24.png")));
+		btnEmpleados.setFocusPainted(false);
+		btnEmpleados.setBorderPainted(false);
+		btnEmpleados.setBorder(null);
+		btnEmpleados.setBackground(new Color(177, 191, 212));
+		
+		final JButton btnProyectos = new JButton("Proyectos");
+		btnProyectos.setBounds(0, 353, 201, 38);
+		panel.add(btnProyectos);
+		btnProyectos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnProyectos.setBackground(new Color(100, 127, 189));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnProyectos.setBackground(new Color(177, 191, 212));
+			}
+		});
+		btnProyectos.setForeground(Color.WHITE);
+		btnProyectos.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/proyectos24.png")));
+		btnProyectos.setFocusPainted(false);
+		btnProyectos.setBorderPainted(false);
+		btnProyectos.setBorder(null);
+		btnProyectos.setBackground(new Color(177, 191, 212));
 	}
-
-	
-	
 }
