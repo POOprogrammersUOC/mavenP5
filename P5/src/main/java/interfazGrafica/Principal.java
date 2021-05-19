@@ -28,6 +28,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.JTable;
 
 public class Principal extends JFrame {
 	private JLabel lblImageSetUsuario;
@@ -39,6 +41,18 @@ public class Principal extends JFrame {
 	private JPanel panelEmpleados;
 	private JPanel panelProyectos;
 	private JButton btnHome;
+	private JTable table;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
+	private JLabel lblNewLabel_7;
+	private JLabel lblNewLabel_8;
+	private JLabel lblNewLabel_9;
+	private JLabel lblNewLabel_10;
+	private JLabel lblNewLabel_11;
 
 	/**
 	 * Launch the application.
@@ -234,17 +248,68 @@ public class Principal extends JFrame {
 		panelBody.add(panelEmpleados, "name_161410589258100");
 		
 		panelProyectos = new JPanel();
-		panelProyectos.setBackground(Color.ORANGE);
+		panelProyectos.setBackground(new Color(237, 240, 245));
 		panelBody.add(panelProyectos, "name_161445339611100");
 		panelProyectos.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(91, 120, 46, 14);
+		JLabel lblTituloProyectos = new JLabel("PROYECTOS");
+		lblTituloProyectos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTituloProyectos.setBounds(10, 25, 100, 17);
+		panelProyectos.add(lblTituloProyectos);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setOpaque(true);
+		lblNewLabel_1.setBackground(Color.ORANGE);
+		lblNewLabel_1.setBounds(10, 42, 764, 8);
+		panelProyectos.add(lblNewLabel_1);
+		
+		table = new JTable();
+		table.setBounds(10, 72, 764, 226);
+		panelProyectos.add(table);
+		
+		lblNewLabel = new JLabel("Número de proyecto:");
+		lblNewLabel.setBounds(10, 322, 125, 14);
 		panelProyectos.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(213, 162, 46, 14);
-		panelProyectos.add(lblNewLabel_1);
+		lblNewLabel_2 = new JLabel("Pais:");
+		lblNewLabel_2.setBounds(10, 347, 46, 14);
+		panelProyectos.add(lblNewLabel_2);
+		
+		lblNewLabel_3 = new JLabel("Localización:");
+		lblNewLabel_3.setBounds(10, 370, 75, 14);
+		panelProyectos.add(lblNewLabel_3);
+		
+		lblNewLabel_4 = new JLabel("Fecha de inicio:");
+		lblNewLabel_4.setBounds(10, 395, 85, 14);
+		panelProyectos.add(lblNewLabel_4);
+		
+		lblNewLabel_5 = new JLabel("Fecha final:");
+		lblNewLabel_5.setBounds(10, 420, 75, 14);
+		panelProyectos.add(lblNewLabel_5);
+		
+		lblNewLabel_6 = new JLabel("Socio local:");
+		lblNewLabel_6.setBounds(10, 445, 64, 14);
+		panelProyectos.add(lblNewLabel_6);
+		
+		lblNewLabel_7 = new JLabel("Financiador:");
+		lblNewLabel_7.setBounds(10, 470, 64, 14);
+		panelProyectos.add(lblNewLabel_7);
+		
+		lblNewLabel_8 = new JLabel("Financiación:");
+		lblNewLabel_8.setBounds(10, 495, 75, 14);
+		panelProyectos.add(lblNewLabel_8);
+		
+		lblNewLabel_9 = new JLabel("Personal:");
+		lblNewLabel_9.setBounds(10, 520, 64, 14);
+		panelProyectos.add(lblNewLabel_9);
+		
+		lblNewLabel_10 = new JLabel("Voluntarios asignados:");
+		lblNewLabel_10.setBounds(10, 545, 113, 14);
+		panelProyectos.add(lblNewLabel_10);
+		
+		lblNewLabel_11 = new JLabel("Cif ONG:");
+		lblNewLabel_11.setBounds(10, 570, 64, 14);
+		panelProyectos.add(lblNewLabel_11);
 	}
 	public JLabel getLblImageSetUsuario() {
 		return lblImageSetUsuario;
