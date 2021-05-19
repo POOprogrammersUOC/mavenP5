@@ -27,6 +27,9 @@ import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 
 public class Principal extends JFrame {
+	private JLabel lblImageSetUsuario;
+	private JLabel lblPanelDerechoSetUsuario;
+	private JLabel lblPanelDerechoSetRol;
 
 	/**
 	 * Launch the application.
@@ -63,7 +66,7 @@ public class Principal extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblImageSetUsuario = new JLabel("");
+		lblImageSetUsuario = new JLabel("");
 		lblImageSetUsuario.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_usuario.png")));
 		lblImageSetUsuario.setBounds(40, 11, 105, 122);
 		panel.add(lblImageSetUsuario);
@@ -78,13 +81,13 @@ public class Principal extends JFrame {
 		panel.add(lblPanelDerechoRol);
 		lblPanelDerechoRol.setForeground(Color.BLACK);
 		
-		JLabel lblPanelDerechoSetUsuario = new JLabel("Tipo_usuario");
+		lblPanelDerechoSetUsuario = new JLabel("Tipo_usuario");
 		lblPanelDerechoSetUsuario.setBounds(95, 147, 96, 14);
 		panel.add(lblPanelDerechoSetUsuario);
 		lblPanelDerechoSetUsuario.setForeground(Color.BLACK);
 		
-		JLabel lblPanelDerechoSetRol = new JLabel("Tipo_rol");
-		lblPanelDerechoSetRol.setBounds(113, 167, 46, 14);
+		lblPanelDerechoSetRol = new JLabel("Tipo_rol");
+		lblPanelDerechoSetRol.setBounds(95, 167, 96, 14);
 		panel.add(lblPanelDerechoSetRol);
 		lblPanelDerechoSetRol.setForeground(Color.BLACK);
 		
@@ -147,5 +150,14 @@ public class Principal extends JFrame {
 		btnProyectos.setBorderPainted(false);
 		btnProyectos.setBorder(null);
 		btnProyectos.setBackground(new Color(177, 191, 212));
+	}
+	public JLabel getLblImageSetUsuario() {
+		return lblImageSetUsuario;
+	}
+	public JLabel getLblPanelDerechoSetUsuario() {
+		return lblPanelDerechoSetUsuario;
+	}
+	public JLabel getLblPanelDerechoSetRol() {
+		return lblPanelDerechoSetRol;
 	}
 }

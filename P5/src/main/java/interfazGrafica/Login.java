@@ -110,10 +110,16 @@ public class Login extends JFrame {
 							if(getPrivilegio.equals("administrador")) {
 								Principal principal = new Principal();
 								principal.setVisible(true);
+								principal.getLblPanelDerechoSetUsuario().setText("Administrador");
+								principal.getLblPanelDerechoSetRol().setText("Total");
+								principal.getLblImageSetUsuario().setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_administrador.png")));
 							}else if(getPrivilegio.equals("usuario")) {
 								Principal principal = new Principal();
 								principal.setVisible(true);
+								principal.getLblPanelDerechoSetUsuario().setText("Usuario");
+								principal.getLblPanelDerechoSetRol().setText("Restringido");
 								//principal.getLblAdmin().setVisible(false); //hay que hacer publico todo lo que se quiere ocultar
+								principal.getLblImageSetUsuario().setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_usuario.png")));
 								
 							}
 						}else {
