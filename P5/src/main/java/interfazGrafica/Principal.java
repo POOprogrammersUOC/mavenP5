@@ -236,6 +236,15 @@ public class Principal extends JFrame {
 		panelProyectos = new JPanel();
 		panelProyectos.setBackground(Color.ORANGE);
 		panelBody.add(panelProyectos, "name_161445339611100");
+		panelProyectos.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(91, 120, 46, 14);
+		panelProyectos.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(213, 162, 46, 14);
+		panelProyectos.add(lblNewLabel_1);
 	}
 	public JLabel getLblImageSetUsuario() {
 		return lblImageSetUsuario;
