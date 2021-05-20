@@ -436,7 +436,8 @@ public class Principal extends JFrame {
 		panelProyectos.add(btnEliminar);
 		
 		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(551, 612, 89, 23);
+		btnModificar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/reload.png")));
+		btnModificar.setBounds(551, 612, 100, 23);
 		panelProyectos.add(btnModificar);
 	}
 	public JLabel getLblImageSetUsuario() {
