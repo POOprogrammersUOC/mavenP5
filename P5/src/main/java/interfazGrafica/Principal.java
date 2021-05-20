@@ -30,6 +30,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class Principal extends JFrame {
 	private JLabel lblImageSetUsuario;
@@ -53,6 +58,24 @@ public class Principal extends JFrame {
 	private JLabel lblNewLabel_9;
 	private JLabel lblNewLabel_10;
 	private JLabel lblNewLabel_11;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextArea textArea;
+	private JLabel lblNewLabel_13;
+	private JScrollPane scrollPane_1;
+	private JTextArea textArea_1;
+	private JLabel lblNewLabel_14;
+	private JScrollPane scrollPane_2;
+	private JTextArea textArea_2;
 
 	/**
 	 * Launch the application.
@@ -253,63 +276,168 @@ public class Principal extends JFrame {
 		panelProyectos.setLayout(null);
 		
 		JLabel lblTituloProyectos = new JLabel("PROYECTOS");
-		lblTituloProyectos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTituloProyectos.setBounds(10, 25, 100, 17);
+		lblTituloProyectos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelProyectos.add(lblTituloProyectos);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(10, 42, 764, 8);
 		lblNewLabel_1.setOpaque(true);
 		lblNewLabel_1.setBackground(Color.ORANGE);
-		lblNewLabel_1.setBounds(10, 42, 764, 8);
 		panelProyectos.add(lblNewLabel_1);
 		
 		table = new JTable();
 		table.setBounds(10, 72, 764, 226);
 		panelProyectos.add(table);
 		
-		lblNewLabel = new JLabel("Número de proyecto:");
+		lblNewLabel = new JLabel("Nº de proyecto:");
 		lblNewLabel.setBounds(10, 322, 125, 14);
 		panelProyectos.add(lblNewLabel);
 		
 		lblNewLabel_2 = new JLabel("Pais:");
-		lblNewLabel_2.setBounds(10, 347, 46, 14);
+		lblNewLabel_2.setBounds(160, 322, 46, 14);
 		panelProyectos.add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("Localización:");
-		lblNewLabel_3.setBounds(10, 370, 75, 14);
+		lblNewLabel_3.setBounds(305, 322, 75, 11);
 		panelProyectos.add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel("Fecha de inicio:");
-		lblNewLabel_4.setBounds(10, 395, 85, 14);
+		lblNewLabel_4.setBounds(450, 322, 85, 14);
 		panelProyectos.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("Fecha final:");
-		lblNewLabel_5.setBounds(10, 420, 75, 14);
+		lblNewLabel_5.setBounds(595, 322, 75, 14);
 		panelProyectos.add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("Socio local:");
-		lblNewLabel_6.setBounds(10, 445, 64, 14);
+		lblNewLabel_6.setBounds(11, 367, 64, 14);
 		panelProyectos.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("Financiador:");
-		lblNewLabel_7.setBounds(10, 470, 64, 14);
+		lblNewLabel_7.setBounds(160, 367, 64, 14);
 		panelProyectos.add(lblNewLabel_7);
 		
 		lblNewLabel_8 = new JLabel("Financiación:");
-		lblNewLabel_8.setBounds(10, 495, 75, 14);
+		lblNewLabel_8.setBounds(305, 367, 75, 14);
 		panelProyectos.add(lblNewLabel_8);
 		
 		lblNewLabel_9 = new JLabel("Personal:");
-		lblNewLabel_9.setBounds(10, 520, 64, 14);
+		lblNewLabel_9.setBounds(451, 367, 64, 14);
 		panelProyectos.add(lblNewLabel_9);
 		
 		lblNewLabel_10 = new JLabel("Voluntarios asignados:");
-		lblNewLabel_10.setBounds(10, 545, 113, 14);
+		lblNewLabel_10.setBounds(595, 367, 135, 14);
 		panelProyectos.add(lblNewLabel_10);
 		
 		lblNewLabel_11 = new JLabel("Cif ONG:");
-		lblNewLabel_11.setBounds(10, 570, 64, 14);
+		lblNewLabel_11.setBounds(10, 411, 64, 14);
 		panelProyectos.add(lblNewLabel_11);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 336, 125, 20);
+		panelProyectos.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(160, 335, 125, 20);
+		panelProyectos.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(305, 335, 125, 20);
+		panelProyectos.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(450, 335, 125, 20);
+		panelProyectos.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(595, 335, 125, 20);
+		panelProyectos.add(textField_4);
+		textField_4.setColumns(10);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(10, 380, 126, 20);
+		panelProyectos.add(textField_5);
+		textField_5.setColumns(10);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(160, 380, 125, 20);
+		panelProyectos.add(textField_6);
+		textField_6.setColumns(10);
+		
+		textField_7 = new JTextField();
+		textField_7.setBounds(305, 380, 125, 20);
+		panelProyectos.add(textField_7);
+		textField_7.setColumns(10);
+		
+		textField_8 = new JTextField();
+		textField_8.setBounds(450, 380, 125, 20);
+		panelProyectos.add(textField_8);
+		textField_8.setColumns(10);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(595, 380, 125, 20);
+		panelProyectos.add(textField_9);
+		textField_9.setColumns(10);
+		
+		textField_10 = new JTextField();
+		textField_10.setBounds(10, 424, 125, 20);
+		panelProyectos.add(textField_10);
+		textField_10.setColumns(10);
+		
+		JLabel lblNewLabel_12 = new JLabel("Línea de acción:");
+		lblNewLabel_12.setBounds(10, 452, 125, 14);
+		panelProyectos.add(lblNewLabel_12);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 465, 214, 120);
+		panelProyectos.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		
+		lblNewLabel_13 = new JLabel("Sublínea de acción:");
+		lblNewLabel_13.setBounds(250, 452, 125, 14);
+		panelProyectos.add(lblNewLabel_13);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(250, 465, 214, 120);
+		panelProyectos.add(scrollPane_1);
+		
+		textArea_1 = new JTextArea();
+		scrollPane_1.setViewportView(textArea_1);
+		
+		lblNewLabel_14 = new JLabel("Acción:");
+		lblNewLabel_14.setBounds(488, 452, 46, 14);
+		panelProyectos.add(lblNewLabel_14);
+		
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(488, 465, 214, 120);
+		panelProyectos.add(scrollPane_2);
+		
+		textArea_2 = new JTextArea();
+		scrollPane_2.setViewportView(textArea_2);
+		
+		JButton btnLimpiar = new JButton("Nuevo");
+		btnLimpiar.setBounds(160, 612, 89, 23);
+		panelProyectos.add(btnLimpiar);
+		
+		JButton btnInsertar = new JButton("Insertar");
+		btnInsertar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/anadir16.png")));
+		btnInsertar.setBounds(259, 610, 100, 25);
+		panelProyectos.add(btnInsertar);
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBounds(454, 612, 89, 23);
+		panelProyectos.add(btnEliminar);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setBounds(551, 612, 89, 23);
+		panelProyectos.add(btnModificar);
 	}
 	public JLabel getLblImageSetUsuario() {
 		return lblImageSetUsuario;
