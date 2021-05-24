@@ -120,6 +120,10 @@ public class Login extends JFrame {
 								principal.getLblPanelDerechoSetRol().setText("Restringido");
 								//principal.getLblAdmin().setVisible(false); //hay que hacer publico todo lo que se quiere ocultar
 								principal.getLblImageSetUsuario().setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_usuario.png")));
+								principal.getBtnInsertar().setEnabled(false);
+								principal.getBtnEliminar().setEnabled(false);
+								principal.getBtnModificar().setEnabled(false);
+								principal.getBtnLimpiar().setEnabled(false);
 								
 							}
 						}else {

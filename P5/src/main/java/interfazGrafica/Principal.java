@@ -76,6 +76,10 @@ public class Principal extends JFrame {
 	private JLabel lblNewLabel_14;
 	private JScrollPane scrollPane_2;
 	private JTextArea textArea_2;
+	private JButton btnLimpiar;
+	private JButton btnInsertar;
+	private JButton btnEliminar;
+	private JButton btnModificar;
 
 	/**
 	 * Launch the application.
@@ -303,7 +307,7 @@ public class Principal extends JFrame {
 		panelProyectos.add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel("Fecha de inicio:");
-		lblNewLabel_4.setBounds(450, 322, 85, 14);
+		lblNewLabel_4.setBounds(450, 322, 118, 14);
 		panelProyectos.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("Fecha final:");
@@ -311,15 +315,15 @@ public class Principal extends JFrame {
 		panelProyectos.add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("Socio local:");
-		lblNewLabel_6.setBounds(11, 367, 64, 14);
+		lblNewLabel_6.setBounds(11, 367, 124, 14);
 		panelProyectos.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("Financiador:");
-		lblNewLabel_7.setBounds(160, 367, 64, 14);
+		lblNewLabel_7.setBounds(160, 367, 125, 14);
 		panelProyectos.add(lblNewLabel_7);
 		
 		lblNewLabel_8 = new JLabel("Financiación:");
-		lblNewLabel_8.setBounds(305, 367, 75, 14);
+		lblNewLabel_8.setBounds(305, 367, 125, 14);
 		panelProyectos.add(lblNewLabel_8);
 		
 		lblNewLabel_9 = new JLabel("Personal:");
@@ -330,7 +334,7 @@ public class Principal extends JFrame {
 		lblNewLabel_10.setBounds(595, 367, 135, 14);
 		panelProyectos.add(lblNewLabel_10);
 		
-		lblNewLabel_11 = new JLabel("Cif ONG:");
+		lblNewLabel_11 = new JLabel("Cif Ong:");
 		lblNewLabel_11.setBounds(10, 411, 64, 14);
 		panelProyectos.add(lblNewLabel_11);
 		
@@ -422,22 +426,24 @@ public class Principal extends JFrame {
 		textArea_2 = new JTextArea();
 		scrollPane_2.setViewportView(textArea_2);
 		
-		JButton btnLimpiar = new JButton("Nuevo");
+		btnLimpiar = new JButton("Nuevo");
+		btnLimpiar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/nuevo.png")));
 		btnLimpiar.setBounds(160, 612, 89, 23);
 		panelProyectos.add(btnLimpiar);
 		
-		JButton btnInsertar = new JButton("Insertar");
-		btnInsertar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/anadir16.png")));
-		btnInsertar.setBounds(259, 610, 100, 25);
+		btnInsertar = new JButton("Insertar");
+		btnInsertar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/insertar.png")));
+		btnInsertar.setBounds(259, 612, 100, 23);
 		panelProyectos.add(btnInsertar);
 		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(454, 612, 89, 23);
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/eliminar.png")));
+		btnEliminar.setBounds(369, 612, 105, 23);
 		panelProyectos.add(btnEliminar);
 		
-		JButton btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("Modificar");
 		btnModificar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/reload.png")));
-		btnModificar.setBounds(551, 612, 100, 23);
+		btnModificar.setBounds(484, 612, 112, 23);
 		panelProyectos.add(btnModificar);
 	}
 	public JLabel getLblImageSetUsuario() {
@@ -463,5 +469,17 @@ public class Principal extends JFrame {
 	}
 	public JPanel getPanelProyectos() {
 		return panelProyectos;
+	}
+	public JButton getBtnLimpiar() {
+		return btnLimpiar;
+	}
+	public JButton getBtnInsertar() {
+		return btnInsertar;
+	}
+	public JButton getBtnEliminar() {
+		return btnEliminar;
+	}
+	public JButton getBtnModificar() {
+		return btnModificar;
 	}
 }
