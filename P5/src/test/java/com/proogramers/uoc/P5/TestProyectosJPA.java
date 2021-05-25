@@ -26,7 +26,7 @@ public class TestProyectosJPA {
 		LocalDate fInicio = sqlDate.toLocalDate();
 		Date sqlDate2 = Date.valueOf("2051-12-12");
 		LocalDate fFinal = sqlDate2.toLocalDate();
-		Proyectos proyectos = new Proyectos("JPA","JPA1","JPA2","JPA3",fInicio,fFinal,"JPA4","JPA5",25000.00,"JPA6",50,20,"B154896325");
+		Proyectos proyectos = new Proyectos("JPA","JPA1","JPA2","JPA3",fInicio,fFinal,"JPA4","JPA5",25000.05,"JPA6",50,20,"B154896325");
 		log.debug("Objeto no tratado: " + proyectos);
 		
 		em.persist(proyectos);

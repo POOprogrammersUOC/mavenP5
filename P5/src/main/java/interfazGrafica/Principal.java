@@ -6,15 +6,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.swing.BoxLayout;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+import com.proogramers.uoc.P5.Proyectos;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import java.awt.CardLayout;
@@ -24,6 +34,8 @@ import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
@@ -58,29 +70,30 @@ public class Principal extends JFrame {
 	private JLabel lblNewLabel_9;
 	private JLabel lblNewLabel_10;
 	private JLabel lblNewLabel_11;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextArea textArea;
+	private JTextField idProyecto;
+	private JTextField txtPais;
+	private JTextField txtLocalizacion;
+	private JTextField txtFinicio;
+	private JTextField txtFfinal;
+	private JTextField txtSocioLocal;
+	private JTextField txtFinanciador;
+	private JTextField txtFinanciacion;
+	private JTextField txtPersonal;
+	private JTextField txtVoluntarios;
+	private JTextField txtCifOng;
+	private JTextArea textAreaLinea;
 	private JLabel lblNewLabel_13;
 	private JScrollPane scrollPane_1;
-	private JTextArea textArea_1;
+	private JTextArea textAreaSublinea;
 	private JLabel lblNewLabel_14;
 	private JScrollPane scrollPane_2;
-	private JTextArea textArea_2;
+	private JTextArea textAreaAccion;
 	private JButton btnLimpiar;
 	private JButton btnInsertar;
 	private JButton btnEliminar;
 	private JButton btnModificar;
 
+	static Logger log = LogManager.getRootLogger();
 	/**
 	 * Launch the application.
 	 */
@@ -338,60 +351,60 @@ public class Principal extends JFrame {
 		lblNewLabel_11.setBounds(10, 411, 64, 14);
 		panelProyectos.add(lblNewLabel_11);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 336, 125, 20);
-		panelProyectos.add(textField);
-		textField.setColumns(10);
+		idProyecto = new JTextField();
+		idProyecto.setBounds(10, 336, 125, 20);
+		panelProyectos.add(idProyecto);
+		idProyecto.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(160, 335, 125, 20);
-		panelProyectos.add(textField_1);
-		textField_1.setColumns(10);
+		txtPais = new JTextField();
+		txtPais.setBounds(160, 335, 125, 20);
+		panelProyectos.add(txtPais);
+		txtPais.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(305, 335, 125, 20);
-		panelProyectos.add(textField_2);
-		textField_2.setColumns(10);
+		txtLocalizacion = new JTextField();
+		txtLocalizacion.setBounds(305, 335, 125, 20);
+		panelProyectos.add(txtLocalizacion);
+		txtLocalizacion.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(450, 335, 125, 20);
-		panelProyectos.add(textField_3);
-		textField_3.setColumns(10);
+		txtFinicio = new JTextField();
+		txtFinicio.setBounds(450, 335, 125, 20);
+		panelProyectos.add(txtFinicio);
+		txtFinicio.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(595, 335, 125, 20);
-		panelProyectos.add(textField_4);
-		textField_4.setColumns(10);
+		txtFfinal = new JTextField();
+		txtFfinal.setBounds(595, 335, 125, 20);
+		panelProyectos.add(txtFfinal);
+		txtFfinal.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(10, 380, 126, 20);
-		panelProyectos.add(textField_5);
-		textField_5.setColumns(10);
+		txtSocioLocal = new JTextField();
+		txtSocioLocal.setBounds(10, 380, 126, 20);
+		panelProyectos.add(txtSocioLocal);
+		txtSocioLocal.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(160, 380, 125, 20);
-		panelProyectos.add(textField_6);
-		textField_6.setColumns(10);
+		txtFinanciador = new JTextField();
+		txtFinanciador.setBounds(160, 380, 125, 20);
+		panelProyectos.add(txtFinanciador);
+		txtFinanciador.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(305, 380, 125, 20);
-		panelProyectos.add(textField_7);
-		textField_7.setColumns(10);
+		txtFinanciacion = new JTextField();
+		txtFinanciacion.setBounds(305, 380, 125, 20);
+		panelProyectos.add(txtFinanciacion);
+		txtFinanciacion.setColumns(10);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(450, 380, 125, 20);
-		panelProyectos.add(textField_8);
-		textField_8.setColumns(10);
+		txtPersonal = new JTextField();
+		txtPersonal.setBounds(450, 380, 125, 20);
+		panelProyectos.add(txtPersonal);
+		txtPersonal.setColumns(10);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(595, 380, 125, 20);
-		panelProyectos.add(textField_9);
-		textField_9.setColumns(10);
+		txtVoluntarios = new JTextField();
+		txtVoluntarios.setBounds(595, 380, 125, 20);
+		panelProyectos.add(txtVoluntarios);
+		txtVoluntarios.setColumns(10);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(10, 424, 125, 20);
-		panelProyectos.add(textField_10);
-		textField_10.setColumns(10);
+		txtCifOng = new JTextField();
+		txtCifOng.setBounds(10, 424, 125, 20);
+		panelProyectos.add(txtCifOng);
+		txtCifOng.setColumns(10);
 		
 		JLabel lblNewLabel_12 = new JLabel("Línea de acción:");
 		lblNewLabel_12.setBounds(10, 452, 125, 14);
@@ -401,8 +414,8 @@ public class Principal extends JFrame {
 		scrollPane.setBounds(10, 465, 214, 120);
 		panelProyectos.add(scrollPane);
 		
-		textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		textAreaLinea = new JTextArea();
+		scrollPane.setViewportView(textAreaLinea);
 		
 		lblNewLabel_13 = new JLabel("Sublínea de acción:");
 		lblNewLabel_13.setBounds(250, 452, 125, 14);
@@ -412,8 +425,8 @@ public class Principal extends JFrame {
 		scrollPane_1.setBounds(250, 465, 214, 120);
 		panelProyectos.add(scrollPane_1);
 		
-		textArea_1 = new JTextArea();
-		scrollPane_1.setViewportView(textArea_1);
+		textAreaSublinea = new JTextArea();
+		scrollPane_1.setViewportView(textAreaSublinea);
 		
 		lblNewLabel_14 = new JLabel("Acción:");
 		lblNewLabel_14.setBounds(488, 452, 46, 14);
@@ -423,8 +436,8 @@ public class Principal extends JFrame {
 		scrollPane_2.setBounds(488, 465, 214, 120);
 		panelProyectos.add(scrollPane_2);
 		
-		textArea_2 = new JTextArea();
-		scrollPane_2.setViewportView(textArea_2);
+		textAreaAccion = new JTextArea();
+		scrollPane_2.setViewportView(textAreaAccion);
 		
 		btnLimpiar = new JButton("Nuevo");
 		btnLimpiar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/nuevo.png")));
@@ -432,11 +445,69 @@ public class Principal extends JFrame {
 		panelProyectos.add(btnLimpiar);
 		
 		btnInsertar = new JButton("Insertar");
+		btnInsertar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+				EntityManager em = emf.createEntityManager();
+				EntityTransaction tx = em.getTransaction();
+				
+				tx.begin();
+				
+				Date sqlDate = Date.valueOf(txtFinicio.getText());
+				LocalDate fInicio = sqlDate.toLocalDate();
+				Date sqlDate2 = Date.valueOf(txtFfinal.getText());
+				LocalDate fFinal = sqlDate2.toLocalDate();
+				
+				String per1 = txtPersonal.getText();
+				int personal = Integer.parseInt(per1);
+				
+				String vol = txtVoluntarios.getText();
+				int voluntarios = Integer.parseInt(vol);
+				
+				String finan = txtFinanciacion.getText();
+				double financiacion = Double.parseDouble(finan);
+				
+				Proyectos proyectos = new Proyectos(txtPais.getText(),txtLocalizacion.getText(),textAreaLinea.getText(),textAreaSublinea.getText(),fInicio,fFinal,txtSocioLocal.getText(),txtFinanciador.getText(),financiacion,textAreaAccion.getText(),personal,voluntarios,txtCifOng.getText());
+				log.debug("Objeto no tratado: " + proyectos);
+				
+				em.persist(proyectos);
+				
+				tx.commit();
+				
+				log.debug("Objeto tratado: " + proyectos);
+				em.close();
+			}
+		});
 		btnInsertar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/insertar.png")));
 		btnInsertar.setBounds(259, 612, 100, 23);
 		panelProyectos.add(btnInsertar);
 		
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+				EntityManager em = emf.createEntityManager();
+				EntityTransaction tx = em.getTransaction();
+				
+				tx.begin();
+				
+				Proyectos proyectosRemove = em.find(Proyectos.class, Integer.parseInt(idProyecto.getText()));
+				
+				tx.commit();
+				
+				EntityTransaction tx1 = em.getTransaction();	
+				tx1.begin();
+				
+				em.remove(proyectosRemove);
+				
+				tx1.commit();
+				
+				log.debug("Objeto eliminado: " + proyectosRemove);
+			}
+		});
 		btnEliminar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/eliminar.png")));
 		btnEliminar.setBounds(369, 612, 105, 23);
 		panelProyectos.add(btnEliminar);
