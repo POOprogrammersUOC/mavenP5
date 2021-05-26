@@ -440,6 +440,26 @@ public class Principal extends JFrame {
 		scrollPane_2.setViewportView(textAreaAccion);
 		
 		btnLimpiar = new JButton("Nuevo");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				idProyecto.setText("");
+				txtPais.setText("");
+				txtLocalizacion.setText("");
+				textAreaLinea.setText("");
+				textAreaSublinea.setText("");
+				txtFinicio.setText("");
+				txtFfinal.setText("");
+				txtSocioLocal.setText("");
+				txtFinanciador.setText("");
+				txtFinanciacion.setText("");
+				textAreaAccion.setText("");
+				txtPersonal.setText("");
+				txtVoluntarios.setText("");
+				txtCifOng.setText("");
+				
+			}
+		});
 		btnLimpiar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/nuevo.png")));
 		btnLimpiar.setBounds(160, 612, 89, 23);
 		panelProyectos.add(btnLimpiar);
