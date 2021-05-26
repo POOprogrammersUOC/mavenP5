@@ -447,6 +447,7 @@ public class Principal extends JFrame {
 		btnInsertar = new JButton("Insertar");
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
 				EntityManager em = emf.createEntityManager();
 				EntityTransaction tx = em.getTransaction();
@@ -506,6 +507,8 @@ public class Principal extends JFrame {
 				tx1.commit();
 				
 				log.debug("Objeto eliminado: " + proyectosRemove);
+				
+				em.close();
 			}
 		});
 		btnEliminar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/eliminar.png")));
@@ -513,6 +516,62 @@ public class Principal extends JFrame {
 		panelProyectos.add(btnEliminar);
 		
 		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+				EntityManager em = emf.createEntityManager();
+				EntityTransaction tx = em.getTransaction();
+				
+				tx.begin();
+				
+				Proyectos proyectosMod = em.find(Proyectos.class, Integer.parseInt(idProyecto.getText()));
+				
+				tx.commit();
+				
+				log.debug("Objeto Recuperado: " + proyectosMod);
+				
+				
+				Date sqlDate = Date.valueOf(txtFinicio.getText());
+				LocalDate fInicio = sqlDate.toLocalDate();
+				Date sqlDate2 = Date.valueOf(txtFfinal.getText());
+				LocalDate fFinal = sqlDate2.toLocalDate();
+				
+				String per1 = txtPersonal.getText();
+				int personal = Integer.parseInt(per1);
+				
+				String vol = txtVoluntarios.getText();
+				int voluntarios = Integer.parseInt(vol);
+				
+				String finan = txtFinanciacion.getText();
+				double financiacion = Double.parseDouble(finan);
+				
+				
+				proyectosMod.setPais(txtPais.getText());
+				proyectosMod.setLocalizacion(txtLocalizacion.getText());
+				proyectosMod.setLineaDeAccion(textAreaLinea.getText());
+				proyectosMod.setSublineaDeAccion(textAreaSublinea.getText());
+				proyectosMod.setFechaInicio(fInicio);
+				proyectosMod.setFechaFinal(fFinal);
+				proyectosMod.setSocioLocal(txtSocioLocal.getText());
+				proyectosMod.setFinanciador(txtFinanciador.getText());
+				proyectosMod.setFinanciacion(financiacion);
+				proyectosMod.setAcciones(textAreaAccion.getText());
+				proyectosMod.setPersonal(personal);
+				proyectosMod.setVoluntariosAsignados(voluntarios);
+				proyectosMod.setOngCif(txtCifOng.getText());
+				
+				EntityTransaction tx1 = em.getTransaction();	
+				tx1.begin();
+				
+				em.merge(proyectosMod);
+				
+				tx1.commit();
+				
+				log.debug("Objeto Modificado: " + proyectosMod);
+				em.close();
+			}
+		});
 		btnModificar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/reload.png")));
 		btnModificar.setBounds(484, 612, 112, 23);
 		panelProyectos.add(btnModificar);
