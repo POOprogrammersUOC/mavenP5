@@ -15,7 +15,11 @@ import javax.swing.JSplitPane;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import datosMysql.Conexion;
+
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -24,6 +28,9 @@ import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
@@ -37,6 +44,7 @@ public class Principal extends JFrame {
 	private JPanel panelHome;
 	private JPanel panelSocios;
 	private JPanel panelEmpleados;
+	private JPanel panelAnadir;
 	private JPanel panelProyectos;
 	private JButton btnHome;
 
@@ -230,8 +238,131 @@ public class Principal extends JFrame {
 		panelBody.add(panelSocios, "name_161214080585300");
 		
 		panelEmpleados = new JPanel();
-		panelEmpleados.setBackground(Color.CYAN);
+		panelEmpleados.setLayout(null);
+		//panelEmpleados.setBackground(Color.CYAN);
 		panelBody.add(panelEmpleados, "name_161410589258100");
+		
+		JLabel etiqueta = new JLabel();
+		etiqueta.setText("EMPLEADOS");
+		etiqueta.setBounds(10, 50, 100, 50);
+		etiqueta.setOpaque(true);
+		etiqueta.setBackground(Color.CYAN);
+		panelEmpleados.add(etiqueta);
+		
+		//AÑADIR EMPLEADOS
+		
+		final JTextField cajaNombre = new JTextField();
+		cajaNombre.setBounds(80, 300, 100, 20);
+		add(cajaNombre);
+		
+		final JLabel etiNombre = new JLabel();
+		etiNombre.setText("Nombre: ");
+		etiNombre.setBounds(10, 300, 70, 20);
+		etiNombre.setOpaque(true);
+		etiNombre.setBackground(Color.CYAN);
+		
+		final JTextField cajaApellido = new JTextField();
+		cajaApellido.setBounds(80, 330, 100, 20);
+		add(cajaApellido);
+		
+		final JLabel etiApellido = new JLabel();
+		etiApellido.setText("Apellido: ");
+		etiApellido.setBounds(10, 330, 70, 20);
+		etiApellido.setOpaque(true);
+		etiApellido.setBackground(Color.CYAN);
+		
+		final JTextField cajaDireccion = new JTextField();
+		cajaDireccion.setBounds(80, 360, 100, 20);
+		add(cajaDireccion);
+		
+		final JLabel etiDireccion = new JLabel();
+		etiDireccion.setText("Direccion: ");
+		etiDireccion.setBounds(10, 360, 70, 20);
+		etiDireccion.setOpaque(true);
+		etiDireccion.setBackground(Color.CYAN);
+		
+		final JTextField cajaTelefono = new JTextField();
+		cajaTelefono.setBounds(80, 390, 100, 20);
+		add(cajaTelefono);
+		
+		final JLabel etiTelefono = new JLabel();
+		etiTelefono.setText("Telefono: ");
+		etiTelefono.setBounds(10, 390, 70, 20);
+		etiTelefono.setOpaque(true);
+		etiTelefono.setBackground(Color.CYAN);
+		
+		final JTextField cajaDni = new JTextField();
+		cajaDni.setBounds(80, 420, 100, 20);
+		add(cajaDni);
+		
+		final JLabel etiDni = new JLabel();
+		etiDni.setText("Dni: ");
+		etiDni.setBounds(10, 420, 70, 20);
+		etiDni.setOpaque(true);
+		etiDni.setBackground(Color.CYAN);
+		
+		final JTextField cajaCif = new JTextField();
+		cajaCif.setBounds(80, 450, 100, 20);
+		add(cajaCif);
+		
+		final JLabel etiCif = new JLabel();
+		etiCif.setText("Cif Ong: ");
+		etiCif.setBounds(10, 450, 70, 20);
+		etiCif.setOpaque(true);
+		etiCif.setBackground(Color.CYAN);
+		//Boton Añadir Empleados
+		final JButton btnAnadir = new JButton("Añadir");
+		btnAnadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			  panelEmpleados.repaint();
+				panelEmpleados.revalidate();
+				panelEmpleados.add(etiNombre);
+				panelEmpleados.add(cajaNombre);
+				panelEmpleados.add(etiApellido);
+				panelEmpleados.add(cajaApellido);
+				panelEmpleados.add(etiDireccion);
+				panelEmpleados.add(cajaDireccion);
+				panelEmpleados.add(etiTelefono);
+				panelEmpleados.add(cajaTelefono);
+				panelEmpleados.add(etiDni);
+				panelEmpleados.add(cajaDni);
+				panelEmpleados.add(etiCif);
+				panelEmpleados.add(cajaCif);
+				panelEmpleados.revalidate();
+				
+				/*String nombre = cajaNombre.getText();
+				String apellido = cajaApellido.getText();
+				String direccion = cajaDireccion.getText();
+				String telefono = cajaTelefono.getText();
+				String dni = cajaDni.getText();
+				String cif = cajaCif.getText();
+				String insert = "INSERT INTO empleados (Nombre, Apellido_1, Direccion, Telefono, Dni, Ong_CIF) VALUES('"+nombre+"', '"+apellido+"', '"+direccion+"', '"+telefono+"', '"+dni+"', '"+cif+"');";
+				try {
+					Connection conn = Conexion.getConection();
+					PreparedStatement pstat = conn.prepareStatement(select);
+					ResultSet rs = pstat.executeQuery();
+					
+					*
+					*/
+			}
+		});
+		btnAnadir.setBounds(10, 150, 100, 40);
+		panelEmpleados.add(btnAnadir);
+		
+		
+		//BOTON ELIMINAR EMPLEADOS
+		
+		JButton eliminar = new JButton();
+		eliminar.setBounds(10, 200, 100, 40);
+		eliminar.setText("Eliminar");
+		panelEmpleados.add(eliminar);
+		
+		JButton imprimir = new JButton();
+		imprimir.setBounds(10, 250, 100, 40);
+		imprimir.setText("imprimir");
+		panelEmpleados.add(imprimir);
+		
+		
 		
 		panelProyectos = new JPanel();
 		panelProyectos.setBackground(Color.ORANGE);
@@ -260,5 +391,9 @@ public class Principal extends JFrame {
 	}
 	public JPanel getPanelProyectos() {
 		return panelProyectos;
+	}
+	
+	public JPanel getpanelAnadir() {
+		return panelAnadir;
 	}
 }
