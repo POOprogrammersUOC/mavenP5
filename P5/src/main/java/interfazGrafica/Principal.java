@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,6 +25,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.proogramers.uoc.P5.Proyectos;
+import com.proogramers.uoc.P5.RellenarJTable;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
@@ -58,7 +60,7 @@ public class Principal extends JFrame {
 	private JPanel panelEmpleados;
 	private JPanel panelProyectos;
 	private JButton btnHome;
-	private JTable table;
+	private static JTable table;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
@@ -94,6 +96,7 @@ public class Principal extends JFrame {
 	private JButton btnModificar;
 
 	static Logger log = LogManager.getRootLogger();
+	private JScrollPane scrollPane_3;
 	/**
 	 * Launch the application.
 	 */
@@ -102,6 +105,7 @@ public class Principal extends JFrame {
 			public void run() {
 				try {
 					Principal frame = new Principal();
+					cargarJtableProyectos();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -110,6 +114,8 @@ public class Principal extends JFrame {
 		});
 	}
 
+	
+	
 	/**
 	 * Create the frame.
 	 */
@@ -303,9 +309,14 @@ public class Principal extends JFrame {
 		lblNewLabel_1.setBackground(Color.ORANGE);
 		panelProyectos.add(lblNewLabel_1);
 		
+		scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(10, 72, 764, 226);
+		panelProyectos.add(scrollPane_3);
+		
 		table = new JTable();
-		table.setBounds(10, 72, 764, 226);
-		panelProyectos.add(table);
+		table.setRowSelectionAllowed(false);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		scrollPane_3.setViewportView(table);
 		
 		lblNewLabel = new JLabel("Nº de proyecto:");
 		lblNewLabel.setBounds(10, 322, 125, 14);
@@ -497,6 +508,7 @@ public class Principal extends JFrame {
 				
 				log.debug("Objeto tratado: " + proyectos);
 				em.close();
+				cargarJtableProyectos();
 			}
 		});
 		btnInsertar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/insertar.png")));
@@ -529,6 +541,7 @@ public class Principal extends JFrame {
 				log.debug("Objeto eliminado: " + proyectosRemove);
 				
 				em.close();
+				cargarJtableProyectos();
 			}
 		});
 		btnEliminar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/eliminar.png")));
@@ -590,6 +603,7 @@ public class Principal extends JFrame {
 				
 				log.debug("Objeto Modificado: " + proyectosMod);
 				em.close();
+				cargarJtableProyectos();
 			}
 		});
 		btnModificar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/reload.png")));
@@ -631,5 +645,18 @@ public class Principal extends JFrame {
 	}
 	public JButton getBtnModificar() {
 		return btnModificar;
+	}
+	public JTable getTable() {
+		return table;
+	}
+	
+	public static void cargarJtableProyectos() {
+		RellenarJTable cargaDatos = new RellenarJTable();
+		try {
+			table.setModel(cargaDatos.consultarBDProyectos());
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e,"Error al cargar las notas",JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
