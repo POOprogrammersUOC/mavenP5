@@ -310,11 +310,42 @@ public class Principal extends JFrame {
 		panelProyectos.add(lblNewLabel_1);
 		
 		scrollPane_3 = new JScrollPane();
+		scrollPane_3.setAutoscrolls(true);
+		/*
+		scrollPane_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+			}
+		});
+		*/
 		scrollPane_3.setBounds(10, 72, 764, 226);
 		panelProyectos.add(scrollPane_3);
 		
 		table = new JTable();
-		table.setRowSelectionAllowed(false);
+		table.setSelectionBackground(new Color(255, 204, 102));
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int getRegistro = table.getSelectedRow();
+				idProyecto.setText(table.getValueAt(getRegistro, 0).toString());
+				txtPais.setText(table.getValueAt(getRegistro, 1).toString());
+				txtLocalizacion.setText(table.getValueAt(getRegistro, 2).toString());
+				textAreaLinea.setText(table.getValueAt(getRegistro, 3).toString());
+				textAreaSublinea.setText(table.getValueAt(getRegistro, 4).toString());
+				txtFinicio.setText(table.getValueAt(getRegistro, 5).toString());
+				txtFfinal.setText(table.getValueAt(getRegistro, 6).toString());
+				txtSocioLocal.setText(table.getValueAt(getRegistro, 7).toString());
+				txtFinanciador.setText(table.getValueAt(getRegistro, 8).toString());
+				txtFinanciacion.setText(table.getValueAt(getRegistro, 9).toString());
+				textAreaAccion.setText(table.getValueAt(getRegistro, 10).toString());
+				txtPersonal.setText(table.getValueAt(getRegistro, 11).toString());
+				txtVoluntarios.setText(table.getValueAt(getRegistro, 12).toString());
+				txtCifOng.setText(table.getValueAt(getRegistro, 13).toString());
+				
+			}
+		});
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		scrollPane_3.setViewportView(table);
 		
