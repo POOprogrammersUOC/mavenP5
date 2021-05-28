@@ -22,7 +22,7 @@ public class TestProyectosJPA {
 	static Logger log = LogManager.getRootLogger();
 
 	public static void main(String[] args) {
-/*
+
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -42,7 +42,7 @@ public class TestProyectosJPA {
 		
 		log.debug("Objeto tratado: " + proyectos);
 		em.close(
-		);*/
+		);
 		//consultaJPA();
 	}
 	
