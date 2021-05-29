@@ -95,6 +95,8 @@ public class Login extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setFocusPainted(false);
+		btnLogin.setIcon(new ImageIcon(Login.class.getResource("/interfazGrafica/img/login16.png")));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String user = textFieldUser.getText();  
