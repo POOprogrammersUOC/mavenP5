@@ -22,6 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -50,6 +51,8 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/interfazGrafica/img/mundo.png")));
+		
 		setTitle("Control de acceso a ONG");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,7 +101,10 @@ public class Login extends JFrame {
 				String passw = passwordField.getText();
 				String select="select username,password,privilegio from usuarios where username='"+user+"'";
 				//select username,password,privilegio from usuarios where privilegio='administrador';
+				
 				try {
+					
+					
 					Connection conn = Conexion.getConection();
 					PreparedStatement pstat = conn.prepareStatement(select);
 					ResultSet rs = pstat.executeQuery();
@@ -114,6 +120,9 @@ public class Login extends JFrame {
 								principal.getLblPanelDerechoSetUsuario().setText("Administrador");
 								principal.getLblPanelDerechoSetRol().setText("Total");
 								principal.getLblImageSetUsuario().setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_administrador.png")));
+								principal.cargarJtableProyectos();
+								principal.setLocationRelativeTo(null);
+								dispose();
 							}else if(getPrivilegio.equals("usuario")) {
 								Principal principal = new Principal();
 								principal.setVisible(true);
@@ -125,7 +134,9 @@ public class Login extends JFrame {
 								principal.getBtnEliminar().setEnabled(false);
 								principal.getBtnModificar().setEnabled(false);
 								principal.getBtnLimpiar().setEnabled(false);
-								
+								principal.cargarJtableProyectos();
+								principal.setLocationRelativeTo(null);
+								dispose();
 							}
 						}else {
 							JOptionPane.showMessageDialog(null,"CONTRASEÑA INCORECTA");

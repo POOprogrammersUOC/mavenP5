@@ -54,6 +54,7 @@ import javax.swing.ScrollPaneConstants;
 import java.util.Locale;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 public class Principal extends JFrame {
 	private JLabel lblImageSetUsuario;
@@ -126,6 +127,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/interfazGrafica/img/mundo.png")));
 		setResizable(false);
 		setLocale(new Locale("es", "ES"));
 		getContentPane().setPreferredSize(new Dimension(10, 10));
