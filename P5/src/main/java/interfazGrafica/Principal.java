@@ -2,12 +2,17 @@ package interfazGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import interfazGrafica.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.JInternalFrame;
@@ -19,6 +24,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import datosMysql.Conexion;
 
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import java.awt.CardLayout;
@@ -29,8 +35,11 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
@@ -237,10 +246,48 @@ public class Principal extends JFrame {
 		panelSocios.setBackground(Color.YELLOW);
 		panelBody.add(panelSocios, "name_161214080585300");
 		
+		//PANEL EMPLEADOS
+		
 		panelEmpleados = new JPanel();
 		panelEmpleados.setLayout(null);
 		//panelEmpleados.setBackground(Color.CYAN);
 		panelBody.add(panelEmpleados, "name_161410589258100");
+		
+		//MOSTRAR TABLA
+		
+		final DefaultTableModel model = new DefaultTableModel();
+		final JTable table = new JTable(model);
+		table.setBounds(200, 50, 500, 300);
+		String[] columnas = {"id", "Nombre", "Apellido", "Direccion", "Telefono", "Dni", " Ong Cif"};
+		JScrollPane desplazamiento = null;
+		desplazamiento = new JScrollPane(table);
+		/*int[] ancho = {50 , 100, 100, 200, 100, 100, 100};
+		for (int x = 0; x <= 6; x++){
+			table.getColumnModel().getColumn(x).setPreferredWidth(ancho[x]);
+		}*/
+		model.setColumnIdentifiers(columnas);
+		
+		String[] dato = new String[7];
+		String sql = "select * from empleados";
+		table.setModel(model);
+		try {
+			Connection conn = Conexion.getConection();
+			Statement comando=conn.createStatement();
+			ResultSet registro = comando.executeQuery(sql);
+			while (registro.next()) {
+				dato[0]=registro.getString(1);
+				dato[1]=registro.getString(2);
+				dato[2]=registro.getString(3);
+				dato[3]=registro.getString(4);
+				dato[4]=registro.getString(5);
+				dato[5]=registro.getString(6);
+				dato[6]=registro.getString(7);
+				model.addRow(dato);	
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		panelEmpleados.add(table);
 		
 		JLabel etiqueta = new JLabel();
 		etiqueta.setText("EMPLEADOS");
@@ -312,9 +359,25 @@ public class Principal extends JFrame {
 		etiCif.setBackground(Color.CYAN);
 		//Boton Añadir Empleados
 		final JButton btnAnadir = new JButton("Añadir");
+		
 		btnAnadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			  panelEmpleados.repaint();
+			  try {
+				  Connection conn = Conexion.getConection();
+				  PreparedStatement comando= conn.prepareStatement("INSERT INTO empleados (Nombre, Apellido_1, Direccion, Telefono, Dni, Ong_CIF) VALUES (?, ?, ?, ?, ?, ?)");
+				  	comando.setString(1, cajaNombre.getText());
+				  	comando.setString(2, cajaApellido.getText());
+				  	comando.setString(3, cajaDireccion.getText());
+				  	comando.setString(4, cajaTelefono.getText());
+				  	comando.setString(5, cajaDni.getText());
+				  	comando.setString(6, cajaCif.getText());
+				  	comando.execute();
+				  	comando.close();
+			  }catch(SQLException e1) {
+				  setTitle(e1.toString());
+			  }
+				
 				panelEmpleados.revalidate();
 				panelEmpleados.add(etiNombre);
 				panelEmpleados.add(cajaNombre);
@@ -330,20 +393,6 @@ public class Principal extends JFrame {
 				panelEmpleados.add(cajaCif);
 				panelEmpleados.revalidate();
 				
-				/*String nombre = cajaNombre.getText();
-				String apellido = cajaApellido.getText();
-				String direccion = cajaDireccion.getText();
-				String telefono = cajaTelefono.getText();
-				String dni = cajaDni.getText();
-				String cif = cajaCif.getText();
-				String insert = "INSERT INTO empleados (Nombre, Apellido_1, Direccion, Telefono, Dni, Ong_CIF) VALUES('"+nombre+"', '"+apellido+"', '"+direccion+"', '"+telefono+"', '"+dni+"', '"+cif+"');";
-				try {
-					Connection conn = Conexion.getConection();
-					PreparedStatement pstat = conn.prepareStatement(select);
-					ResultSet rs = pstat.executeQuery();
-					
-					*
-					*/
 			}
 		});
 		btnAnadir.setBounds(10, 150, 100, 40);
@@ -352,16 +401,54 @@ public class Principal extends JFrame {
 		
 		//BOTON ELIMINAR EMPLEADOS
 		
-		JButton eliminar = new JButton();
-		eliminar.setBounds(10, 200, 100, 40);
-		eliminar.setText("Eliminar");
-		panelEmpleados.add(eliminar);
+		JButton btneliminar = new JButton();
+		btneliminar.setBounds(10, 200, 100, 40);
+		btneliminar.setText("Eliminar");
+		panelEmpleados.add(btneliminar);
+		btneliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e1) {
+				int a1=Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString());
+				if (table.getSelectedRow()!= -1) {
+					model.removeRow(table.getSelectedRow());
+					try {
+					  Connection conn = Conexion.getConection();
+					  PreparedStatement comando= conn.prepareStatement("DELETE FROM mydb.empleados WHERE Numero ='"+a1+"'");
+					  //comando.setInt(1, table.getSelectedRow());
+					  comando.executeUpdate();
+					  JOptionPane.showMessageDialog(null, "Se elimino correctamente");
+					  } catch (SQLException e2) {  
+					  }
+			}else {
+				JOptionPane.showMessageDialog(null, "No has seleccionado un empleado");
+			}
+		}
+		});
 		
-		JButton imprimir = new JButton();
-		imprimir.setBounds(10, 250, 100, 40);
-		imprimir.setText("imprimir");
-		panelEmpleados.add(imprimir);
-		
+		JButton btnmodificar = new JButton();
+		btnmodificar.setBounds(10, 250, 100, 40);
+		btnmodificar.setText("Modificar");
+		panelEmpleados.add(btnmodificar);
+		btnmodificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e1) {
+				try {
+				Connection conn = Conexion.getConection();
+				String id= table.getValueAt(table.getSelectedRow(),0).toString();
+				String nombre= table.getValueAt(table.getSelectedRow(),1).toString();
+				String apellido= table.getValueAt(table.getSelectedRow(),2).toString();
+				String direccion= table.getValueAt(table.getSelectedRow(),3).toString();
+				String telefono= table.getValueAt(table.getSelectedRow(),4).toString();
+				String dni= table.getValueAt(table.getSelectedRow(),5).toString();
+				String cif= table.getValueAt(table.getSelectedRow(),6).toString();
+				PreparedStatement comando= conn.prepareStatement("UPDATE mydb.empleados SET Nombre = '"+nombre+"', Apellido_1 = '"+apellido+"', Direccion = '"+direccion+"', Telefono = '"+telefono+"', Dni = '"+dni+"', Ong_CIF = '"+cif+"' WHERE Numero = '"+id+"'");
+				System.out.println(comando);
+				comando.executeUpdate();
+				JOptionPane.showMessageDialog(null, "Modificado con exito");
+				
+				}catch(SQLException e3) {
+					
+				}
+			}
+		});
 		
 		
 		panelProyectos = new JPanel();
