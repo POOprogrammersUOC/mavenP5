@@ -800,31 +800,33 @@ public class Principal extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					
-				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
-				EntityManager em = emf.createEntityManager();
-				EntityTransaction tx = em.getTransaction();
-				EntityTransaction tx1 = em.getTransaction();
+				//EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+				//EntityManager em = emf.createEntityManager();
+				//EntityTransaction tx = em.getTransaction();
+				//EntityTransaction tx1 = em.getTransaction();
 				try {
-					tx.begin();
 					
-					Proyectos proyectosRemove = em.find(Proyectos.class, Integer.parseInt(idProyecto.getText()));
+					DAOFactory.getDAOFactory(4).jpaProyectosDAO().eliminar(Integer.parseInt(idProyecto.getText()));
+					//tx.begin();
 					
-					tx.commit();
+					//Proyectos proyectosRemove = em.find(Proyectos.class, Integer.parseInt(idProyecto.getText()));
+					
+					//tx.commit();
 					
 						
-					tx1.begin();
+					//tx1.begin();
 					
-					em.remove(proyectosRemove);
+					//em.remove(proyectosRemove);
 					
-					tx1.commit();
+					//tx1.commit();
 					
-					log.debug("Objeto eliminado: " + proyectosRemove);
+					//log.debug("Objeto eliminado: " + proyectosRemove);
 					
-					em.close();
-					JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+					//em.close();
+					//JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro", JOptionPane.ERROR_MESSAGE);
-					tx1.rollback();
+					//JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro", JOptionPane.ERROR_MESSAGE);
+					//tx1.rollback();
 				}finally {
 					cargarJtableProyectos();
 				}

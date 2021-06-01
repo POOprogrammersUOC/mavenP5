@@ -70,7 +70,24 @@ public class JPAProyectosDAO implements IProyectosJPADAO {
 
 	@Override
 	public void eliminar(Integer id) {
-		// TODO Esbozo de método generado automáticamente
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+		EntityManager em = emf.createEntityManager();
+        Proyectos proyectos = em.find(Proyectos.class, id);
+        try {
+            if (proyectos != null) {
+            	log.debug("Objeto no Eliminado: " + proyectos);
+                em.getTransaction().begin();
+                em.remove(proyectos);
+                em.getTransaction().commit();
+                log.debug("Objeto Eliminado: " + proyectos);
+                JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+        	JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro", JOptionPane.ERROR_MESSAGE);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
 		
 	}
 
