@@ -50,7 +50,21 @@ public class JPAProyectosDAO implements IProyectosJPADAO {
 
 	@Override
 	public void actualizar(Proyectos proyectos) {
-		// TODO Esbozo de método generado automáticamente
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+		EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+        	log.debug("Objeto no tratado: " + proyectos);
+        	em.merge(proyectos);
+            em.getTransaction().commit();
+            log.debug("Objeto tratado: " + proyectos);
+            JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+        	JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro", JOptionPane.ERROR_MESSAGE);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
 	
 	}
 
@@ -58,6 +72,17 @@ public class JPAProyectosDAO implements IProyectosJPADAO {
 	public void eliminar(Integer id) {
 		// TODO Esbozo de método generado automáticamente
 		
+	}
+
+	@Override
+	public Proyectos leerId(Integer id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+		EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Proyectos.class, id);
+        } finally {
+            em.close();
+        }
 	}
 
 }

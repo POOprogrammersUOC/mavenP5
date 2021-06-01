@@ -11,4 +11,5 @@ public interface IProyectosJPADAO {
 	public void persist(Proyectos proyectos); 
 	public void actualizar(Proyectos proyectos); 
 	public void eliminar(Integer id); 
+	public Proyectos leerId(Integer id);
 }

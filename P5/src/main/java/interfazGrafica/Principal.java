@@ -840,18 +840,18 @@ public class Principal extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
-				EntityManager em = emf.createEntityManager();
-				EntityTransaction tx = em.getTransaction();
-				EntityTransaction tx1 = em.getTransaction();
+				//EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+				//EntityManager em = emf.createEntityManager();
+				//EntityTransaction tx = em.getTransaction();
+				//EntityTransaction tx1 = em.getTransaction();
 				try {
-					tx.begin();
+					//tx.begin();
 					
-					Proyectos proyectosMod = em.find(Proyectos.class, Integer.parseInt(idProyecto.getText()));
+					Proyectos proyectosMod = DAOFactory.getDAOFactory(4).jpaProyectosDAO().leerId(Integer.parseInt(idProyecto.getText()));
 					
-					tx.commit();
+					//tx.commit();
 					
-					log.debug("Objeto Recuperado: " + proyectosMod);
+					//log.debug("Objeto Recuperado: " + proyectosMod);
 					
 					
 					Date sqlDate = Date.valueOf(txtFinicio.getText());
@@ -883,19 +883,19 @@ public class Principal extends JFrame {
 					proyectosMod.setVoluntariosAsignados(voluntarios);
 					proyectosMod.setOngCif(txtCifOng.getText());
 					
-						
-					tx1.begin();
+					DAOFactory.getDAOFactory(4).jpaProyectosDAO().actualizar(proyectosMod);	
+					//tx1.begin();
 					
-					em.merge(proyectosMod);
+					//em.merge(proyectosMod);
 					
-					tx1.commit();
+					//tx1.commit();
 					
-					log.debug("Objeto Modificado: " + proyectosMod);
-					em.close();
-					JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+					//log.debug("Objeto Modificado: " + proyectosMod);
+					//em.close();
+					//JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro", JOptionPane.ERROR_MESSAGE);
-					tx1.rollback();
+					//JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro", JOptionPane.ERROR_MESSAGE);
+					//tx1.rollback();
 				}finally {
 					cargarJtableProyectos();
 				}
