@@ -27,6 +27,8 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.proogramers.uoc.P5.Proyectos;
 import com.proogramers.uoc.P5.RellenarJTable;
 
+import DAO.DAOFactory;
+import DAO.JPAProyectosDAO;
 import jpaController.DAOjpa;
 
 import javax.swing.JTabbedPane;
@@ -744,13 +746,13 @@ public class Principal extends JFrame {
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
-				EntityManager em = emf.createEntityManager();
-				EntityTransaction tx = em.getTransaction();
-				
+				//EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+				//EntityManager em = emf.createEntityManager();
+				//EntityTransaction tx = em.getTransaction();
+				//JPAProyectosDAO jpaProyectosDAO = new JPAProyectosDAO();
 				try {
 					
-					tx.begin();
+					//tx.begin();
 					
 					Date sqlDate = Date.valueOf(txtFinicio.getText());
 					LocalDate fInicio = sqlDate.toLocalDate();
@@ -767,19 +769,21 @@ public class Principal extends JFrame {
 					double financiacion = Double.parseDouble(finan);
 					
 					Proyectos proyectos = new Proyectos(txtPais.getText(),txtLocalizacion.getText(),textAreaLinea.getText(),textAreaSublinea.getText(),fInicio,fFinal,txtSocioLocal.getText(),txtFinanciador.getText(),financiacion,textAreaAccion.getText(),personal,voluntarios,txtCifOng.getText());
-					log.debug("Objeto no tratado: " + proyectos);
 					
-					em.persist(proyectos);
+					DAOFactory.getDAOFactory(4).jpaProyectosDAO().persist(proyectos);
+					//log.debug("Objeto no tratado: " + proyectos);
 					
-					tx.commit();
+					//em.persist(proyectos);
 					
-					log.debug("Objeto tratado: " + proyectos);
-					em.close();
+					//tx.commit();
 					
-					JOptionPane.showMessageDialog(null, "Registro insertado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+					//log.debug("Objeto tratado: " + proyectos);
+					//em.close();
+					
+					//JOptionPane.showMessageDialog(null, "Registro insertado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Registro erroneo", "Registro", JOptionPane.ERROR_MESSAGE);
-					tx.rollback();
+					//JOptionPane.showMessageDialog(null, "Registro erroneo", "Registro", JOptionPane.ERROR_MESSAGE);
+					//tx.rollback();
 					// TODO: handle exception
 				}finally {
 					cargarJtableProyectos();

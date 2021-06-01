@@ -58,5 +58,11 @@ public class XMLDAOFactory extends DAOFactory {
 		return null;
 	}
 
+	@Override
+	public JPAProyectosDAO jpaProyectosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
+
 
 }
