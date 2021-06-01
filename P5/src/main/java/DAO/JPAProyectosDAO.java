@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,8 +23,23 @@ public class JPAProyectosDAO implements IProyectosJPADAO {
 	
 	@Override
 	public List<Proyectos> seleccionar() {
-		// TODO Esbozo de método generado automáticamente
-		return null;
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
+		EntityManager em = emf.createEntityManager();
+		
+		String query = "SELECT e FROM Proyectos e";
+		TypedQuery<Proyectos>tq = em.createQuery(query, Proyectos.class);
+		List<Proyectos>listaProyectos = null;
+		try {
+			
+			listaProyectos = tq.getResultList();
+			log.debug("Resultados: " + listaProyectos);
+			for (Proyectos proyectos : listaProyectos) {
+				System.out.println(listaProyectos + "\n");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return listaProyectos;
 	}
 
 	@Override

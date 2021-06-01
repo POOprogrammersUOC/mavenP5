@@ -951,8 +951,9 @@ public class Principal extends JFrame {
 	
 	public static void cargarJtableProyectos() {
 		RellenarJTable cargaDatos = new RellenarJTable();
+		
 		try {
-			table.setModel(cargaDatos.consultarBDProyectos());
+			table.setModel(cargaDatos.rellenarJtable());
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e,"Error al cargar los proyectos",JOptionPane.ERROR_MESSAGE);
