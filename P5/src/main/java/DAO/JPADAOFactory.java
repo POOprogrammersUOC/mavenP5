@@ -63,5 +63,11 @@ public class JPADAOFactory extends DAOFactory {
 		// TODO Esbozo de método generado automáticamente
 		return new JPAProyectosDAO();
 	}
+	
+	@Override
+	public JPAEmpleadosDAO jpaEmpleadosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return new JPAEmpleadosDAO();
+	}
 
 }

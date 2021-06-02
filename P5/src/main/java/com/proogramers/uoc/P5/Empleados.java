@@ -1,20 +1,44 @@
 package com.proogramers.uoc.P5;
 
+import java.io.Serializable;
+
+import javax.persistence.*;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name="Empleados")
-//@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI"})
-public class Empleados {
+@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI"})
 
+@Entity
+public class Empleados implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column(name="Nombre")
 	private String Nombre;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="Numero")
 	private int Numero;
+	
+	@Column(name="Apellido_1")
 	private String Apellidos;
+	
+	@Column(name="Direccion")
 	private String Direccion;
+	
+	@Column(name="Telefono")
 	private String Telefono;
+	
+	@Column(name="Dni")
 	private String DNI;
+	
+	@Column(name="Ong_CIF")
 	private String OngCif;
+	
 	/**
 	 * @param nombre Nombre del empleado
 	 * @param apellidos Apellidos del empleado

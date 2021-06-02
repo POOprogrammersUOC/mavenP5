@@ -63,5 +63,9 @@ public class ImportXMLtoSQLFactory extends DAOFactory {
 		// TODO Esbozo de método generado automáticamente
 		return null;
 	}
+	
+	public JPAEmpleadosDAO jpaEmpleadosDAO() {
+		return null;
+	}
 
 }
