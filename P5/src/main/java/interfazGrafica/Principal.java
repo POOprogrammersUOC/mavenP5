@@ -838,47 +838,52 @@ public class Principal extends JFrame {
 
 				try {
 					
-					if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty() || txtFfinal.getText().isEmpty() || txtSocioLocal.getText().isEmpty() || txtFinanciacion.getText().isEmpty() || txtPersonal.getText().isEmpty() || txtVoluntarios.getText().isEmpty() || txtCifOng.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
+					if(idProyecto.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Tiene que seleccionar un registro de la tabla para ser modificado", "Registro", JOptionPane.ERROR_MESSAGE);
 					}else {
-						Date sqlDate = Date.valueOf(txtFinicio.getText());
-						LocalDate fInicio = sqlDate.toLocalDate();
-						Date sqlDate2 = Date.valueOf(txtFfinal.getText());
-						LocalDate fFinal = sqlDate2.toLocalDate();
-						if(fFinal.isBefore(fInicio)) {
-							JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser mayor a la fecha final", "Registro", JOptionPane.ERROR_MESSAGE);
+						if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty() || txtFfinal.getText().isEmpty() || txtSocioLocal.getText().isEmpty() || txtFinanciacion.getText().isEmpty() || txtPersonal.getText().isEmpty() || txtVoluntarios.getText().isEmpty() || txtCifOng.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
 						}else {
-							Proyectos proyectosMod = DAOFactory.getDAOFactory(4).jpaProyectosDAO().leerId(Integer.parseInt(idProyecto.getText()));
-							
-							String per1 = txtPersonal.getText();
-							int personal = Integer.parseInt(per1);
-							
-							String vol = txtVoluntarios.getText();
-							int voluntarios = Integer.parseInt(vol);
-							
-							String finan = txtFinanciacion.getText();
-							double financiacion = Double.parseDouble(finan);
-							
-							
-							proyectosMod.setPais(txtPais.getText());
-							proyectosMod.setLocalizacion(txtLocalizacion.getText());
-							proyectosMod.setLineaDeAccion(textAreaLinea.getText());
-							proyectosMod.setSublineaDeAccion(textAreaSublinea.getText());
-							proyectosMod.setFechaInicio(fInicio);
-							proyectosMod.setFechaFinal(fFinal);
-							proyectosMod.setSocioLocal(txtSocioLocal.getText());
-							proyectosMod.setFinanciador(txtFinanciador.getText());
-							proyectosMod.setFinanciacion(financiacion);
-							proyectosMod.setAcciones(textAreaAccion.getText());
-							proyectosMod.setPersonal(personal);
-							proyectosMod.setVoluntariosAsignados(voluntarios);
-							proyectosMod.setOngCif(txtCifOng.getText());
-							
-							DAOFactory.getDAOFactory(4).jpaProyectosDAO().actualizar(proyectosMod);	
+							Date sqlDate = Date.valueOf(txtFinicio.getText());
+							LocalDate fInicio = sqlDate.toLocalDate();
+							Date sqlDate2 = Date.valueOf(txtFfinal.getText());
+							LocalDate fFinal = sqlDate2.toLocalDate();
+							if(fFinal.isBefore(fInicio)) {
+								JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser mayor a la fecha final", "Registro", JOptionPane.ERROR_MESSAGE);
+							}else {
+								Proyectos proyectosMod = DAOFactory.getDAOFactory(4).jpaProyectosDAO().leerId(Integer.parseInt(idProyecto.getText()));
+								
+								String per1 = txtPersonal.getText();
+								int personal = Integer.parseInt(per1);
+								
+								String vol = txtVoluntarios.getText();
+								int voluntarios = Integer.parseInt(vol);
+								
+								String finan = txtFinanciacion.getText();
+								double financiacion = Double.parseDouble(finan);
+								
+								
+								proyectosMod.setPais(txtPais.getText());
+								proyectosMod.setLocalizacion(txtLocalizacion.getText());
+								proyectosMod.setLineaDeAccion(textAreaLinea.getText());
+								proyectosMod.setSublineaDeAccion(textAreaSublinea.getText());
+								proyectosMod.setFechaInicio(fInicio);
+								proyectosMod.setFechaFinal(fFinal);
+								proyectosMod.setSocioLocal(txtSocioLocal.getText());
+								proyectosMod.setFinanciador(txtFinanciador.getText());
+								proyectosMod.setFinanciacion(financiacion);
+								proyectosMod.setAcciones(textAreaAccion.getText());
+								proyectosMod.setPersonal(personal);
+								proyectosMod.setVoluntariosAsignados(voluntarios);
+								proyectosMod.setOngCif(txtCifOng.getText());
+								
+								DAOFactory.getDAOFactory(4).jpaProyectosDAO().actualizar(proyectosMod);	
+						}
+						
+						
+						}	
 					}
-					
-					
-					}	//JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+					//JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
 					//JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro", JOptionPane.ERROR_MESSAGE);
 					//tx1.rollback();
