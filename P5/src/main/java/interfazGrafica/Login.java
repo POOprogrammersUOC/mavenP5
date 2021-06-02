@@ -22,6 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -37,6 +38,7 @@ public class Login extends JFrame {
 			public void run() {
 				try {
 					Login frame = new Login();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,6 +51,8 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/interfazGrafica/img/mundo.png")));
+		
 		setTitle("Control de acceso a ONG");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,13 +95,18 @@ public class Login extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setFocusPainted(false);
+		btnLogin.setIcon(new ImageIcon(Login.class.getResource("/interfazGrafica/img/login16.png")));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String user = textFieldUser.getText();  
 				String passw = passwordField.getText();
 				String select="select username,password,privilegio from usuarios where username='"+user+"'";
 				//select username,password,privilegio from usuarios where privilegio='administrador';
+				
 				try {
+					
+					
 					Connection conn = Conexion.getConection();
 					PreparedStatement pstat = conn.prepareStatement(select);
 					ResultSet rs = pstat.executeQuery();
@@ -113,6 +122,9 @@ public class Login extends JFrame {
 								principal.getLblPanelDerechoSetUsuario().setText("Administrador");
 								principal.getLblPanelDerechoSetRol().setText("Total");
 								principal.getLblImageSetUsuario().setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_administrador.png")));
+								principal.cargarJtableProyectos();
+								principal.setLocationRelativeTo(null);
+								dispose();
 							}else if(getPrivilegio.equals("usuario")) {
 								Principal principal = new Principal();
 								principal.setVisible(true);
@@ -120,7 +132,13 @@ public class Login extends JFrame {
 								principal.getLblPanelDerechoSetRol().setText("Restringido");
 								//principal.getLblAdmin().setVisible(false); //hay que hacer publico todo lo que se quiere ocultar
 								principal.getLblImageSetUsuario().setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_usuario.png")));
-								
+								principal.getBtnInsertar().setEnabled(false);
+								principal.getBtnEliminar().setEnabled(false);
+								principal.getBtnModificar().setEnabled(false);
+								principal.getBtnLimpiar().setEnabled(false);
+								principal.cargarJtableProyectos();
+								principal.setLocationRelativeTo(null);
+								dispose();
 							}
 						}else {
 							JOptionPane.showMessageDialog(null,"CONTRASEÑA INCORECTA");

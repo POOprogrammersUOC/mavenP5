@@ -9,6 +9,7 @@ public abstract class DAOFactory {
 	public static final int XML = 1;
 	public static final int SQL = 2;
 	public static final int IMPORTXMLTOSQL = 3;
+	public static final int JPA = 4;
 
 	// Para cada clase tenemos un DAO que es creado
 	public abstract XMLProyectosDAO getProyectosDAO() throws JAXBException;
@@ -28,6 +29,8 @@ public abstract class DAOFactory {
 	public abstract SQLSociosDAO sqlSociosDAO();
 
 	public abstract importXMLtoSQLSociosDAO setImportXMLtoSQLSocios() throws JAXBException;
+	
+	public abstract JPAProyectosDAO jpaProyectosDAO();
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 
@@ -38,6 +41,8 @@ public abstract class DAOFactory {
 			return new SQLDAOFactory();
 		case 3:
 			return new ImportXMLtoSQLFactory();
+		case 4:
+			return new JPADAOFactory();
 		default:
 			return null;
 

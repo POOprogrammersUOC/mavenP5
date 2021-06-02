@@ -1,8 +1,11 @@
 package com.proogramers.uoc.P5;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import java.util.Date;
+
+import javax.persistence.*;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,14 +14,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-/**
+/*
  * 
  * Etiquetas XML
  * 
  * @XmlRootElement indica la raiz del xml
  * @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER) Indica que tiene acceso p�blico
  * @XmlType(propOrder = {}) indica el orden para mostrar las etiquetas
- * @version 1.2
+ * @version 1.0 Creacion de clase
+ * @version 1.1 Implementación de XML
+ * @version 1.2 Implementación SQL
+ * @version 1.3 implementacion JPA
  * 
  */
 
@@ -28,21 +34,52 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(propOrder = { "numProyecto", "pais", "localizacion", "lineaDeAccion", "sublineaDeAccion", "fechaInicio",
 		"fechaFinal", "socioLocal", "financiador", "financiacion", "acciones", "personal", "voluntariosAsignados","ongCif" })
 
-public class Proyectos {
+@Entity
+public class Proyectos implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	@Column(name = "Pais")
 	private String pais;
+	
+	@Column(name = "Localizacion")
 	private String localizacion;
+	
+	@Column(name = "LineaDeAccion")
 	private String lineaDeAccion;
+	
+	@Column(name = "SublineaDeAccion")
 	private String sublineaDeAccion;
+	
+	@Column(name = "FechaInicio")
 	private LocalDate fechaInicio;
+	
+	@Column(name = "FechaFinal")
 	private LocalDate fechaFinal;
+	
+	@Column(name = "SocioLocal")
 	private String socioLocal;
+	
+	@Column(name = "Financiador")
 	private String financiador;
+	
+	@Column(name = "Financiacion")
 	private Double financiacion;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id_proyecto")
 	private int numProyecto;
+	
+	@Column(name = "Acciones")
 	private String acciones;
+	
+	@Column(name = "Personal")
 	private int personal;
+	
+	@Column(name = "VoluntariosAsignados")
 	private int voluntariosAsignados;
+	
+	@Column(name = "Ong_CIF")
 	private String ongCif;							//se añade para la inserción en sql
 	private static int contador = 0;
 

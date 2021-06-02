@@ -2,7 +2,7 @@ package DAO;
 
 import javax.xml.bind.JAXBException;
 
-public class ImportXMLtoSQLFactory extends DAOFactory {
+public class JPADAOFactory extends DAOFactory {
 
 	@Override
 	public XMLProyectosDAO getProyectosDAO() throws JAXBException {
@@ -29,16 +29,27 @@ public class ImportXMLtoSQLFactory extends DAOFactory {
 	}
 
 	@Override
-	public importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() throws JAXBException {
+	public SQLEmpleadosDAO sqlEmpleadosDAO() {
 		// TODO Esbozo de método generado automáticamente
-		return new importXMLtoSQLProyectosDAO();
+		return null;
 	}
 
 	@Override
+	public importXMLtoSQLProyectosDAO setImportXMLtoSQLProyectos() throws JAXBException {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
 
+	@Override
+	public importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
+
+	@Override
 	public SQLSociosDAO sqlSociosDAO() {
 		// TODO Esbozo de método generado automáticamente
-		return new SQLSociosDAO();
+		return null;
 	}
 
 	@Override
@@ -47,21 +58,10 @@ public class ImportXMLtoSQLFactory extends DAOFactory {
 		return null;
 	}
 
-	public SQLEmpleadosDAO sqlEmpleadosDAO() {
-		// TODO Esbozo de método generado automáticamente
-		return null;
-	}
-
-	@Override
-	public importXMLtoSQLEmpleadosDAO setImportXMLtoSQLEmpleados() throws JAXBException {
-		// TODO Esbozo de método generado automáticamente
-		return new importXMLtoSQLEmpleadosDAO();
-	}
-
 	@Override
 	public JPAProyectosDAO jpaProyectosDAO() {
 		// TODO Esbozo de método generado automáticamente
-		return null;
+		return new JPAProyectosDAO();
 	}
 
 }
