@@ -46,13 +46,13 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-<<<<<<< HEAD
+
 import javax.swing.JScrollPane;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
-=======
+
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -64,7 +64,7 @@ import java.util.Locale;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
->>>>>>> refs/heads/master
+
 
 public class Principal extends JFrame {
 	private JLabel lblImageSetUsuario;
@@ -76,14 +76,14 @@ public class Principal extends JFrame {
 	private JPanel panelEmpleados;
 	private JPanel panelProyectos;
 	private JButton btnHome;
-<<<<<<< HEAD
+
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-=======
+
 	private static JTable table;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_2;
@@ -118,7 +118,7 @@ public class Principal extends JFrame {
 	private JButton btnInsertar;
 	private JButton btnEliminar;
 	private JButton btnModificar;
->>>>>>> refs/heads/master
+
 
 	static Logger log = LogManager.getRootLogger();
 	private JScrollPane scrollPane_3;
@@ -412,11 +412,11 @@ public class Principal extends JFrame {
 		lblTituloProyectos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelProyectos.add(lblTituloProyectos);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(10, 42, 764, 8);
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBackground(Color.ORANGE);
-		panelProyectos.add(lblNewLabel_1);
+		JLabel lblNewLabel_11 = new JLabel("");
+		lblNewLabel_11.setBounds(10, 42, 764, 8);
+		lblNewLabel_11.setOpaque(true);
+		lblNewLabel_11.setBackground(Color.ORANGE);
+		panelProyectos.add(lblNewLabel_11);
 		
 		scrollPane_3 = new JScrollPane();
 		scrollPane_3.setAutoscrolls(true);
