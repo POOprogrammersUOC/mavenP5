@@ -29,7 +29,7 @@ import com.proogramers.uoc.P5.RellenarJTable;
 
 import DAO.DAOFactory;
 import DAO.JPAProyectosDAO;
-import jpaController.DAOjpa;
+
 
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
@@ -746,39 +746,44 @@ public class Principal extends JFrame {
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
-				//EntityManager em = emf.createEntityManager();
-				//EntityTransaction tx = em.getTransaction();
-				//JPAProyectosDAO jpaProyectosDAO = new JPAProyectosDAO();
+
 				try {
 					
-					//tx.begin();
+					if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty() || txtFfinal.getText().isEmpty() || txtSocioLocal.getText().isEmpty() || txtFinanciacion.getText().isEmpty() || txtPersonal.getText().isEmpty() || txtVoluntarios.getText().isEmpty() || txtCifOng.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
+					} else {
+						
+						Date sqlDate = Date.valueOf(txtFinicio.getText());
+						LocalDate fInicio = sqlDate.toLocalDate();
+						Date sqlDate2 = Date.valueOf(txtFfinal.getText());
+						LocalDate fFinal = sqlDate2.toLocalDate();
+						if(fFinal.isBefore(fInicio)) {
+							JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser mayor a la fecha final", "Registro", JOptionPane.ERROR_MESSAGE);
+						}else {
+							
+							String per1 = txtPersonal.getText();
+							int personal = Integer.parseInt(per1);
+							
+							String vol = txtVoluntarios.getText();
+							int voluntarios = Integer.parseInt(vol);
+							
+							String finan = txtFinanciacion.getText();
+							double financiacion = Double.parseDouble(finan);
+							
+							Proyectos proyectos = new Proyectos(txtPais.getText(),txtLocalizacion.getText(),textAreaLinea.getText(),textAreaSublinea.getText(),fInicio,fFinal,txtSocioLocal.getText(),txtFinanciador.getText(),financiacion,textAreaAccion.getText(),personal,voluntarios,txtCifOng.getText());
+							
+							DAOFactory.getDAOFactory(4).jpaProyectosDAO().persist(proyectos);
+							
+							
+						}
+						
+						
+						
+						
+					}
 					
-					Date sqlDate = Date.valueOf(txtFinicio.getText());
-					LocalDate fInicio = sqlDate.toLocalDate();
-					Date sqlDate2 = Date.valueOf(txtFfinal.getText());
-					LocalDate fFinal = sqlDate2.toLocalDate();
 					
-					String per1 = txtPersonal.getText();
-					int personal = Integer.parseInt(per1);
-					
-					String vol = txtVoluntarios.getText();
-					int voluntarios = Integer.parseInt(vol);
-					
-					String finan = txtFinanciacion.getText();
-					double financiacion = Double.parseDouble(finan);
-					
-					Proyectos proyectos = new Proyectos(txtPais.getText(),txtLocalizacion.getText(),textAreaLinea.getText(),textAreaSublinea.getText(),fInicio,fFinal,txtSocioLocal.getText(),txtFinanciador.getText(),financiacion,textAreaAccion.getText(),personal,voluntarios,txtCifOng.getText());
-					
-					DAOFactory.getDAOFactory(4).jpaProyectosDAO().persist(proyectos);
-					//log.debug("Objeto no tratado: " + proyectos);
-					
-					//em.persist(proyectos);
-					
-					//tx.commit();
-					
-					//log.debug("Objeto tratado: " + proyectos);
-					//em.close();
+
 					
 					//JOptionPane.showMessageDialog(null, "Registro insertado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
@@ -800,29 +805,17 @@ public class Principal extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					
-				//EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
-				//EntityManager em = emf.createEntityManager();
-				//EntityTransaction tx = em.getTransaction();
-				//EntityTransaction tx1 = em.getTransaction();
+
 				try {
 					
-					DAOFactory.getDAOFactory(4).jpaProyectosDAO().eliminar(Integer.parseInt(idProyecto.getText()));
-					//tx.begin();
+					if (idProyecto.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Tiene que seleccionar un registro de la tabla para ser borrado", "Registro", JOptionPane.ERROR_MESSAGE);
+					} else {
+						DAOFactory.getDAOFactory(4).jpaProyectosDAO().eliminar(Integer.parseInt(idProyecto.getText()));
+					}
 					
-					//Proyectos proyectosRemove = em.find(Proyectos.class, Integer.parseInt(idProyecto.getText()));
 					
-					//tx.commit();
 					
-						
-					//tx1.begin();
-					
-					//em.remove(proyectosRemove);
-					
-					//tx1.commit();
-					
-					//log.debug("Objeto eliminado: " + proyectosRemove);
-					
-					//em.close();
 					//JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
 					//JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro", JOptionPane.ERROR_MESSAGE);
@@ -842,59 +835,50 @@ public class Principal extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
-				//EntityManager em = emf.createEntityManager();
-				//EntityTransaction tx = em.getTransaction();
-				//EntityTransaction tx1 = em.getTransaction();
+
 				try {
-					//tx.begin();
 					
-					Proyectos proyectosMod = DAOFactory.getDAOFactory(4).jpaProyectosDAO().leerId(Integer.parseInt(idProyecto.getText()));
+					if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty() || txtFfinal.getText().isEmpty() || txtSocioLocal.getText().isEmpty() || txtFinanciacion.getText().isEmpty() || txtPersonal.getText().isEmpty() || txtVoluntarios.getText().isEmpty() || txtCifOng.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
+					}else {
+						Date sqlDate = Date.valueOf(txtFinicio.getText());
+						LocalDate fInicio = sqlDate.toLocalDate();
+						Date sqlDate2 = Date.valueOf(txtFfinal.getText());
+						LocalDate fFinal = sqlDate2.toLocalDate();
+						if(fFinal.isBefore(fInicio)) {
+							JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser mayor a la fecha final", "Registro", JOptionPane.ERROR_MESSAGE);
+						}else {
+							Proyectos proyectosMod = DAOFactory.getDAOFactory(4).jpaProyectosDAO().leerId(Integer.parseInt(idProyecto.getText()));
+							
+							String per1 = txtPersonal.getText();
+							int personal = Integer.parseInt(per1);
+							
+							String vol = txtVoluntarios.getText();
+							int voluntarios = Integer.parseInt(vol);
+							
+							String finan = txtFinanciacion.getText();
+							double financiacion = Double.parseDouble(finan);
+							
+							
+							proyectosMod.setPais(txtPais.getText());
+							proyectosMod.setLocalizacion(txtLocalizacion.getText());
+							proyectosMod.setLineaDeAccion(textAreaLinea.getText());
+							proyectosMod.setSublineaDeAccion(textAreaSublinea.getText());
+							proyectosMod.setFechaInicio(fInicio);
+							proyectosMod.setFechaFinal(fFinal);
+							proyectosMod.setSocioLocal(txtSocioLocal.getText());
+							proyectosMod.setFinanciador(txtFinanciador.getText());
+							proyectosMod.setFinanciacion(financiacion);
+							proyectosMod.setAcciones(textAreaAccion.getText());
+							proyectosMod.setPersonal(personal);
+							proyectosMod.setVoluntariosAsignados(voluntarios);
+							proyectosMod.setOngCif(txtCifOng.getText());
+							
+							DAOFactory.getDAOFactory(4).jpaProyectosDAO().actualizar(proyectosMod);	
+					}
 					
-					//tx.commit();
 					
-					//log.debug("Objeto Recuperado: " + proyectosMod);
-					
-					
-					Date sqlDate = Date.valueOf(txtFinicio.getText());
-					LocalDate fInicio = sqlDate.toLocalDate();
-					Date sqlDate2 = Date.valueOf(txtFfinal.getText());
-					LocalDate fFinal = sqlDate2.toLocalDate();
-					
-					String per1 = txtPersonal.getText();
-					int personal = Integer.parseInt(per1);
-					
-					String vol = txtVoluntarios.getText();
-					int voluntarios = Integer.parseInt(vol);
-					
-					String finan = txtFinanciacion.getText();
-					double financiacion = Double.parseDouble(finan);
-					
-					
-					proyectosMod.setPais(txtPais.getText());
-					proyectosMod.setLocalizacion(txtLocalizacion.getText());
-					proyectosMod.setLineaDeAccion(textAreaLinea.getText());
-					proyectosMod.setSublineaDeAccion(textAreaSublinea.getText());
-					proyectosMod.setFechaInicio(fInicio);
-					proyectosMod.setFechaFinal(fFinal);
-					proyectosMod.setSocioLocal(txtSocioLocal.getText());
-					proyectosMod.setFinanciador(txtFinanciador.getText());
-					proyectosMod.setFinanciacion(financiacion);
-					proyectosMod.setAcciones(textAreaAccion.getText());
-					proyectosMod.setPersonal(personal);
-					proyectosMod.setVoluntariosAsignados(voluntarios);
-					proyectosMod.setOngCif(txtCifOng.getText());
-					
-					DAOFactory.getDAOFactory(4).jpaProyectosDAO().actualizar(proyectosMod);	
-					//tx1.begin();
-					
-					//em.merge(proyectosMod);
-					
-					//tx1.commit();
-					
-					//log.debug("Objeto Modificado: " + proyectosMod);
-					//em.close();
-					//JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+					}	//JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
 					//JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro", JOptionPane.ERROR_MESSAGE);
 					//tx1.rollback();
