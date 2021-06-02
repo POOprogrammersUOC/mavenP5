@@ -28,6 +28,11 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JLayeredPane;
+import javax.swing.JTextPane;
+import javax.swing.JTextField;
+import java.awt.SystemColor;
 
 public class Principal extends JFrame {
 	private JLabel lblImageSetUsuario;
@@ -39,6 +44,12 @@ public class Principal extends JFrame {
 	private JPanel panelEmpleados;
 	private JPanel panelProyectos;
 	private JButton btnHome;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -226,8 +237,88 @@ public class Principal extends JFrame {
 		panelBody.add(panelHome, "name_161162941260200");
 		
 		panelSocios = new JPanel();
-		panelSocios.setBackground(Color.YELLOW);
+		panelSocios.setBackground(SystemColor.inactiveCaptionBorder);
 		panelBody.add(panelSocios, "name_161214080585300");
+		panelSocios.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Nº de socio:");
+		lblNewLabel.setBounds(10, 302, 68, 14);
+		panelSocios.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 317, 96, 20);
+		panelSocios.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(138, 302, 68, 14);
+		panelSocios.add(lblNombre);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(138, 317, 96, 20);
+		panelSocios.add(textField_1);
+		
+		JLabel lblApellido = new JLabel("Apellido:");
+		lblApellido.setBounds(258, 302, 68, 14);
+		panelSocios.add(lblApellido);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(258, 317, 96, 20);
+		panelSocios.add(textField_2);
+		
+		JLabel lblDireccin = new JLabel("Dirección:");
+		lblDireccin.setBounds(377, 302, 68, 14);
+		panelSocios.add(lblDireccin);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(377, 317, 96, 20);
+		panelSocios.add(textField_3);
+		
+		JLabel lblTelfono = new JLabel("Teléfono:");
+		lblTelfono.setBounds(498, 302, 68, 14);
+		panelSocios.add(lblTelfono);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(498, 317, 96, 20);
+		panelSocios.add(textField_4);
+		
+		JLabel lblCifOng = new JLabel("Cif Ong:");
+		lblCifOng.setBounds(10, 363, 68, 14);
+		panelSocios.add(lblCifOng);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(10, 378, 96, 20);
+		panelSocios.add(textField_5);
+		
+		JButton btnNewButton = new JButton("Nuevo");
+		btnNewButton.setBounds(123, 455, 89, 23);
+		panelSocios.add(btnNewButton);
+		
+		JButton btnInsertar = new JButton("Insertar");
+		btnInsertar.setBounds(234, 455, 89, 23);
+		panelSocios.add(btnInsertar);
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBounds(345, 455, 89, 23);
+		panelSocios.add(btnEliminar);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setBounds(453, 455, 89, 23);
+		panelSocios.add(btnModificar);
+		
+		JLabel lblNewLabel_1 = new JLabel("SOCIOS");
+		lblNewLabel_1.setBounds(10, 11, 46, 14);
+		panelSocios.add(lblNewLabel_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(10, 28, 666, 238);
+		panelSocios.add(panel_1);
 		
 		panelEmpleados = new JPanel();
 		panelEmpleados.setBackground(Color.CYAN);
