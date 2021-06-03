@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name="Empleados")
-@XmlType(propOrder = {"Nombre", "Apellidos", "Direccion", "Telefono", "DNI"})
+@XmlType(propOrder = {"Numero", "Nombre", "Apellidos", "Direccion", "Telefono", "DNI"})
 
 @Entity
 public class Empleados implements Serializable {

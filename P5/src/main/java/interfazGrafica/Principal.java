@@ -24,6 +24,8 @@ import javax.swing.JSplitPane;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+import com.proogramers.uoc.P5.Empleados;
+import com.proogramers.uoc.P5.LlenarJTable;
 import com.proogramers.uoc.P5.Proyectos;
 import com.proogramers.uoc.P5.RellenarJTable;
 
@@ -69,6 +71,7 @@ public class Principal extends JFrame {
 	private JPanel panelProyectos;
 	private JButton btnHome;
 	private static JTable table;
+	private static JTable tabla;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
@@ -102,9 +105,29 @@ public class Principal extends JFrame {
 	private JButton btnInsertar;
 	private JButton btnEliminar;
 	private JButton btnModificar;
+	private JLabel lbletiqueta;
+	private JLabel lbletiqueta_1;
+	private JLabel lbletiqueta_2;
+	private JLabel lbletiqueta_3;
+	private JLabel lbletiqueta_4;
+	private JLabel lbletiqueta_5;
+	private JLabel lbletiqueta_6;
+	private JTextField idEmpleado;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private JTextField txtDireccion;
+	private JTextField txtTelefono;
+	private JTextField txtDni;
+	private JTextField txtOngCif;
+	private JButton btnNuevo;
+	private JButton btnInsert;
+	private JButton btnDelete;
+	private JButton btnUpdate;
 
 	static Logger log = LogManager.getRootLogger();
 	private JScrollPane scrollPane_3;
+	private JScrollPane scroll;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -115,6 +138,7 @@ public class Principal extends JFrame {
 					Principal frame = new Principal();
 					frame.setLocationRelativeTo(null);
 					cargarJtableProyectos();
+					cargarJtableEmpleados();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -301,9 +325,369 @@ public class Principal extends JFrame {
 		panelSocios.setBackground(Color.YELLOW);
 		panelBody.add(panelSocios, "name_161214080585300");
 		
+		//PANEL EMPLEADOS
+		
 		panelEmpleados = new JPanel();
-		panelEmpleados.setBackground(Color.CYAN);
+		panelEmpleados.setBackground(new Color(237, 240, 245));
 		panelBody.add(panelEmpleados, "name_161410589258100");
+		panelEmpleados.setLayout(null);
+		
+		JLabel lblEmpleados = new JLabel("Empleados");
+		lblEmpleados.setBounds(10, 25, 100, 17);
+		lblEmpleados.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelEmpleados.add(lblEmpleados);
+		
+		JLabel lbllinea = new JLabel("");
+		lbllinea.setBounds(10, 42, 764, 8);
+		lbllinea.setOpaque(true);
+		lbllinea.setBackground(Color.CYAN);
+		panelEmpleados.add(lbllinea);
+		
+		scroll = new JScrollPane();
+		scroll.setAutoscrolls(true);
+		
+		scroll.setBounds(10, 72, 764, 226);
+		panelEmpleados.add(scroll);
+		
+		tabla = new JTable();
+		tabla.setSelectionBackground(Color.CYAN);
+		tabla.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int getRegistro = tabla.getSelectedRow();
+				idEmpleado.setText(tabla.getValueAt(getRegistro, 0).toString());
+				txtNombre.setText(tabla.getValueAt(getRegistro, 1).toString());
+				txtApellido.setText(tabla.getValueAt(getRegistro, 2).toString());
+				txtDireccion.setText(tabla.getValueAt(getRegistro, 3).toString());
+				txtTelefono.setText(tabla.getValueAt(getRegistro, 4).toString());
+				txtDni.setText(tabla.getValueAt(getRegistro, 5).toString());
+				txtOngCif.setText(tabla.getValueAt(getRegistro, 6).toString());
+				
+			}
+		});
+		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		scroll.setViewportView(tabla);
+		
+		lbletiqueta = new JLabel("Numero:");
+		lbletiqueta.setBounds(10, 322, 125, 14);
+		panelEmpleados.add(lbletiqueta);
+		
+		lbletiqueta_1 = new JLabel("Nombre:");
+		lbletiqueta_1.setBounds(160, 322, 75, 14);
+		panelEmpleados.add(lbletiqueta_1);
+		
+		lbletiqueta_2 = new JLabel("Apellido:");
+		lbletiqueta_2.setBounds(305, 322, 75, 11);
+		panelEmpleados.add(lbletiqueta_2);
+		
+		lbletiqueta_3 = new JLabel("Direccion:");
+		lbletiqueta_3.setBounds(450, 322, 118, 14);
+		panelEmpleados.add(lbletiqueta_3);
+		
+		lbletiqueta_4 = new JLabel("Telefono:");
+		lbletiqueta_4.setBounds(595, 322, 75, 14);
+		panelEmpleados.add(lbletiqueta_4);
+		
+		lbletiqueta_5 = new JLabel("Dni:");
+		lbletiqueta_5.setBounds(11, 367, 124, 14);
+		panelEmpleados.add(lbletiqueta_5);
+		
+		lbletiqueta_6 = new JLabel("Ong Cif:");
+		lbletiqueta_6.setBounds(160, 367, 125, 14);
+		panelEmpleados.add(lbletiqueta_6);
+		
+		idEmpleado = new JTextField();
+		idEmpleado.setEditable(false);
+		idEmpleado.setBounds(10, 336, 125, 20);
+		panelEmpleados.add(idEmpleado);
+		idEmpleado.setColumns(10);
+		
+		txtNombre = new JTextField();
+		txtNombre.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtNombre.setBackground(Color.CYAN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtNombre.setBackground(Color.WHITE);
+			}
+		});
+		txtNombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite =45;
+				if(txtNombre.getText().length() == limite) 
+				{
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Nombre",JOptionPane.ERROR_MESSAGE , null);
+					e.consume();				
+				}
+			}
+		});
+		txtNombre.setBounds(160, 335, 125, 20);
+		panelEmpleados.add(txtNombre);
+		txtNombre.setColumns(10);
+		
+		txtApellido = new JTextField();
+		txtApellido.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtApellido.setBackground(Color.CYAN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtApellido.setBackground(Color.WHITE);
+			}
+		});
+		txtApellido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite =45;
+				if(txtApellido.getText().length() == limite) 
+				{
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Apellido",JOptionPane.ERROR_MESSAGE , null);
+					e.consume();				
+				}
+			}
+		});
+		txtApellido.setBounds(305, 335, 125, 20);
+		panelEmpleados.add(txtApellido);
+		txtApellido.setColumns(10);
+		
+		txtDireccion = new JTextField();
+		txtDireccion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtDireccion.setBackground(Color.CYAN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtDireccion.setBackground(Color.WHITE);
+			}
+		});
+		txtDireccion.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite =45;
+				if(txtDireccion.getText().length() == limite) 
+				{
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Direccion",JOptionPane.ERROR_MESSAGE , null);
+					e.consume();				
+				}
+			}
+		});
+		txtDireccion.setBounds(450, 335, 125, 20);
+		panelEmpleados.add(txtDireccion);
+		txtDireccion.setColumns(10);
+		
+		txtTelefono = new JTextField();
+		txtTelefono.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtTelefono.setBackground(Color.CYAN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtTelefono.setBackground(Color.WHITE);
+			}
+		});
+		txtTelefono.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite =45;
+				if(txtTelefono.getText().length() == limite) 
+				{
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Telefono",JOptionPane.ERROR_MESSAGE , null);
+					e.consume();				
+				}
+			}
+		});
+		txtTelefono.setBounds(595, 335, 125, 20);
+		panelEmpleados.add(txtTelefono);
+		txtTelefono.setColumns(10);
+		
+		txtDni = new JTextField();
+		txtDni.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtDni.setBackground(Color.CYAN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtDni.setBackground(Color.WHITE);
+			}
+		});
+		txtDni.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite =45;
+				if(txtDni.getText().length() == limite) 
+				{
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Dni",JOptionPane.ERROR_MESSAGE , null);
+					e.consume();				
+				}
+			}
+		});
+		txtDni.setBounds(10, 380, 125, 20);
+		panelEmpleados.add(txtDni);
+		txtDni.setColumns(10);
+		
+		txtOngCif = new JTextField();
+		txtOngCif.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtOngCif.setBackground(Color.CYAN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtOngCif.setBackground(Color.WHITE);
+			}
+		});
+		txtOngCif.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite =45;
+				if(txtOngCif.getText().length() == limite) 
+				{
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Ong Cif",JOptionPane.ERROR_MESSAGE , null);
+					e.consume();				
+				}
+			}
+		});
+		txtOngCif.setBounds(160, 380, 125, 20);
+		panelEmpleados.add(txtOngCif);
+		txtOngCif.setColumns(10);
+		
+		btnNuevo = new JButton("Nuevo");
+		btnNuevo.setFocusPainted(false);
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				idEmpleado.setText("");
+				txtNombre.setText("");
+				txtApellido.setText("");
+				txtDireccion.setText("");
+				txtTelefono.setText("");
+				txtDni.setText("");
+				txtOngCif.setText("");
+								
+			}
+		});
+		btnNuevo.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/nuevo.png")));
+		btnNuevo.setBounds(160, 612, 89, 23);
+		panelEmpleados.add(btnNuevo);
+		
+		btnInsert = new JButton("Insertar");
+		btnInsert.setFocusPainted(false);
+		btnInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ar0) {
+				
+
+				try {
+					
+					if (txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty() || txtDireccion.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtDni.getText().isEmpty() || txtOngCif.getText().isEmpty()) {
+						//JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
+						//JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Nombre" + "\n" + "Apellido" + "\n" +"Direccion" +"\n" + "Telefono" + "\n" +"Dni" + "\n" +"Ong Cif" + "Registro", JOptionPane.ERROR_MESSAGE);
+					} else {
+														
+							Empleados empleados = new Empleados(txtNombre.getText(),txtApellido.getText(),txtDireccion.getText(),txtTelefono.getText(),txtDni.getText(),txtOngCif.getText());
+							
+							DAOFactory.getDAOFactory(4).jpaEmpleadosDAO().persist(empleados);
+													
+						}
+						
+										
+					//JOptionPane.showMessageDialog(null, "Registro insertado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception e) {
+					//JOptionPane.showMessageDialog(null, "Registro erroneo", "Registro", JOptionPane.ERROR_MESSAGE);
+					//tx.rollback();
+					// TODO: handle exception
+				}finally {
+					cargarJtableEmpleados();
+				}		
+				
+			}
+		});
+		btnInsert.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/insertar.png")));
+		btnInsert.setBounds(259, 612, 100, 23);
+		panelEmpleados.add(btnInsert);
+		
+		btnDelete = new JButton("Eliminar");
+		btnDelete.setFocusPainted(false);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					
+
+				try {
+					
+					if (idEmpleado.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Tiene que seleccionar un registro de la tabla para ser borrado", "Registro", JOptionPane.ERROR_MESSAGE);
+					} else {
+						DAOFactory.getDAOFactory(4).jpaEmpleadosDAO().eliminar(Integer.parseInt(idEmpleado.getText()));
+					}
+					
+					
+					
+					//JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception e) {
+					//JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro", JOptionPane.ERROR_MESSAGE);
+					//tx1.rollback();
+				}finally {
+					cargarJtableEmpleados();
+				}
+				
+			}
+		});
+		btnDelete.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/eliminar.png")));
+		btnDelete.setBounds(369, 612, 105, 23);
+		panelEmpleados.add(btnDelete);
+		
+		btnUpdate = new JButton("Modificar");
+		btnUpdate.setFocusPainted(false);
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+
+				try {
+					
+					if(idEmpleado.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Tiene que seleccionar un registro de la tabla para ser modificado", "Registro", JOptionPane.ERROR_MESSAGE);
+					}else {
+						if (txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty() || txtDireccion.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtDni.getText().isEmpty() || txtOngCif.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Nombre" + "\n" + "Apellido" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
+						}else {
+								Empleados empleadosMod = DAOFactory.getDAOFactory(4).jpaEmpleadosDAO().leerId(Integer.parseInt(idEmpleado.getText()));
+								
+								empleadosMod.setNombre(txtNombre.getText());
+								empleadosMod.setApellidos(txtApellido.getText());
+								empleadosMod.setDireccion(txtDireccion.getText());
+								empleadosMod.setTelefono(txtTelefono.getText());
+								empleadosMod.setDNI(txtDni.getText());
+								empleadosMod.setOngCif(txtOngCif.getText());
+								
+								DAOFactory.getDAOFactory(4).jpaEmpleadosDAO().actualizar(empleadosMod);	
+						}
+						
+						
+						}	
+			
+					//JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception e) {
+					//JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro", JOptionPane.ERROR_MESSAGE);
+					//tx1.rollback();
+				}finally {
+					cargarJtableEmpleados();
+				}
+				
+				
+			}
+		});
+		btnUpdate.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/reload.png")));
+		btnUpdate.setBounds(484, 612, 112, 23);
+		panelEmpleados.add(btnUpdate);
+		
+		
+		//PANEL PROYECTOS
 		
 		panelProyectos = new JPanel();
 		panelProyectos.setBackground(new Color(237, 240, 245));
@@ -989,5 +1373,64 @@ public class Principal extends JFrame {
 	}
 	public JTextArea getTextAreaLinea() {
 		return textAreaLinea;
+	}
+	
+	public static void cargarJtableEmpleados() {
+		LlenarJTable cargaDatos = new LlenarJTable();
+		
+		try {
+			tabla.setModel(cargaDatos.llenarJtable());
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e,"Error al cargar los empleados",JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public JButton getBtnNuevo(){
+		return btnNuevo;
+	}
+	
+	public JButton getBtnInsert(){
+		return btnInsert;
+	}
+	
+	public JButton getBtnDelete(){
+		return btnDelete;
+	}
+	
+	public JButton getBtnUpdate(){
+		return btnUpdate;
+	}
+	
+	public JTable getTabla() {
+		return tabla;
+	}
+	
+	public JTextField getidEmpleado() {
+		return idEmpleado;
+	}
+	
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+	
+	public JTextField getTxtApellido() {
+		return txtApellido;
+	}
+	
+	public JTextField getTxtDireccion() {
+		return txtDireccion;
+	}
+	
+	public JTextField getTxtTelefono() {
+		return txtTelefono;
+	}
+	
+	public JTextField getTxtDni() {
+		return txtDni;
+	}
+	
+	public JTextField getTxtOngCif() {
+		return txtOngCif;
 	}
 }

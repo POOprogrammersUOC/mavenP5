@@ -21,7 +21,7 @@ public class JPAEmpleadosDAO implements IEmpleadosJPADAO{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectosPU");
 		EntityManager em = emf.createEntityManager();
 		
-		String query = "SELECT e FROM empleados e";
+		String query = "SELECT e FROM Empleados e";
 		TypedQuery<Empleados>tq = em.createQuery(query, Empleados.class);
 		List<Empleados>listaEmpleados = null;
 		try {
