@@ -137,6 +137,10 @@ public class Login extends JFrame {
 								principal.getBtnEliminar().setEnabled(false);
 								principal.getBtnModificar().setEnabled(false);
 								principal.getBtnLimpiar().setEnabled(false);
+								principal.getBtnInsert().setEnabled(false);
+								principal.getBtnDelete().setEnabled(false);
+								principal.getBtnUpdate().setEnabled(false);
+								principal.getBtnNuevo().setEnabled(false);
 								principal.cargarJtableProyectos();
 								principal.cargarJtableEmpleados();
 								principal.setLocationRelativeTo(null);
