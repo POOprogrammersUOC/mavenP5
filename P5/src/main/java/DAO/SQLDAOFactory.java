@@ -71,4 +71,10 @@ public class SQLDAOFactory extends DAOFactory {
 		return null;
 	}
 
+	@Override
+	public JPAEmpleadosDAO jpaEmpleadosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
+
 }

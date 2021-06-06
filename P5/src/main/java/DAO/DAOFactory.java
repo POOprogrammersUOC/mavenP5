@@ -33,6 +33,8 @@ public abstract class DAOFactory {
 	public abstract JPAProyectosDAO jpaProyectosDAO();
 	
 	public abstract JPASociosDAO jpaSociosDAO();
+	
+	public abstract JPAEmpleadosDAO jpaEmpleadosDAO();
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 
