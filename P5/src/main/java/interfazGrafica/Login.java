@@ -123,6 +123,7 @@ public class Login extends JFrame {
 								principal.getLblPanelDerechoSetRol().setText("Total");
 								principal.getLblImageSetUsuario().setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_administrador.png")));
 								principal.cargarJtableProyectos();
+								principal.cargarJtableSocios();
 								principal.setLocationRelativeTo(null);
 								dispose();
 							}else if(getPrivilegio.equals("usuario")) {
@@ -137,6 +138,7 @@ public class Login extends JFrame {
 								principal.getBtnModificar().setEnabled(false);
 								principal.getBtnLimpiar().setEnabled(false);
 								principal.cargarJtableProyectos();
+								principal.cargarJtableSocios();
 								principal.setLocationRelativeTo(null);
 								dispose();
 							}

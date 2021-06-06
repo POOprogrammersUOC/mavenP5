@@ -31,6 +31,8 @@ public abstract class DAOFactory {
 	public abstract importXMLtoSQLSociosDAO setImportXMLtoSQLSocios() throws JAXBException;
 	
 	public abstract JPAProyectosDAO jpaProyectosDAO();
+	
+	public abstract JPASociosDAO jpaSociosDAO();
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 

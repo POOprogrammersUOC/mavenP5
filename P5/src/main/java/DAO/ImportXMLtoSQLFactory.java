@@ -63,5 +63,15 @@ public class ImportXMLtoSQLFactory extends DAOFactory {
 		// TODO Esbozo de método generado automáticamente
 		return null;
 	}
-
+	
+	@Override
+	public JPASociosDAO jpaSociosDAO() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	
+	}
+	
+	
+	
+	
 }

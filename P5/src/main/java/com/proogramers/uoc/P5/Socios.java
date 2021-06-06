@@ -1,17 +1,37 @@
 package com.proogramers.uoc.P5;
 
 import javax.xml.bind.annotation.*;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @XmlRootElement(name = "socios")
 @XmlType(propOrder = { "nombre", "apellidos", "nSocio", "direccion", "telefono", "ongCif" })
+@Entity
 
-public class Socios {
 
+public class Socios implements Serializable {
+
+private static final long serialVersionUID = 1L;
+	
+@Column(name="Nombre")
 	private String Nombre;
+	
+	@Column(name="Apellido")
 	private String Apellidos;
+	
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idSocios")
 	private int nSocio;
+	
+	@Column(name="Direccion")
 	private String Direccion;
+	
+	@Column(name="Telefono")
 	private String Telefono;
+	
+	@Column(name="Ong_CIF")
 	private String ongCif;
 
 	/**
@@ -162,7 +182,7 @@ public class Socios {
 	@XmlElement(name = "OngCif")
 	public String getOngCif() {
 		// TODO Auto-generated method stub
-		return null;
+		return ongCif;
 	}
 
 	/**

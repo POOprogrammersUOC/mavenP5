@@ -64,5 +64,11 @@ public class XMLDAOFactory extends DAOFactory {
 		return null;
 	}
 
+	@Override
+	public JPASociosDAO jpaSociosDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

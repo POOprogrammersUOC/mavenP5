@@ -24,12 +24,13 @@ import javax.swing.JSplitPane;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+import com.proogramers.uoc.P5.FillOutJTable;
 import com.proogramers.uoc.P5.Proyectos;
 import com.proogramers.uoc.P5.RellenarJTable;
+import com.proogramers.uoc.P5.Socios;
 
 import DAO.DAOFactory;
 import DAO.JPAProyectosDAO;
-
 
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
@@ -65,7 +66,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
 
-
 public class Principal extends JFrame {
 	private JLabel lblImageSetUsuario;
 	private JLabel lblPanelDerechoSetUsuario;
@@ -76,13 +76,6 @@ public class Principal extends JFrame {
 	private JPanel panelEmpleados;
 	private JPanel panelProyectos;
 	private JButton btnHome;
-
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 
 	private static JTable table;
 	private JLabel lblNewLabel;
@@ -118,10 +111,33 @@ public class Principal extends JFrame {
 	private JButton btnInsertar;
 	private JButton btnEliminar;
 	private JButton btnModificar;
+	private JLabel lbletiqueta;
+	private JLabel lbletiqueta_1;
+	private JLabel lbletiqueta_2;
+	private JLabel lbletiqueta_3;
+	private JLabel lbletiqueta_4;
+	private JLabel lbletiqueta_5;
+	private JLabel lbletiqueta_6;
 
+	private JTextField idSocio;
+	private JTextField txtName;
+	private JTextField txtSurname;
+	private JTextField txtAddress;
+	private JTextField txtPhone;
+	private JTextField txtVatNum;
+	private JButton btnNew;
+	private JButton btnAdd;
+	private JButton btnErase;
+	private JButton btnModify;
 
 	static Logger log = LogManager.getRootLogger();
 	private JScrollPane scrollPane_3;
+	private JScrollPane scroll;
+	private JLabel lblNewLabel_15;
+	private JScrollPane scrollSocios;
+	private JButton btnInsert;
+	private static JTable table_1;
+
 	/**
 	 * Launch the application.
 	 */
@@ -132,6 +148,7 @@ public class Principal extends JFrame {
 					Principal frame = new Principal();
 					frame.setLocationRelativeTo(null);
 					cargarJtableProyectos();
+					cargarJtableSocios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -140,13 +157,12 @@ public class Principal extends JFrame {
 		});
 	}
 
-	
-	
 	/**
 	 * Create the frame.
 	 */
 	public Principal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/interfazGrafica/img/mundo.png")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/interfazGrafica/img/mundo.png")));
 		setResizable(false);
 		setLocale(new Locale("es", "ES"));
 		getContentPane().setPreferredSize(new Dimension(10, 10));
@@ -156,39 +172,39 @@ public class Principal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(0, 0));
 		panel.setBackground(new Color(177, 191, 212));
 		panel.setBounds(0, 0, 201, 662);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		lblImageSetUsuario = new JLabel("");
 		lblImageSetUsuario.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/mini_usuario.png")));
 		lblImageSetUsuario.setBounds(40, 11, 105, 122);
 		panel.add(lblImageSetUsuario);
-		
+
 		JLabel lblPanelDerechoUsuario = new JLabel("Usuario:");
 		lblPanelDerechoUsuario.setBounds(26, 147, 59, 14);
 		panel.add(lblPanelDerechoUsuario);
 		lblPanelDerechoUsuario.setForeground(Color.BLACK);
-		
+
 		JLabel lblPanelDerechoRol = new JLabel("Privilegios:");
 		lblPanelDerechoRol.setBounds(26, 167, 77, 14);
 		panel.add(lblPanelDerechoRol);
 		lblPanelDerechoRol.setForeground(Color.BLACK);
-		
+
 		lblPanelDerechoSetUsuario = new JLabel("Tipo_usuario");
 		lblPanelDerechoSetUsuario.setBounds(95, 147, 96, 14);
 		panel.add(lblPanelDerechoSetUsuario);
 		lblPanelDerechoSetUsuario.setForeground(Color.BLACK);
-		
+
 		lblPanelDerechoSetRol = new JLabel("Tipo_rol");
 		lblPanelDerechoSetRol.setBounds(95, 167, 96, 14);
 		panel.add(lblPanelDerechoSetRol);
 		lblPanelDerechoSetRol.setForeground(Color.BLACK);
-		
+
 		final JButton btnSocios = new JButton("Socios      ");
 		btnSocios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -206,6 +222,7 @@ public class Principal extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btnSocios.setBackground(new Color(100, 127, 189));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnSocios.setBackground(new Color(177, 191, 212));
@@ -217,7 +234,7 @@ public class Principal extends JFrame {
 		btnSocios.setBorderPainted(false);
 		btnSocios.setBorder(null);
 		btnSocios.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/apreton-de-manos24.png")));
-		
+
 		final JButton btnEmpleados = new JButton("Empleados");
 		btnEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -235,18 +252,20 @@ public class Principal extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btnEmpleados.setBackground(new Color(100, 127, 189));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnEmpleados.setBackground(new Color(177, 191, 212));
 			}
 		});
 		btnEmpleados.setForeground(Color.WHITE);
-		btnEmpleados.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/trabajo-en-equipo24.png")));
+		btnEmpleados
+				.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/trabajo-en-equipo24.png")));
 		btnEmpleados.setFocusPainted(false);
 		btnEmpleados.setBorderPainted(false);
 		btnEmpleados.setBorder(null);
 		btnEmpleados.setBackground(new Color(177, 191, 212));
-		
+
 		final JButton btnProyectos = new JButton("Proyectos");
 		btnProyectos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -264,6 +283,7 @@ public class Principal extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btnProyectos.setBackground(new Color(100, 127, 189));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnProyectos.setBackground(new Color(177, 191, 212));
@@ -275,7 +295,7 @@ public class Principal extends JFrame {
 		btnProyectos.setBorderPainted(false);
 		btnProyectos.setBorder(null);
 		btnProyectos.setBackground(new Color(177, 191, 212));
-		
+
 		btnHome = new JButton("Home       ");
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -291,6 +311,7 @@ public class Principal extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btnHome.setBackground(new Color(100, 127, 189));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnHome.setBackground(new Color(177, 191, 212));
@@ -304,134 +325,411 @@ public class Principal extends JFrame {
 		btnHome.setBackground(new Color(177, 191, 212));
 		btnHome.setBounds(0, 279, 201, 38);
 		panel.add(btnHome);
-		
+
 		panelBody = new JPanel();
 		panelBody.setBounds(200, 0, 784, 662);
 		getContentPane().add(panelBody);
 		panelBody.setLayout(new CardLayout(0, 0));
-		
+
 		panelHome = new JPanel();
 		panelHome.setBounds(new Rectangle(200, 0, 784, 662));
 		panelBody.add(panelHome, "name_161162941260200");
-		
+
+		// PANEL SOCIOS
+
 		panelSocios = new JPanel();
 		panelSocios.setBackground(SystemColor.inactiveCaptionBorder);
 		panelBody.add(panelSocios, "name_161214080585300");
 		panelSocios.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Nº de socio:");
-		lblNewLabel.setBounds(10, 302, 68, 14);
-		panelSocios.add(lblNewLabel);
-		
-		textField = new JTextField();
-		textField.setBounds(10, 317, 96, 20);
-		panelSocios.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(138, 302, 68, 14);
-		panelSocios.add(lblNombre);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(138, 317, 96, 20);
-		panelSocios.add(textField_1);
-		
-		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(258, 302, 68, 14);
-		panelSocios.add(lblApellido);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(258, 317, 96, 20);
-		panelSocios.add(textField_2);
-		
-		JLabel lblDireccin = new JLabel("Dirección:");
-		lblDireccin.setBounds(377, 302, 68, 14);
-		panelSocios.add(lblDireccin);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(377, 317, 96, 20);
-		panelSocios.add(textField_3);
-		
-		JLabel lblTelfono = new JLabel("Teléfono:");
-		lblTelfono.setBounds(498, 302, 68, 14);
-		panelSocios.add(lblTelfono);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(498, 317, 96, 20);
-		panelSocios.add(textField_4);
-		
-		JLabel lblCifOng = new JLabel("Cif Ong:");
-		lblCifOng.setBounds(10, 363, 68, 14);
-		panelSocios.add(lblCifOng);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(10, 378, 96, 20);
-		panelSocios.add(textField_5);
-		
-		JButton btnNewButton = new JButton("Nuevo");
-		btnNewButton.setBounds(123, 455, 89, 23);
-		panelSocios.add(btnNewButton);
-		
-		JButton btnInsertar = new JButton("Insertar");
-		btnInsertar.setBounds(234, 455, 89, 23);
-		panelSocios.add(btnInsertar);
-		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(345, 455, 89, 23);
-		panelSocios.add(btnEliminar);
-		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(453, 455, 89, 23);
-		panelSocios.add(btnModificar);
-		
-		JLabel lblNewLabel_1 = new JLabel("SOCIOS");
-		lblNewLabel_1.setBounds(10, 11, 46, 14);
-		panelSocios.add(lblNewLabel_1);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(10, 28, 666, 238);
-		panelSocios.add(panel_1);
-		
+
+		idSocio = new JTextField();
+		idSocio.setEditable(false);
+		idSocio.setBounds(10, 317, 96, 20);
+		panelSocios.add(idSocio);
+		idSocio.setColumns(10);
+
+		JLabel lbltag_1 = new JLabel("Nombre:");
+		lbltag_1.setBounds(138, 302, 68, 14);
+		panelSocios.add(lbltag_1);
+
+		JLabel lbltag_2 = new JLabel("Apellido:");
+		lbltag_2.setBounds(258, 302, 68, 14);
+		panelSocios.add(lbltag_2);
+
+		JLabel lbltag_3 = new JLabel("Dirección:");
+		lbltag_3.setBounds(377, 302, 68, 14);
+		panelSocios.add(lbltag_3);
+
+		JLabel lbltag_4 = new JLabel("Teléfono:");
+		lbltag_4.setBounds(498, 302, 68, 14);
+		panelSocios.add(lbltag_4);
+
+		JLabel lbltag_5 = new JLabel("Cif Ong:");
+		lbltag_5.setBounds(10, 363, 68, 14);
+		panelSocios.add(lbltag_5);
+
+		JLabel lblSociostitulo = new JLabel("SOCIOS");
+		lblSociostitulo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSociostitulo.setBounds(10, 11, 68, 14);
+		panelSocios.add(lblSociostitulo);
+
+		JLabel lbltag = new JLabel("Nº Socio:");
+		lbltag.setBounds(10, 302, 68, 14);
+		panelSocios.add(lbltag);
+
+		lblNewLabel_15 = new JLabel("");
+		lblNewLabel_15.setOpaque(true);
+		lblNewLabel_15.setBackground(Color.ORANGE);
+		lblNewLabel_15.setBounds(0, 36, 764, 8);
+		panelSocios.add(lblNewLabel_15);
+
+		scrollSocios = new JScrollPane();
+		scrollSocios.setAutoscrolls(true);
+
+		scrollSocios.setBounds(10, 55, 764, 229);
+		panelSocios.add(scrollSocios);
+
+		table_1 = new JTable();
+		scrollSocios.setViewportView(table_1);
+
+		table_1 = new JTable();
+		table_1.setSelectionBackground(Color.CYAN);
+		table_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int getRegistro = table_1.getSelectedRow();
+				idSocio.setText(table_1.getValueAt(getRegistro, 0).toString());
+				txtName.setText(table_1.getValueAt(getRegistro, 1).toString());
+				txtSurname.setText(table_1.getValueAt(getRegistro, 2).toString());
+				txtAddress.setText(table_1.getValueAt(getRegistro, 3).toString());
+				txtPhone.setText(table_1.getValueAt(getRegistro, 4).toString());
+				txtVatNum.setText(table_1.getValueAt(getRegistro, 5).toString());
+
+			}
+		});
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		scrollSocios.setViewportView(table_1);
+
+		txtName = new JTextField();
+		txtName.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtName.setBackground(Color.CYAN);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtName.setBackground(Color.WHITE);
+			}
+		});
+		txtName.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite = 45;
+				if (txtName.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Nombre", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
+				}
+			}
+		});
+		txtName.setBounds(138, 317, 96, 20);
+		panelSocios.add(txtName);
+		txtName.setColumns(10);
+
+		txtSurname = new JTextField();
+		txtSurname.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtSurname.setBackground(Color.CYAN);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtSurname.setBackground(Color.WHITE);
+			}
+		});
+		txtSurname.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite = 45;
+				if (txtSurname.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Apellido", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
+				}
+			}
+		});
+
+		txtSurname.setBounds(258, 317, 96, 20);
+		panelSocios.add(txtSurname);
+		txtSurname.setColumns(10);
+
+		txtAddress = new JTextField();
+		txtAddress.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtAddress.setBackground(Color.CYAN);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtAddress.setBackground(Color.WHITE);
+			}
+		});
+		txtAddress.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite = 45;
+				if (txtAddress.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Direccion", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
+				}
+			}
+		});
+
+		txtAddress.setBounds(377, 317, 96, 20);
+		panelSocios.add(txtAddress);
+		txtAddress.setColumns(10);
+
+		txtPhone = new JTextField();
+		txtPhone.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtPhone.setBackground(Color.CYAN);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtPhone.setBackground(Color.WHITE);
+			}
+		});
+		txtPhone.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite = 45;
+				if (txtPhone.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Telefono", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
+				}
+			}
+		});
+
+		txtPhone.setBounds(498, 317, 96, 20);
+		panelSocios.add(txtPhone);
+		txtPhone.setColumns(10);
+
+		txtVatNum = new JTextField();
+		txtVatNum.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtVatNum.setBackground(Color.CYAN);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				txtVatNum.setBackground(Color.WHITE);
+			}
+		});
+		txtVatNum.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int limite = 45;
+				if (txtVatNum.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Ong Cif", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
+				}
+			}
+		});
+		txtVatNum.setColumns(10);
+		txtVatNum.setBounds(10, 386, 96, 20);
+		panelSocios.add(txtVatNum);
+
+		JButton btnAdd = new JButton("Nuevo");
+		btnAdd.setFocusPainted(false);
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				idSocio.setText("");
+				txtName.setText("");
+				txtSurname.setText("");
+				txtAddress.setText("");
+				txtPhone.setText("");
+				txtVatNum.setText("");
+
+			}
+		});
+		btnAdd.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/nuevo.png")));
+		btnAdd.setBounds(105, 455, 101, 23);
+		panelSocios.add(btnAdd);
+
+		btnInsert = new JButton("Insertar");
+		btnInsert.setFocusPainted(false);
+		btnInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ar0) {
+
+				try {
+
+					if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtAddress.getText().isEmpty()
+							|| txtPhone.getText().isEmpty() || txtVatNum.getText().isEmpty()) {
+						// JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar
+						// vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin"
+						// +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n"
+						// +"Voluntariados" + "\n" +"CIF de la ong", "Registro",
+						// JOptionPane.ERROR_MESSAGE);
+						// JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar
+						// vacias: " + "\n" + "Nombre" + "\n" + "Apellido" + "\n" +"Direccion" +"\n" +
+						// "Telefono" + "\n" +"Dni" + "\n" +"Ong Cif" + "Registro",
+						// JOptionPane.ERROR_MESSAGE);
+					} else {
+
+						Socios socios = new Socios(txtName.getText(), txtSurname.getText(), txtAddress.getText(),
+								txtPhone.getText(), txtVatNum.getText());
+
+						DAOFactory.getDAOFactory(4).jpaSociosDAO().persist(socios);
+
+					}
+
+					// JOptionPane.showMessageDialog(null, "Registro insertado correctamente",
+					// "Registro", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception e) {
+					// JOptionPane.showMessageDialog(null, "Registro erroneo", "Registro",
+					// JOptionPane.ERROR_MESSAGE);
+					// tx.rollback();
+					// TODO: handle exception
+				} finally {
+					cargarJtableSocios();
+				}
+
+			}
+		});
+		btnInsert.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/insertar.png")));
+		btnInsert.setBounds(226, 455, 101, 23);
+		panelSocios.add(btnInsert);
+
+		btnErase = new JButton("Eliminar");
+		btnErase.setFocusPainted(false);
+		btnErase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				try {
+
+					if (idSocio.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null,
+								"Tiene que seleccionar un registro de la tabla para ser borrado", "Registro",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						DAOFactory.getDAOFactory(4).jpaSociosDAO().eliminar(Integer.parseInt(idSocio.getText()));
+					}
+
+					// JOptionPane.showMessageDialog(null, "Registro eliminado correctamente",
+					// "Registro", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception e) {
+					// JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro",
+					// JOptionPane.ERROR_MESSAGE);
+					// tx1.rollback();
+				} finally {
+					cargarJtableSocios();
+				}
+
+			}
+
+		});
+		btnErase.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/eliminar.png")));
+		btnErase.setBounds(347, 455, 107, 23);
+		panelSocios.add(btnErase);
+
+		btnModify = new JButton("Modificar");
+		btnModify.setFocusPainted(false);
+		btnModify.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				try {
+
+					if (idSocio.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null,
+								"Tiene que seleccionar un registro de la tabla para ser modificado", "Registro",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty()
+								|| txtAddress.getText().isEmpty() || txtPhone.getText().isEmpty()
+								|| txtVatNum.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null,
+									"Las siguientes celdas no pueden estar vacias: " + "\n" + "Nombre" + "\n"
+											+ "Apellido" + "\n" + "\n" + "Direccion" + "\n" + "Telefono" + "\n"
+											+ "CIF de la ong",
+									"Registro", JOptionPane.ERROR_MESSAGE);
+						} else {
+							Socios sociosMod = DAOFactory.getDAOFactory(4).jpaSociosDAO()
+									.leerId(Integer.parseInt(idSocio.getText()));
+
+							sociosMod.setNombre(txtName.getText());
+							sociosMod.setApellidos(txtSurname.getText());
+							sociosMod.setDireccion(txtAddress.getText());
+							sociosMod.setTelefono(txtPhone.getText());
+							sociosMod.setOngCif(txtVatNum.getText());
+
+							DAOFactory.getDAOFactory(4).jpaSociosDAO().actualizar(sociosMod);
+						}
+
+					}
+
+					// JOptionPane.showMessageDialog(null, "Registro modificado correctamente",
+					// "Registro", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception e) {
+					// JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro",
+					// JOptionPane.ERROR_MESSAGE);
+					// tx1.rollback();
+				} finally {
+					cargarJtableSocios();
+				}
+
+			}
+		});
+		btnModify.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/reload.png")));
+		btnModify.setBounds(464, 455, 117, 23);
+		panelSocios.add(btnModify);
+
+		// PANEL EMPLEADOS
+
 		panelEmpleados = new JPanel();
 		panelEmpleados.setBackground(Color.CYAN);
 		panelBody.add(panelEmpleados, "name_161410589258100");
-		
+
+		// PANEL PROYECTOS
+
 		panelProyectos = new JPanel();
 		panelProyectos.setBackground(new Color(237, 240, 245));
 		panelBody.add(panelProyectos, "name_161445339611100");
 		panelProyectos.setLayout(null);
-		
+
 		JLabel lblTituloProyectos = new JLabel("PROYECTOS");
 		lblTituloProyectos.setBounds(10, 25, 100, 17);
 		lblTituloProyectos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelProyectos.add(lblTituloProyectos);
-		
+
 		JLabel lblNewLabel_11 = new JLabel("");
 		lblNewLabel_11.setBounds(10, 42, 764, 8);
 		lblNewLabel_11.setOpaque(true);
 		lblNewLabel_11.setBackground(Color.ORANGE);
 		panelProyectos.add(lblNewLabel_11);
-		
+
 		scrollPane_3 = new JScrollPane();
 		scrollPane_3.setAutoscrolls(true);
 		/*
-		scrollPane_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				
-			}
-		});
-		*/
+		 * scrollPane_3.addMouseListener(new MouseAdapter() {
+		 * 
+		 * @Override public void mouseClicked(MouseEvent e) {
+		 * 
+		 * 
+		 * } });
+		 */
 		scrollPane_3.setBounds(10, 72, 764, 226);
 		panelProyectos.add(scrollPane_3);
-		
+
 		table = new JTable();
 		table.setSelectionBackground(new Color(255, 204, 102));
 		table.addMouseListener(new MouseAdapter() {
@@ -452,68 +750,69 @@ public class Principal extends JFrame {
 				txtPersonal.setText(table.getValueAt(getRegistro, 11).toString());
 				txtVoluntarios.setText(table.getValueAt(getRegistro, 12).toString());
 				txtCifOng.setText(table.getValueAt(getRegistro, 13).toString());
-				
+
 			}
 		});
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		scrollPane_3.setViewportView(table);
-		
+
 		lblNewLabel = new JLabel("Nº de proyecto:");
 		lblNewLabel.setBounds(10, 322, 125, 14);
 		panelProyectos.add(lblNewLabel);
-		
+
 		lblNewLabel_2 = new JLabel("Pais:");
 		lblNewLabel_2.setBounds(160, 322, 46, 14);
 		panelProyectos.add(lblNewLabel_2);
-		
+
 		lblNewLabel_3 = new JLabel("Localización:");
 		lblNewLabel_3.setBounds(305, 322, 75, 11);
 		panelProyectos.add(lblNewLabel_3);
-		
+
 		lblNewLabel_4 = new JLabel("Fecha de inicio:");
 		lblNewLabel_4.setBounds(450, 322, 118, 14);
 		panelProyectos.add(lblNewLabel_4);
-		
+
 		lblNewLabel_5 = new JLabel("Fecha final:");
 		lblNewLabel_5.setBounds(595, 322, 75, 14);
 		panelProyectos.add(lblNewLabel_5);
-		
+
 		lblNewLabel_6 = new JLabel("Socio local:");
 		lblNewLabel_6.setBounds(11, 367, 124, 14);
 		panelProyectos.add(lblNewLabel_6);
-		
+
 		lblNewLabel_7 = new JLabel("Financiador:");
 		lblNewLabel_7.setBounds(160, 367, 125, 14);
 		panelProyectos.add(lblNewLabel_7);
-		
+
 		lblNewLabel_8 = new JLabel("Financiación:");
 		lblNewLabel_8.setBounds(305, 367, 125, 14);
 		panelProyectos.add(lblNewLabel_8);
-		
+
 		lblNewLabel_9 = new JLabel("Personal:");
 		lblNewLabel_9.setBounds(451, 367, 64, 14);
 		panelProyectos.add(lblNewLabel_9);
-		
+
 		lblNewLabel_10 = new JLabel("Voluntarios asignados:");
 		lblNewLabel_10.setBounds(595, 367, 135, 14);
 		panelProyectos.add(lblNewLabel_10);
-		
+
 		lblNewLabel_11 = new JLabel("Cif Ong:");
 		lblNewLabel_11.setBounds(10, 411, 64, 14);
 		panelProyectos.add(lblNewLabel_11);
-		
+
 		idProyecto = new JTextField();
 		idProyecto.setEditable(false);
 		idProyecto.setBounds(10, 336, 125, 20);
 		panelProyectos.add(idProyecto);
 		idProyecto.setColumns(10);
-		
+
 		txtPais = new JTextField();
 		txtPais.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPais.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtPais.setBackground(Color.WHITE);
@@ -522,24 +821,25 @@ public class Principal extends JFrame {
 		txtPais.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =45;
-				if(txtPais.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Pais",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 45;
+				if (txtPais.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Pais", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		txtPais.setBounds(160, 335, 125, 20);
 		panelProyectos.add(txtPais);
 		txtPais.setColumns(10);
-		
+
 		txtLocalizacion = new JTextField();
 		txtLocalizacion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtLocalizacion.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtLocalizacion.setBackground(Color.WHITE);
@@ -548,18 +848,18 @@ public class Principal extends JFrame {
 		txtLocalizacion.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =45;
-				if(txtLocalizacion.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Localización",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 45;
+				if (txtLocalizacion.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Localización", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		txtLocalizacion.setBounds(305, 335, 125, 20);
 		panelProyectos.add(txtLocalizacion);
 		txtLocalizacion.setColumns(10);
-		
+
 		txtFinicio = new JTextField();
 		txtFinicio.setToolTipText("Formato de fecha YYYY-MM-DD");
 		txtFinicio.addMouseListener(new MouseAdapter() {
@@ -567,6 +867,7 @@ public class Principal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				txtFinicio.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtFinicio.setBackground(Color.WHITE);
@@ -575,7 +876,7 @@ public class Principal extends JFrame {
 		txtFinicio.setBounds(450, 335, 125, 20);
 		panelProyectos.add(txtFinicio);
 		txtFinicio.setColumns(10);
-		
+
 		txtFfinal = new JTextField();
 		txtFfinal.setToolTipText("Formato de fecha YYYY-MM-DD");
 		txtFfinal.addMouseListener(new MouseAdapter() {
@@ -583,6 +884,7 @@ public class Principal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				txtFfinal.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtFfinal.setBackground(Color.WHITE);
@@ -591,13 +893,14 @@ public class Principal extends JFrame {
 		txtFfinal.setBounds(595, 335, 125, 20);
 		panelProyectos.add(txtFfinal);
 		txtFfinal.setColumns(10);
-		
+
 		txtSocioLocal = new JTextField();
 		txtSocioLocal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtSocioLocal.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtSocioLocal.setBackground(Color.WHITE);
@@ -606,24 +909,25 @@ public class Principal extends JFrame {
 		txtSocioLocal.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =45;
-				if(txtSocioLocal.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Socio Local",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 45;
+				if (txtSocioLocal.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Socio Local", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		txtSocioLocal.setBounds(10, 380, 126, 20);
 		panelProyectos.add(txtSocioLocal);
 		txtSocioLocal.setColumns(10);
-		
+
 		txtFinanciador = new JTextField();
 		txtFinanciador.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtFinanciador.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtFinanciador.setBackground(Color.WHITE);
@@ -632,24 +936,25 @@ public class Principal extends JFrame {
 		txtFinanciador.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =45;
-				if(txtFinanciador.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Financiador",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 45;
+				if (txtFinanciador.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Financiador", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		txtFinanciador.setBounds(160, 380, 125, 20);
 		panelProyectos.add(txtFinanciador);
 		txtFinanciador.setColumns(10);
-		
+
 		txtFinanciacion = new JTextField();
 		txtFinanciacion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtFinanciacion.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtFinanciacion.setBackground(Color.WHITE);
@@ -658,13 +963,14 @@ public class Principal extends JFrame {
 		txtFinanciacion.setBounds(305, 380, 125, 20);
 		panelProyectos.add(txtFinanciacion);
 		txtFinanciacion.setColumns(10);
-		
+
 		txtPersonal = new JTextField();
 		txtPersonal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPersonal.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtPersonal.setBackground(Color.WHITE);
@@ -673,13 +979,14 @@ public class Principal extends JFrame {
 		txtPersonal.setBounds(450, 380, 125, 20);
 		panelProyectos.add(txtPersonal);
 		txtPersonal.setColumns(10);
-		
+
 		txtVoluntarios = new JTextField();
 		txtVoluntarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtVoluntarios.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtVoluntarios.setBackground(Color.WHITE);
@@ -688,13 +995,14 @@ public class Principal extends JFrame {
 		txtVoluntarios.setBounds(595, 380, 125, 20);
 		panelProyectos.add(txtVoluntarios);
 		txtVoluntarios.setColumns(10);
-		
+
 		txtCifOng = new JTextField();
 		txtCifOng.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtCifOng.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				txtCifOng.setBackground(Color.WHITE);
@@ -703,32 +1011,33 @@ public class Principal extends JFrame {
 		txtCifOng.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =45;
-				if(txtCifOng.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Cif de ong",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 45;
+				if (txtCifOng.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Cif de ong", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		txtCifOng.setBounds(10, 424, 125, 20);
 		panelProyectos.add(txtCifOng);
 		txtCifOng.setColumns(10);
-		
+
 		JLabel lblNewLabel_12 = new JLabel("Línea de acción:");
 		lblNewLabel_12.setBounds(10, 452, 125, 14);
 		panelProyectos.add(lblNewLabel_12);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 465, 214, 120);
 		panelProyectos.add(scrollPane);
-		
+
 		textAreaLinea = new JTextArea();
 		textAreaLinea.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				textAreaLinea.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				textAreaLinea.setBackground(Color.WHITE);
@@ -737,30 +1046,31 @@ public class Principal extends JFrame {
 		textAreaLinea.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =100;
-				if(textAreaLinea.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Línea de acción",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 100;
+				if (textAreaLinea.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Línea de acción", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		scrollPane.setViewportView(textAreaLinea);
-		
+
 		lblNewLabel_13 = new JLabel("Sublínea de acción:");
 		lblNewLabel_13.setBounds(250, 452, 125, 14);
 		panelProyectos.add(lblNewLabel_13);
-		
+
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(250, 465, 214, 120);
 		panelProyectos.add(scrollPane_1);
-		
+
 		textAreaSublinea = new JTextArea();
 		textAreaSublinea.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				textAreaSublinea.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				textAreaSublinea.setBackground(Color.WHITE);
@@ -769,31 +1079,32 @@ public class Principal extends JFrame {
 		textAreaSublinea.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =100;
-				if(textAreaSublinea.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Sublínea de acción",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 100;
+				if (textAreaSublinea.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Sublínea de acción", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		scrollPane_1.setViewportView(textAreaSublinea);
-		
+
 		lblNewLabel_14 = new JLabel("Acción:");
 		lblNewLabel_14.setBounds(488, 452, 46, 14);
 		panelProyectos.add(lblNewLabel_14);
-		
+
 		scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(488, 465, 214, 120);
 		panelProyectos.add(scrollPane_2);
-		
+
 		textAreaAccion = new JTextArea();
 		textAreaAccion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				textAreaAccion.setBackground(Color.ORANGE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				textAreaAccion.setBackground(Color.WHITE);
@@ -802,21 +1113,21 @@ public class Principal extends JFrame {
 		textAreaAccion.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				int limite =100;
-				if(textAreaAccion.getText().length() == limite) 
-				{
-					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite +" carácteres", "Límite de carácteres en el campo Acciones",JOptionPane.ERROR_MESSAGE , null);
-					e.consume();				
+				int limite = 100;
+				if (textAreaAccion.getText().length() == limite) {
+					JOptionPane.showMessageDialog(null, "Se ha sobrepasado el límite de " + limite + " carácteres",
+							"Límite de carácteres en el campo Acciones", JOptionPane.ERROR_MESSAGE, null);
+					e.consume();
 				}
 			}
 		});
 		scrollPane_2.setViewportView(textAreaAccion);
-		
+
 		btnLimpiar = new JButton("Nuevo");
 		btnLimpiar.setFocusPainted(false);
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				idProyecto.setText("");
 				txtPais.setText("");
 				txtLocalizacion.setText("");
@@ -831,135 +1142,152 @@ public class Principal extends JFrame {
 				txtPersonal.setText("");
 				txtVoluntarios.setText("");
 				txtCifOng.setText("");
-				
+
 			}
 		});
 		btnLimpiar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/nuevo.png")));
 		btnLimpiar.setBounds(160, 612, 89, 23);
 		panelProyectos.add(btnLimpiar);
-		
+
 		btnInsertar = new JButton("Insertar");
 		btnInsertar.setFocusPainted(false);
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 
 				try {
-					
-					if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty() || txtFfinal.getText().isEmpty() || txtSocioLocal.getText().isEmpty() || txtFinanciacion.getText().isEmpty() || txtPersonal.getText().isEmpty() || txtVoluntarios.getText().isEmpty() || txtCifOng.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
+
+					if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty() || txtFfinal.getText().isEmpty()
+							|| txtSocioLocal.getText().isEmpty() || txtFinanciacion.getText().isEmpty()
+							|| txtPersonal.getText().isEmpty() || txtVoluntarios.getText().isEmpty()
+							|| txtCifOng.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n"
+								+ "Pais" + "\n" + "Fecha de inicio" + "\n" + "Fecha de fin" + "\n" + "Socio" + "\n"
+								+ "Financiación" + "\n" + "Personal" + "\n" + "Voluntariados" + "\n" + "CIF de la ong",
+								"Registro", JOptionPane.ERROR_MESSAGE);
 					} else {
-						
+
 						Date sqlDate = Date.valueOf(txtFinicio.getText());
 						LocalDate fInicio = sqlDate.toLocalDate();
 						Date sqlDate2 = Date.valueOf(txtFfinal.getText());
 						LocalDate fFinal = sqlDate2.toLocalDate();
-						if(fFinal.isBefore(fInicio)) {
-							JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser mayor a la fecha final", "Registro", JOptionPane.ERROR_MESSAGE);
-						}else {
-							
+						if (fFinal.isBefore(fInicio)) {
+							JOptionPane.showMessageDialog(null,
+									"La fecha de inicio no puede ser mayor a la fecha final", "Registro",
+									JOptionPane.ERROR_MESSAGE);
+						} else {
+
 							String per1 = txtPersonal.getText();
 							int personal = Integer.parseInt(per1);
-							
+
 							String vol = txtVoluntarios.getText();
 							int voluntarios = Integer.parseInt(vol);
-							
+
 							String finan = txtFinanciacion.getText();
 							double financiacion = Double.parseDouble(finan);
-							
-							Proyectos proyectos = new Proyectos(txtPais.getText(),txtLocalizacion.getText(),textAreaLinea.getText(),textAreaSublinea.getText(),fInicio,fFinal,txtSocioLocal.getText(),txtFinanciador.getText(),financiacion,textAreaAccion.getText(),personal,voluntarios,txtCifOng.getText());
-							
-							DAOFactory.getDAOFactory(4).jpaProyectosDAO().persist(proyectos);
-							
-							
-						}
-						
-						
-						
-						
-					}
-					
-					
 
-					
-					//JOptionPane.showMessageDialog(null, "Registro insertado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+							Proyectos proyectos = new Proyectos(txtPais.getText(), txtLocalizacion.getText(),
+									textAreaLinea.getText(), textAreaSublinea.getText(), fInicio, fFinal,
+									txtSocioLocal.getText(), txtFinanciador.getText(), financiacion,
+									textAreaAccion.getText(), personal, voluntarios, txtCifOng.getText());
+
+							DAOFactory.getDAOFactory(4).jpaProyectosDAO().persist(proyectos);
+
+						}
+
+					}
+
+					// JOptionPane.showMessageDialog(null, "Registro insertado correctamente",
+					// "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
-					//JOptionPane.showMessageDialog(null, "Registro erroneo", "Registro", JOptionPane.ERROR_MESSAGE);
-					//tx.rollback();
+					// JOptionPane.showMessageDialog(null, "Registro erroneo", "Registro",
+					// JOptionPane.ERROR_MESSAGE);
+					// tx.rollback();
 					// TODO: handle exception
-				}finally {
+				} finally {
 					cargarJtableProyectos();
-				}		
-				
+				}
+
 			}
 		});
 		btnInsertar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/insertar.png")));
 		btnInsertar.setBounds(259, 612, 100, 23);
 		panelProyectos.add(btnInsertar);
-		
+
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFocusPainted(false);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					
 
 				try {
-					
+
 					if (idProyecto.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Tiene que seleccionar un registro de la tabla para ser borrado", "Registro", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,
+								"Tiene que seleccionar un registro de la tabla para ser borrado", "Registro",
+								JOptionPane.ERROR_MESSAGE);
 					} else {
 						DAOFactory.getDAOFactory(4).jpaProyectosDAO().eliminar(Integer.parseInt(idProyecto.getText()));
 					}
-					
-					
-					
-					//JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+
+					// JOptionPane.showMessageDialog(null, "Registro eliminado correctamente",
+					// "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
-					//JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro", JOptionPane.ERROR_MESSAGE);
-					//tx1.rollback();
-				}finally {
+					// JOptionPane.showMessageDialog(null, "Registro no borrado", "Registro",
+					// JOptionPane.ERROR_MESSAGE);
+					// tx1.rollback();
+				} finally {
 					cargarJtableProyectos();
 				}
-				
+
 			}
 		});
 		btnEliminar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/eliminar.png")));
 		btnEliminar.setBounds(369, 612, 105, 23);
 		panelProyectos.add(btnEliminar);
-		
+
 		btnModificar = new JButton("Modificar");
 		btnModificar.setFocusPainted(false);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 
 				try {
-					
-					if(idProyecto.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Tiene que seleccionar un registro de la tabla para ser modificado", "Registro", JOptionPane.ERROR_MESSAGE);
-					}else {
-						if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty() || txtFfinal.getText().isEmpty() || txtSocioLocal.getText().isEmpty() || txtFinanciacion.getText().isEmpty() || txtPersonal.getText().isEmpty() || txtVoluntarios.getText().isEmpty() || txtCifOng.getText().isEmpty()) {
-							JOptionPane.showMessageDialog(null, "Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n" + "Fecha de inicio" + "\n" +"Fecha de fin" +"\n" + "Socio" + "\n" +"Financiación" + "\n" +"Personal" + "\n" +"Voluntariados" + "\n" +"CIF de la ong", "Registro", JOptionPane.ERROR_MESSAGE);
-						}else {
+
+					if (idProyecto.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null,
+								"Tiene que seleccionar un registro de la tabla para ser modificado", "Registro",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						if (txtPais.getText().isEmpty() || txtFinicio.getText().isEmpty()
+								|| txtFfinal.getText().isEmpty() || txtSocioLocal.getText().isEmpty()
+								|| txtFinanciacion.getText().isEmpty() || txtPersonal.getText().isEmpty()
+								|| txtVoluntarios.getText().isEmpty() || txtCifOng.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null,
+									"Las siguientes celdas no pueden estar vacias: " + "\n" + "Pais" + "\n"
+											+ "Fecha de inicio" + "\n" + "Fecha de fin" + "\n" + "Socio" + "\n"
+											+ "Financiación" + "\n" + "Personal" + "\n" + "Voluntariados" + "\n"
+											+ "CIF de la ong",
+									"Registro", JOptionPane.ERROR_MESSAGE);
+						} else {
 							Date sqlDate = Date.valueOf(txtFinicio.getText());
 							LocalDate fInicio = sqlDate.toLocalDate();
 							Date sqlDate2 = Date.valueOf(txtFfinal.getText());
 							LocalDate fFinal = sqlDate2.toLocalDate();
-							if(fFinal.isBefore(fInicio)) {
-								JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser mayor a la fecha final", "Registro", JOptionPane.ERROR_MESSAGE);
-							}else {
-								Proyectos proyectosMod = DAOFactory.getDAOFactory(4).jpaProyectosDAO().leerId(Integer.parseInt(idProyecto.getText()));
-								
+							if (fFinal.isBefore(fInicio)) {
+								JOptionPane.showMessageDialog(null,
+										"La fecha de inicio no puede ser mayor a la fecha final", "Registro",
+										JOptionPane.ERROR_MESSAGE);
+							} else {
+								Proyectos proyectosMod = DAOFactory.getDAOFactory(4).jpaProyectosDAO()
+										.leerId(Integer.parseInt(idProyecto.getText()));
+
 								String per1 = txtPersonal.getText();
 								int personal = Integer.parseInt(per1);
-								
+
 								String vol = txtVoluntarios.getText();
 								int voluntarios = Integer.parseInt(vol);
-								
+
 								String finan = txtFinanciacion.getText();
 								double financiacion = Double.parseDouble(finan);
-								
-								
+
 								proyectosMod.setPais(txtPais.getText());
 								proyectosMod.setLocalizacion(txtLocalizacion.getText());
 								proyectosMod.setLineaDeAccion(textAreaLinea.getText());
@@ -973,117 +1301,159 @@ public class Principal extends JFrame {
 								proyectosMod.setPersonal(personal);
 								proyectosMod.setVoluntariosAsignados(voluntarios);
 								proyectosMod.setOngCif(txtCifOng.getText());
-								
-								DAOFactory.getDAOFactory(4).jpaProyectosDAO().actualizar(proyectosMod);	
+
+								DAOFactory.getDAOFactory(4).jpaProyectosDAO().actualizar(proyectosMod);
+							}
+
 						}
-						
-						
-						}	
 					}
-					//JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+					// JOptionPane.showMessageDialog(null, "Registro modificado correctamente",
+					// "Registro", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
-					//JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro", JOptionPane.ERROR_MESSAGE);
-					//tx1.rollback();
-				}finally {
+					// JOptionPane.showMessageDialog(null, "Registro no modificado", "Registro",
+					// JOptionPane.ERROR_MESSAGE);
+					// tx1.rollback();
+				} finally {
 					cargarJtableProyectos();
 				}
-				
-				
+
 			}
 		});
 		btnModificar.setIcon(new ImageIcon(Principal.class.getResource("/interfazGrafica/img/reload.png")));
 		btnModificar.setBounds(484, 612, 112, 23);
 		panelProyectos.add(btnModificar);
 	}
+
 	public JLabel getLblImageSetUsuario() {
 		return lblImageSetUsuario;
 	}
+
 	public JLabel getLblPanelDerechoSetUsuario() {
 		return lblPanelDerechoSetUsuario;
 	}
+
 	public JLabel getLblPanelDerechoSetRol() {
 		return lblPanelDerechoSetRol;
 	}
+
 	public JPanel getPanelBody() {
 		return panelBody;
 	}
+
 	public JPanel getPanelHome() {
 		return panelHome;
 	}
+
 	public JPanel getPanelSocios() {
 		return panelSocios;
 	}
+
 	public JPanel getPanelEmpleados() {
 		return panelEmpleados;
 	}
+
 	public JPanel getPanelProyectos() {
 		return panelProyectos;
 	}
+
 	public JButton getBtnLimpiar() {
 		return btnLimpiar;
 	}
+
 	public JButton getBtnInsertar() {
 		return btnInsertar;
 	}
+
 	public JButton getBtnEliminar() {
 		return btnEliminar;
 	}
+
 	public JButton getBtnModificar() {
 		return btnModificar;
 	}
+
 	public JTable getTable() {
 		return table;
 	}
-	
+
 	public static void cargarJtableProyectos() {
 		RellenarJTable cargaDatos = new RellenarJTable();
-		
+
 		try {
 			table.setModel(cargaDatos.rellenarJtable());
-			
+
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e,"Error al cargar los proyectos",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e, "Error al cargar los proyectos", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+	public JTable getTable1() {
+		return table_1;
+	}
+
+	public static void cargarJtableSocios() {
+		FillOutJTable cargaDatos = new FillOutJTable();
+
+		try {
+			table_1.setModel(cargaDatos.fillOutJTable());
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e, "Error al cargar los socios", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	public JTextField getTxtPersonal() {
 		return txtPersonal;
 	}
+
 	public JTextField getTxtFfinal() {
 		return txtFfinal;
 	}
+
 	public JTextField getIdProyecto() {
 		return idProyecto;
 	}
+
 	public JTextField getTxtPais() {
 		return txtPais;
 	}
+
 	public JTextField getTxtFinanciador() {
 		return txtFinanciador;
 	}
+
 	public JTextField getTxtVoluntarios() {
 		return txtVoluntarios;
 	}
+
 	public JTextField getTxtSocioLocal() {
 		return txtSocioLocal;
 	}
+
 	public JTextField getTxtLocalizacion() {
 		return txtLocalizacion;
 	}
+
 	public JTextField getTxtCifOng() {
 		return txtCifOng;
 	}
+
 	public JTextField getTxtFinicio() {
 		return txtFinicio;
 	}
+
 	public JTextField getTxtFinanciacion() {
 		return txtFinanciacion;
 	}
+
 	public JTextArea getTextAreaAccion() {
 		return textAreaAccion;
 	}
+
 	public JTextArea getTextAreaSublinea() {
 		return textAreaSublinea;
 	}
+
 	public JTextArea getTextAreaLinea() {
 		return textAreaLinea;
 	}
